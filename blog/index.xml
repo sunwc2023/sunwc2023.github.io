@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Simple life, simple coding</title>
+    <link>https://sunwc2023.github.io/blog/</link>
+    <description>Recent content in Blogs on Simple life, simple coding</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sun, 05 Mar 2023 09:31:47 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>markdown的第一篇文章</title>
+      <link>https://sunwc2023.github.io/blog/test/</link>
+      <pubDate>Sun, 05 Mar 2023 09:31:47 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/test/</guid>
+      <description>Hello World
+我是內文
+一級標題 二級標題 六級標題 我是阿柴，我喜歡學習
+阿柴 汪 這樣可以嗎? HEllo Hello , I am Lucy.</description>
+    </item>
+    
+    <item>
+      <title>How To Use Checklists To Improve Your UX</title>
+      <link>https://sunwc2023.github.io/blog/post-13/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/post-13/</guid>
+      <description>Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.</description>
+    </item>
+    
+    <item>
+      <title>markdown的第二篇文章</title>
+      <link>https://sunwc2023.github.io/blog/second-post/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/second-post/</guid>
+      <description>我是第二篇文章</description>
+    </item>
+    
+  </channel>
+</rss>
