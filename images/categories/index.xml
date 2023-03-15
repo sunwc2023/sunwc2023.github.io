@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Sunwc&#39;s Blog</title>
+    <link>https://sunwc2023.github.io/categories/</link>
+    <description>Recent content in Categories on Sunwc&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 15 Mar 2023 14:45:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Experience</title>
+      <link>https://sunwc2023.github.io/categories/experience/</link>
+      <pubDate>Wed, 15 Mar 2023 14:45:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/categories/experience/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://sunwc2023.github.io/categories/java/</link>
+      <pubDate>Wed, 15 Mar 2023 13:01:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Example</title>
+      <link>https://sunwc2023.github.io/categories/example/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      
+      <guid>https://sunwc2023.github.io/categories/example/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go Language</title>
+      <link>https://sunwc2023.github.io/categories/go-language/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      
+      <guid>https://sunwc2023.github.io/categories/go-language/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

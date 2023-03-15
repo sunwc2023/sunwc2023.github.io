@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Sunwc&#39;s Blog</title>
+    <link>https://sunwc2023.github.io/categories/java/</link>
+    <description>Recent content in Java on Sunwc&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 15 Mar 2023 13:01:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java - ThreadLocal 類的使用</title>
+      <link>https://sunwc2023.github.io/blog/thread-local/</link>
+      <pubDate>Wed, 15 Mar 2023 13:01:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/thread-local/</guid>
+      <description>有關在實際工作上使用到 ThreadLocal 的例子，可以參考我的另一篇文章 Java - ThreadLocal 實際應用
+ThreadLocal 實現原理 ThreadLocal 從字面義直翻，就是執行緒 (Thread) 的局部變數，是每一個執行緒所單獨持有，其他執行緒不能對其進行存取</description>
+    </item>
+    
+  </channel>
+</rss>
