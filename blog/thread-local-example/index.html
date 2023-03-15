@@ -273,16 +273,16 @@
 <p>情境二、這個 LogBox 類實際上是可以應用在 quartz 排程，透過建立一個客製類繼承 QuartzJobBean 並覆寫 executeInternal 方法，一開始透過 <code>createCurrentThreadLogBox(title)</code> 建立屬於該排程 (該執行緒) 的 <code>ThreadLocal&lt;LogBox&gt;</code> 物件；不過，此方法可能會再 ScheduleService 類的方法，因此在 ScheduleService 層就只需要　<code>getCurrentThreadLogBox()</code> 取得當前執行緒的 LogBox ，並添加業務邏輯所需顯示的 log 內容，透過 <code>log.info(&quot;xxxx&quot;)</code>, <code>log.error(exeption message)</code>,&hellip; 將不同層級訊息加到 LogBox 中，<em>排程快結束時回到 executeInternal 方法</em>，再 <code>removeLogBoxAndGetLog()</code> 清除當前執行緒 <code>ThreadLocal&lt;LogBox&gt;</code></p>
 </blockquote>
 <blockquote>
-<p>筆者在理解 ThreadLocal 後，但是卻在下面例子的 <code>callTransferLimitUpPer30Mins()</code>時log都印不出來；</p>
+<p>筆者在理解 ThreadLocal 後，但是卻在下面例子的當程式走到 <code>callTransferLimitUpPer30Mins()</code>內部時，該 function 的 log 都印不出來；</p>
 </blockquote>
 <ul>
 <li>原來的寫法：</li>
 </ul>
-<p>進入到<code>callTransferLimitUpPer30Mins()</code> 裡面，才<code>getCurrentThreadLogBox()</code> 取得當前執行緒的 LogBox，最後才發現這個坑是跟 ExecutorService interface 有關；</p>
+<p>在 <code>callTransferLimitUpPer30Mins()</code> function 的內部，才 <code>getCurrentThreadLogBox()</code> 取得當前執行緒的 LogBox，最後才發現這個坑是跟 ExecutorService interface 有關；</p>
 <ul>
 <li>改善後的寫法：</li>
 </ul>
-<p>將 LogBox 物件當作傳參送到<code>callTransferLimitUpPer30Mins(logBox)</code> ，才解決了問題，<em>請看以下例子：</em></p>
+<p>將 LogBox 物件當作傳參送到 <code>callTransferLimitUpPer30Mins(logBox)</code> ，才解決了問題，<em>請看以下例子：</em></p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Slf4j</span>
 </span></span><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@DisallowConcurrentExecution</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">RaiseupTransferLimitJob</span> <span style="color:#000;font-weight:bold">extends</span> QuartzJobBean <span style="color:#000;font-weight:bold">{</span>
