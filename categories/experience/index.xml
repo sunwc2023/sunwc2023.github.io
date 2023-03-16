@@ -17,14 +17,5 @@
 筆者曾經在不了解 ThreadLocal 類的情況下，錯用 ThreadLocal 客製Log物件的工具類，後來理解 ThreadLocal 運作原理後，在這裡特別記錄下來</description>
     </item>
     
-    <item>
-      <title>markdown 的第三篇文章 markdown 的第三篇文章</title>
-      <link>https://sunwc2023.github.io/blog/third-post/</link>
-      <pubDate>Sun, 05 Mar 2023 09:31:47 +0800</pubDate>
-      
-      <guid>https://sunwc2023.github.io/blog/third-post/</guid>
-      <description>我是第三篇文章</description>
-    </item>
-    
   </channel>
 </rss>

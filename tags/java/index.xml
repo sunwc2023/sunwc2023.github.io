@@ -36,14 +36,5 @@
 ThreadLocal 實現原理 ThreadLocal 從字面義直翻，就是執行緒 (Thread) 的局部變數，是每一個執行緒所單獨持有，其他執行緒不能對其進行存取</description>
     </item>
     
-    <item>
-      <title>markdown 的第三篇文章 markdown 的第三篇文章</title>
-      <link>https://sunwc2023.github.io/blog/third-post/</link>
-      <pubDate>Sun, 05 Mar 2023 09:31:47 +0800</pubDate>
-      
-      <guid>https://sunwc2023.github.io/blog/third-post/</guid>
-      <description>我是第三篇文章</description>
-    </item>
-    
   </channel>
 </rss>
