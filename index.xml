@@ -6,7 +6,16 @@
     <description>Recent content on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 15 Mar 2023 14:45:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Mar 2023 14:32:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java - 多型 繼承</title>
+      <link>https://sunwc2023.github.io/blog/abstract-human/</link>
+      <pubDate>Thu, 16 Mar 2023 14:32:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/abstract-human/</guid>
+      <description>學習目標: 多型 繼承 --多型-- 撰寫一個 Human 類別 代表人 在這裡我們有兩個衍伸類別 Man 與 Woman 他們用不同的規則活著： Man : 吃飯時 印出&amp;#34;好好吃&amp;#34; 睡覺時 印出&amp;#34;zzz&amp;#34; Woman: 吃飯時 印出&amp;#34;Orzz&amp;#34; 睡覺時 印出&amp;#34;:)&amp;#34; (印出代表用System.</description>
+    </item>
+    
     <item>
       <title>Java - ThreadLocal 實際應用</title>
       <link>https://sunwc2023.github.io/blog/thread-local-example/</link>

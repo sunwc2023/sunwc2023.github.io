@@ -264,13 +264,13 @@
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
 </span></span></code></pre></div><h3 id="logbox-類使用情境">LogBox 類使用情境</h3>
 <blockquote>
-<p>情境一、這個 LogBox 類實際上是可以應用在 Filter interface，透過建立一個客製類實作 Filter 並實現 doFilter 方法，一開始透過 <code>createCurrentThreadLogBox(title)</code> 建立屬於該 request (該執行緒) 的 <code>ThreadLocal&lt;LogBox&gt;</code> 物件，中間還可以從 request 中取得 requestURI、requestParams 並取得 response 等資訊都加入 <code>ThreadLocal&lt;LogBox&gt;</code> ，<em>程式回到 doFilter</em> 再 <code>removeLogBoxAndGetLog()</code> 清除當前執行緒 <code>ThreadLocal&lt;LogBox&gt;</code></p>
+<p>情境一、這個 LogBox 類實際上是可以應用在 Filter interface，透過建立一個客製類實作 Filter 並實現 doFilter 方法，一開始透過 <code>createCurrentThreadLogBox(title)</code> 建立屬於該 request (該執行緒) 的 <code>ThreadLocal&lt;LogBox&gt;</code> 物件，中間還可以從 request 中取得 requestURI、requestParams 並取得 response 等資訊都加入 <code>ThreadLocal&lt;LogBox&gt;</code> ，<em>等程式從controller層回到 doFilter</em> 再 <code>removeLogBoxAndGetLog()</code> 清除當前執行緒 <code>ThreadLocal&lt;LogBox&gt;</code></p>
 </blockquote>
 <p>因為有上面提及的這層操作，因此在SpringBoot framework 的 Controller 或 Service 層的 function 中，就只需要<code>getCurrentThreadLogBox()</code> 取得當前執行緒的 LogBox，並將當前API、業務邏輯所需顯示的 log 內容，透過 <code>log.info(&quot;xxxx&quot;)</code>, <code>log.error(exeption message)</code>,&hellip; 將不同層級訊息加到 LogBox 中</p>
 <p><img src="../../images/post/thread-local-example/log-filter.png" alt=""></p>
 <p><a href="https://youtu.be/BXL3FE3b6ic">圖片來源</a></p>
 <blockquote>
-<p>情境二、這個 LogBox 類實際上是可以應用在 quartz 排程，透過建立一個客製類繼承 QuartzJobBean 並覆寫 executeInternal 方法，一開始透過 <code>createCurrentThreadLogBox(title)</code> 建立屬於該排程 (該執行緒) 的 <code>ThreadLocal&lt;LogBox&gt;</code> 物件；不過，此方法可能會再 ScheduleService 類的方法，因此在 ScheduleService 層就只需要　<code>getCurrentThreadLogBox()</code> 取得當前執行緒的 LogBox ，並添加業務邏輯所需顯示的 log 內容，透過 <code>log.info(&quot;xxxx&quot;)</code>, <code>log.error(exeption message)</code>,&hellip; 將不同層級訊息加到 LogBox 中，<em>排程快結束時回到 executeInternal 方法</em>，再 <code>removeLogBoxAndGetLog()</code> 清除當前執行緒 <code>ThreadLocal&lt;LogBox&gt;</code></p>
+<p>情境二、這個 LogBox 類實際上是可以應用在 quartz 排程，透過建立一個客製類繼承 QuartzJobBean 並覆寫 executeInternal 方法，一開始透過 <code>createCurrentThreadLogBox(title)</code> 建立屬於該排程 (該執行緒) 的 <code>ThreadLocal&lt;LogBox&gt;</code> 物件；不過，此方法可能會再存取 ScheduleService 類的方法，因此在 ScheduleService 層就只需要　<code>getCurrentThreadLogBox()</code> 取得當前執行緒的 LogBox ，並添加業務邏輯所需顯示的 log 內容，透過 <code>log.info(&quot;xxxx&quot;)</code>, <code>log.error(exeption message)</code>,&hellip; 將不同層級訊息加到 LogBox 中，<em>等排程快結束時程式回到 executeInternal 方法</em>，再 <code>removeLogBoxAndGetLog()</code> 清除當前執行緒 <code>ThreadLocal&lt;LogBox&gt;</code></p>
 </blockquote>
 <blockquote>
 <p>筆者在理解 ThreadLocal 後，但是卻在下面例子的當程式走到 <code>callTransferLimitUpPer30Mins()</code>內部時，該 function 的 log 都印不出來；</p>
