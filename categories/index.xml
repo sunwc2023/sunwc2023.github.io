@@ -6,13 +6,22 @@
     <description>Recent content in Categories on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 16 Mar 2023 14:32:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Mar 2023 10:09:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Practice</title>
       <link>https://sunwc2023.github.io/categories/practice/</link>
-      <pubDate>Thu, 16 Mar 2023 14:32:00 +0800</pubDate>
+      <pubDate>Sat, 18 Mar 2023 10:09:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/categories/practice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://sunwc2023.github.io/categories/java/</link>
+      <pubDate>Fri, 17 Mar 2023 11:37:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/categories/java/</guid>
       <description></description>
     </item>
     
@@ -22,24 +31,6 @@
       <pubDate>Wed, 15 Mar 2023 14:45:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/categories/experience/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Java</title>
-      <link>https://sunwc2023.github.io/categories/java/</link>
-      <pubDate>Wed, 15 Mar 2023 13:01:00 +0800</pubDate>
-      
-      <guid>https://sunwc2023.github.io/categories/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Example</title>
-      <link>https://sunwc2023.github.io/categories/example/</link>
-      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
-      
-      <guid>https://sunwc2023.github.io/categories/example/</guid>
       <description></description>
     </item>
     

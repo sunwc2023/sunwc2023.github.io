@@ -6,7 +6,36 @@
     <description>Recent content in Java on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 16 Mar 2023 14:32:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Mar 2023 10:09:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java - 打印菱形</title>
+      <link>https://sunwc2023.github.io/blog/print-diamond/</link>
+      <pubDate>Sat, 18 Mar 2023 10:09:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/print-diamond/</guid>
+      <description>public static void main(String[] args) { /* 內層迴圈每次執行10次 第1行(i=5) 印星號 j=5 第2行(i=4) 印星號 j=4、6 第3行(i=3) 印星號 j=3、5、7 第4行(i=2) 印星號 j=2、4、6、8 第5行(i=1) 印星號 j=1、3、5、7、9 j其餘情況印一個空白 輸出上半部： * * * * * * * * * * * * * * * */ for (int i = 5; i &amp;gt; 0; i--) { // 計算當前是第幾行，第0行即不用找下一個印星號的位置 int line = 5 - i; int nextPosition = 0; for (int j = 1; j &amp;lt; 10; j++) { // 當 內層迴圈 第一次 i == j 的時候，就先去找下一個印*號的位置 // j == nextPosition(下一個印星號的位置)，就印星號 if (line &amp;gt;= 0 &amp;amp;&amp;amp; (j == i || nextPosition == j)) { System.</description>
+    </item>
+    
+    <item>
+      <title>Java - Switch-case 計算X年X月X日為X年第幾天</title>
+      <link>https://sunwc2023.github.io/blog/days-of-year/</link>
+      <pubDate>Fri, 17 Mar 2023 13:01:23 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/days-of-year/</guid>
+      <description>思路：越下面的 case 被執行的機率越高，因此要從最下面的 case 1 倒著累加至第一個 case 12；由於沒有 break 語句，因此進入某個 case 後，其 case 下面的所有 case 都會被執行</description>
+    </item>
+    
+    <item>
+      <title>Java - Math.random 使用</title>
+      <link>https://sunwc2023.github.io/blog/math-random/</link>
+      <pubDate>Fri, 17 Mar 2023 11:37:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/math-random/</guid>
+      <description>原始random區間為包含0.0且不包含1.0 =&amp;gt; [0.0,1.0)
+我們可以透過公式Math.random*(b-a+1)+a 取得區間[a,b)的一個數字
+public static void main(String[] args) { // 原始random區間為包含0.</description>
+    </item>
+    
     <item>
       <title>Java - 多型 繼承</title>
       <link>https://sunwc2023.github.io/blog/abstract-human/</link>
