@@ -6,7 +6,43 @@
     <description>Recent content in Practice on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 18 Mar 2023 10:09:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/categories/practice/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Mar 2023 21:36:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/categories/practice/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java - 陣列快速排序法 Quick Sort</title>
+      <link>https://sunwc2023.github.io/blog/quick-sort/</link>
+      <pubDate>Sun, 19 Mar 2023 21:36:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/quick-sort/</guid>
+      <description>/** * 題目：取得一個Object Array，包含不同data types，排除不是數字、不是浮點型的值 * 再將剩下的值使用quick sort進行排序 * @Description * @author sunwc * @Date 2023年3月19日下午10:39:17 * */ public class QuickSort { public static void main(String[] args) { Object[] objArr = {&amp;#34;2&amp;#34;, &amp;#34;0.</description>
+    </item>
+    
+    <item>
+      <title>Java - 陣列二分搜尋</title>
+      <link>https://sunwc2023.github.io/blog/array-search/</link>
+      <pubDate>Sun, 19 Mar 2023 11:15:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/array-search/</guid>
+      <description>public static void main(String[] args) { // 二分搜尋 // 前提：所要搜尋的陣列必須有序 int[] arr = {-98,-34,2,34,54,66,79,105,210,333}; int target = 34; int startInx = 0; int endInx = arr.</description>
+    </item>
+    
+    <item>
+      <title>Java - 陣列反轉/字串反轉</title>
+      <link>https://sunwc2023.github.io/blog/array-reversion/</link>
+      <pubDate>Sun, 19 Mar 2023 11:15:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/array-reversion/</guid>
+      <description>陣列反轉 public static void main(String[] args) { String[] arr = new String[] {&amp;#34;PP&amp;#34;,&amp;#34;BB&amp;#34;,&amp;#34;MM&amp;#34;,&amp;#34;GG&amp;#34;,&amp;#34;JJ&amp;#34;,&amp;#34;DD&amp;#34;,&amp;#34;MM&amp;#34;}; String temp; // 方式一、交換arr.</description>
+    </item>
+    
+    <item>
+      <title>Java - 找1-100中所有質數</title>
+      <link>https://sunwc2023.github.io/blog/find-prime-number/</link>
+      <pubDate>Sat, 18 Mar 2023 11:37:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/find-prime-number/</guid>
+      <description>public static void main(String[] args) { for (int i = 2; i &amp;lt;= 100; i++) { boolean flag = true; // 質數是只能被1與自己整除，所以判斷非質數範圍就只能是 2 ~ (i-1) // for (int j = 2; j &amp;lt; i ; j++) { for (int j = 2; j &amp;lt;= Math.</description>
+    </item>
+    
     <item>
       <title>Java - 打印菱形</title>
       <link>https://sunwc2023.github.io/blog/print-diamond/</link>
@@ -17,7 +53,7 @@
     </item>
     
     <item>
-      <title>Java - Switch-case 計算X年X月X日為X年第幾天</title>
+      <title>Java - Switch-case 計算X年X月X日為第X年第幾天</title>
       <link>https://sunwc2023.github.io/blog/days-of-year/</link>
       <pubDate>Fri, 17 Mar 2023 13:01:23 +0800</pubDate>
       
