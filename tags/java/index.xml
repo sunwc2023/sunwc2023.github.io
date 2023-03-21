@@ -6,14 +6,57 @@
     <description>Recent content in Java on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 19 Mar 2023 21:36:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Mar 2023 17:55:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java - static 關鍵字 vs. 單例 (Singleton) 設計模式</title>
+      <link>https://sunwc2023.github.io/blog/static-example/</link>
+      <pubDate>Tue, 21 Mar 2023 17:55:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/static-example/</guid>
+      <description>static 關鍵字：有些時候，我們希望「某些特定資料在記憶體中只有一份」，且這份資料是大家共享的，而不會隨著物件而不同的，例如：存款利率、最低存款金額、工具類
+access 靜態變數 實例變數類別 Yes No物件 Yes Yesstatic 可以修飾 屬性、方法、程式區塊、內部類 靜態變數/靜態方法 是與類別 同時加載的，因此 靜態變數 是早於物件創建 由於類別只會加載一次，因此靜態修飾的結構只會在記憶體中存在一份資料，存在在方法區的靜態域 靜態方法只可以存取靜態變數與靜態方法(早出生不能調晚出生的)；實例方法可以存取靜態結構與實例結構(晚出生能調早出生的)，原因是看在生命週期被創建的時間點 單例設計模式：</description>
+    </item>
+    
+    <item>
+      <title>Java - equals 方法</title>
+      <link>https://sunwc2023.github.io/blog/equals/</link>
+      <pubDate>Tue, 21 Mar 2023 14:17:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/equals/</guid>
+      <description>Object 的 euqals() 與 == 作用是相同的，是比較兩個物件的記憶體地址是否相同 public boolean equals(Object obj) { return (this == obj); } String, java.</description>
+    </item>
+    
+    <item>
+      <title>Java - final, finally, finalize 的區別</title>
+      <link>https://sunwc2023.github.io/blog/final-finally-finalize/</link>
+      <pubDate>Tue, 21 Mar 2023 14:11:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/final-finally-finalize/</guid>
+      <description>finalize方法：
+一般來說，在物件被回收之前會先存取 物件.finalize()，但是我們不要主動去調finalize()，gc回收機制會主動去調 物件.finalize()
+final 關鍵字修飾的變數： 稱為常量，不能做修改</description>
+    </item>
+    
+    <item>
+      <title>Java - OOP 物件導性特性</title>
+      <link>https://sunwc2023.github.io/blog/oop/</link>
+      <pubDate>Mon, 20 Mar 2023 17:35:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/oop/</guid>
+      <description>encapsulation封裝性：Java提供了4種存取修飾符(private ,不寫(default), protected , public )來修飾類別及類別的內部結構，體現類別及內部結構在被存取時的可見性(visible)的大小
+inheritance繼承性：減少程式碼的冗餘，也方便功能的擴展，先有一個類別(子)去繼承另一個類別(父)，而有了父類與子類的關係，子類可以使用父類的所有功能，且子類還可以在父類的基礎之上擴展其他功能
+polymorphism多型性：
+類別的繼承關係 子類要覆寫 (Override) 父類的方法，就能透過父類別使用子類別覆寫的功能 典型例子：資料庫連線 父、子類的設計 物件的多型性：只適用於方法 (Method) =&amp;gt; 又稱 存取虛擬方法 ；但不適用屬性 (Field)！ 多型的例子，請看下面：</description>
+    </item>
+    
     <item>
       <title>Java - 陣列快速排序法 Quick Sort</title>
       <link>https://sunwc2023.github.io/blog/quick-sort/</link>
       <pubDate>Sun, 19 Mar 2023 21:36:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/quick-sort/</guid>
-      <description>/** * 題目：取得一個Object Array，包含不同data types，排除不是數字、不是浮點型的值 * 再將剩下的值使用quick sort進行排序 * @Description * @author sunwc * @Date 2023年3月19日下午10:39:17 * */ public class QuickSort { public static void main(String[] args) { Object[] objArr = {&amp;#34;2&amp;#34;, &amp;#34;0.</description>
+      <description>值轉換數字失敗，會拋出NumberFormatException，詳情請看private static Double isNumeric(Object obj) function
+/** * 題目：取得一個Object Array，包含不同data types，排除不是數字、不是浮點型的值 * 再將剩下的值使用quick sort進行排序(不可使用Arrays.</description>
     </item>
     
     <item>

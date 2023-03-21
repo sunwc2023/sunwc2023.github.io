@@ -136,9 +136,12 @@
 
         
         <div class="content mb-4">
-          <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+          <blockquote>
+<p>值轉換數字失敗，會拋出<code>NumberFormatException</code>，詳情請看<code>private static Double isNumeric(Object obj)</code> function</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * 題目：取得一個Object Array，包含不同data types，排除不是數字、不是浮點型的值
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * 再將剩下的值使用quick sort進行排序
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * 再將剩下的值使用quick sort進行排序(不可使用Arrays.sort())
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @Description
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @author sunwc
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @Date 2023年3月19日下午10:39:17
@@ -167,6 +170,7 @@
 </span></span><span style="display:flex;"><span>		System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>Arrays<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toString</span><span style="color:#000;font-weight:bold">(</span>result<span style="color:#000;font-weight:bold">));</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">	 * 判斷object array元素是否為數字
@@ -217,7 +221,7 @@
 </span></span><span style="display:flex;"><span>			<span style="color:#000;font-weight:bold">return</span><span style="color:#000;font-weight:bold">;</span>
 </span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span>		
-</span></span><span style="display:flex;"><span>		<span style="color:#998;font-style:italic">// 進行partition的標準數
+</span></span><span style="display:flex;"><span>		<span style="color:#998;font-style:italic">// 取得partition的標準數
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>		<span style="color:#458;font-weight:bold">double</span> pivot <span style="color:#000;font-weight:bold">=</span> array<span style="color:#000;font-weight:bold">[(</span>left<span style="color:#000;font-weight:bold">+</span>right<span style="color:#000;font-weight:bold">)/</span><span style="color:#099">2</span><span style="color:#000;font-weight:bold">];</span>
 </span></span><span style="display:flex;"><span>		<span style="color:#458;font-weight:bold">int</span> partitionInx <span style="color:#000;font-weight:bold">=</span> partition<span style="color:#000;font-weight:bold">(</span>array<span style="color:#000;font-weight:bold">,</span> left<span style="color:#000;font-weight:bold">,</span> right<span style="color:#000;font-weight:bold">,</span> pivot<span style="color:#000;font-weight:bold">);</span>
 </span></span><span style="display:flex;"><span>		quickSort<span style="color:#000;font-weight:bold">(</span>array<span style="color:#000;font-weight:bold">,</span> left<span style="color:#000;font-weight:bold">,</span> partitionInx <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span><span style="color:#000;font-weight:bold">);</span>
@@ -276,7 +280,9 @@
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
 </span></span></code></pre></div><p>輸出結果：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>[-133.0, 0.3, 2.0, 9.27, 38.0, 100.0]
-</span></span></code></pre></div>
+</span></span></code></pre></div><p>參考來源：
+<a href="https://youtu.be/SLauY6PpjW4">Algorithms: Quicksort</a></p>
+
         </div>
 
         

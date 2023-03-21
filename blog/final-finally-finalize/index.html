@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
-  <meta name="description" content="If I only had today. Because I have today.">
+  <meta name="description" content="關鍵字的區別">
     
   <meta name="author" content="sunwc">
     
@@ -115,153 +115,51 @@
 </header>
 <!-- /navigation -->
 
-
 <section class="section-sm">
-  <div class="container">
+  <div class="container pl-4 pr-4">
     <div class="row">
-      
-      
-      <div class="col-lg-4">
-  <div class="widgets">
-    
-    <div class="widget">
-      
-      <h4 class="widget-title">About Me</h4>
-      
-      
-      <div class="sidebar">
-        <img src="https://sunwc2023.github.io/images/ching.jpg" alt=""
-        class=" img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-      </div>
-      
-      <p>I am Lucy.
-I am a backend programmer.</p>
-      <a href="https://sunwc2023.github.io/about/" class="btn btn-outline-primary">Know More</a>
-      
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Category</h4>
-      <ul class="list-unstyled">
-        <li><a
-            href="/categories/experience/">Experience</a>
-        </li>
-        <li><a
-            href="/categories/java/">Java</a>
-        </li>
-        <li><a
-            href="/categories/practice/">Practice</a>
-        </li>
-      </ul>
-    </div>
-    
-    
-    
-    
-    <div class="widget">
-      <h4 class="widget-title">Social</h4>
-      <ul class="list-inline social-links">
-        
-        <li class="list-inline-item"><a href="https://dotblogs.com.tw/lucy_NoteForCoding"><i class="ti-notepad"></i></a></li>
-        
-        <li class="list-inline-item"><a href="https://github.com/ching89118"><i class="ti-github"></i></a></li>
-        
-        <li class="list-inline-item"><a href="#"><i class="ti-linkedin"></i></a></li>
-        
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Ads</h4>
-      
-      
-    </div>
-  </div>
-</div>
+      <div class="col-lg-9 mx-auto">
+        <h3 class="text-center">Java - final, finally, finalize 的區別</h3>
+        <div class="mb-3 text-center">
+          <span>By sunwc</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2023-03-21</span>
+          
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <a href="/categories/java"
+            class="text-primary">Java</a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
 
-      
-      
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="row">
-          
-          
-          
-          <div class="col-md-12 mb-4">
-    <article class="card">
         
-        <div class="card-body">
-        
-        
-        <a href="https://sunwc2023.github.io/categories/java/" class="d-block my-3"><h3>Java</h3></a>
-        <div class="mb-3 post-meta">
-            <span>By sunwc</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>0001-01-01</span>
-            
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://sunwc2023.github.io/categories/java/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          
-          <div class="col-md-12 mb-4">
-    <article class="card">
-        
-        <div class="card-body">
-        
-        
-        <a href="https://sunwc2023.github.io/categories/practice/" class="d-block my-3"><h3>Practice</h3></a>
-        <div class="mb-3 post-meta">
-            <span>By sunwc</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>0001-01-01</span>
-            
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://sunwc2023.github.io/categories/practice/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          
-          <div class="col-md-12 mb-4">
-    <article class="card">
-        
-        <div class="card-body">
-        
-        
-        <a href="https://sunwc2023.github.io/categories/experience/" class="d-block my-3"><h3>Experience</h3></a>
-        <div class="mb-3 post-meta">
-            <span>By sunwc</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>0001-01-01</span>
-            
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://sunwc2023.github.io/categories/experience/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-        </div>
-      </div>
+        <div class="content mb-4">
+          <p>finalize方法：</p>
+<ul>
+<li>
+<p>一般來說，在物件被回收之前會先存取 <code>物件.finalize()</code>，但是我們不要主動去調<code>finalize()</code>，gc回收機制會主動去調 <code>物件.finalize()</code></p>
+</li>
+<li>
+<p>final 關鍵字修飾的變數： 稱為常量，不能做修改</p>
+</li>
+</ul>
 
-      
-      <div class="col-12 mt-5">
+        </div>
+
         
+        <script src="https://utteranc.es/client.js"
+        repo="sunwc2023/comment-utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script> 
       </div>
     </div>
   </div>
 </section>
-
 
 
 
