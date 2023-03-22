@@ -145,7 +145,22 @@
 物件        Yes           Yes
 </code></pre>
 <ul>
-<li>static 可以修飾 屬性、方法、程式區塊、內部類</li>
+<li>static 可以修飾 屬性、方法、程式區塊、內部類
+<ul>
+<li>靜態程式區塊 (static block)：(用於類別初始化)
+隨著類別加載時，就會執行，且<code>只會執行一次</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>  System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;只要本類別在加載時，我會被輸出&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><ul>
+<li>非靜態程式區塊 (non-static block)
+隨著<code>每次物件被new</code>時，就會被執行；執行順序優於建構子 (constructor)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>  System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;只要本類別在new一個物件時，我會被輸出&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div></li>
 <li>靜態變數/靜態方法 是與類別 同時加載的，因此 靜態變數 是早於物件創建</li>
 <li>由於類別只會加載一次，因此靜態修飾的結構<code>只會在記憶體中存在一份資料</code>，存在在方法區的靜態域</li>
 <li>靜態方法<code>只可以</code>存取靜態變數與靜態方法(早出生不能調晚出生的)；實例方法可以存取靜態結構與實例結構(晚出生能調早出生的)，原因是看在生命週期被創建的時間點</li>
@@ -154,11 +169,17 @@
 <p>單例設計模式：</p>
 </blockquote>
 <ol>
-<li>所謂類別的單例設計模式，就是採取一定的方法保證在整個程式系統中，對某個類別只能存在一個物件實例。</li>
-<li>如何實現：
-具體參考如下</li>
-<li>單例模式的優點：
-由於單例模式指生成一個實例，<code>減少了系統性能開銷</code>，當一個物件的產生需要比較多的資源時，如讀取配置、產生其他依賴物件時，則可以通過在應用程式啟動時直接產生一個單例物件，然後永久駐留記憶體的方式來解決，例如 <code>java.lang.Runtime</code></li>
+<li>
+<p>所謂類別的單例設計模式，就是採取一定的方法保證在整個程式系統中，對某個類別只能存在一個物件實例。</p>
+</li>
+<li>
+<p>如何實現：
+具體參考如下</p>
+</li>
+<li>
+<p>單例模式的優點：
+由於單例模式指生成一個實例，<code>減少了系統性能開銷</code>，當一個物件的產生需要比較多的資源時，如讀取配置、產生其他依賴物件時，則可以通過在應用程式啟動時直接產生一個單例物件，然後永久駐留記憶體的方式來解決，例如 <code>java.lang.Runtime</code></p>
+</li>
 </ol>
 <p><img src="../../images/post/static-example/singleton-example.png" alt=""></p>
 <ol start="4">
@@ -205,22 +226,11 @@
 </span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">return</span> instance<span style="color:#000;font-weight:bold">;</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 懶漢式
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">SingletonTest2</span> <span style="color:#000;font-weight:bold">{</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-</span></span><span style="display:flex;"><span>		
-</span></span><span style="display:flex;"><span>		Order order1 <span style="color:#000;font-weight:bold">=</span> Order<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getInstance</span><span style="color:#000;font-weight:bold">();</span>
-</span></span><span style="display:flex;"><span>		Order order2 <span style="color:#000;font-weight:bold">=</span> Order<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getInstance</span><span style="color:#000;font-weight:bold">();</span>
-</span></span><span style="display:flex;"><span>		
-</span></span><span style="display:flex;"><span>		<span style="color:#998;font-style:italic">// 同一個地址值
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>		System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;order1 == order2 : &#34;</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">(</span>order1 <span style="color:#000;font-weight:bold">==</span> order2<span style="color:#000;font-weight:bold">));</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><p>輸出結果：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>bank1 == bank2 : true
-</span></span></code></pre></div><ul>
+</span></span></code></pre></div><pre tabindex="0"><code>
+輸出結果：
+```txt
+bank1 == bank2 : true
+</code></pre><ul>
 <li>方式二</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 懶漢式
@@ -238,6 +248,11 @@
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Order</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;static block 類別加載中…&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>	
 </span></span><span style="display:flex;"><span>	
 </span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// 1. 私有化類別的建構子
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	<span style="color:#000;font-weight:bold">private</span> <span style="color:#900;font-weight:bold">Order</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
@@ -258,9 +273,14 @@
 </span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">return</span> instance<span style="color:#000;font-weight:bold">;</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;non-static block 類別物件被new出來了…&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
 </span></span></code></pre></div><p>輸出結果：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>order1 == order2 : true
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>static block 類別加載中…
+</span></span><span style="display:flex;"><span>non-static block 類別物件被new出來了…
+</span></span><span style="display:flex;"><span>order1 == order2 : true
 </span></span></code></pre></div>
         </div>
 
