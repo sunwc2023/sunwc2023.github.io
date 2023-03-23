@@ -148,7 +148,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
 </span></span></code></pre></div></li>
-<li>interface 之間可以多繼承</li>
+<li>interface 之間可以多重繼承</li>
 <li>interface 體現多型的特性</li>
 <li>可以把 interface 看作是一種規範 (contract)</li>
 </ol>
@@ -166,8 +166,8 @@ USB adaptor、JDBC interface 操作資料庫的規範(MySQL Driver, MSSQL Driver
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">final</span> <span style="color:#458;font-weight:bold">int</span> WIDTH <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">3</span><span style="color:#000;font-weight:bold">;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 驅動
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">start</span><span style="color:#000;font-weight:bold">();</span>
-</span></span><span style="display:flex;"><span>
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">abstract</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">start</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#998;font-style:italic">// public abstract可省略
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
 </span></span><span style="display:flex;"><span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">stop</span><span style="color:#000;font-weight:bold">();</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 靜態方法(有方法體)
@@ -286,7 +286,7 @@ USB adaptor、JDBC interface 操作資料庫的規範(MySQL Driver, MSSQL Driver
 <pre><code>interface 與 抽象類別 都不能被實例化，因此均體現 多型 的特性，需要子類別來繼承 或 實現類來實現
 </code></pre>
 <blockquote>
-<p>以上面的例子來說，電腦傳輸資料時，可以接受符合USB規範的各種物件，這就是多型的體現方式，因為電腦不用管USB是哪種牌子的，只要是符合interface USB規範都可以，也就能夠透過<code>USB usb</code>變數去執行 實現類別 Override 的 start()與stop()了</p>
+<p>以上面的例子來說，電腦傳輸資料時，可以接受符合USB規範的各種物件，這就是多型的體現方式，因為電腦不用管USB adaptor、硬碟 (hard disk) 是哪種牌子，只要是符合interface USB規範都可以，也就能夠透過<code>USB usb</code>變數去執行 實現類別(implements) Override 的 開始驅動 與 移除驅動 的方法了</p>
 </blockquote>
 
         </div>

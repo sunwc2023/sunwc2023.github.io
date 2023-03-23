@@ -6,14 +6,45 @@
     <description>Recent content on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 22 Mar 2023 14:09:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Mar 2023 15:37:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java - Thread 的生命週期</title>
+      <link>https://sunwc2023.github.io/blog/thread-lifecycle/</link>
+      <pubDate>Thu, 23 Mar 2023 15:37:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/thread-lifecycle/</guid>
+      <description>JDK中用Thread.State類定義了執行緒的幾種狀態
+想實現多執行緒，必須在主執行緒中創建新的執行緒物件。
+Java語言使用 Thread 類及其子類的物件來表示執行緒，在它一個完整的生命週期中通常要經歷如下五個狀態：
+1. 新建：當一個 Thread 類或其子類的物件被宣告並創建時，新生的執行緒物件處於新建狀態2. 就緒：處於新建狀態的執行緒被start()後，將進入執行緒隊列等待CPU時間片，此時它已具備了執行的條件，只是沒分配到CPU資源3.</description>
+    </item>
+    
+    <item>
+      <title>Java - Thread 執行緒(二) - interface Runnable</title>
+      <link>https://sunwc2023.github.io/blog/implements-runnable/</link>
+      <pubDate>Thu, 23 Mar 2023 15:35:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/implements-runnable/</guid>
+      <description>有關創建多執行緒的方式 - 繼承 Thread類，可以參考我的另一篇文章 Java - Thread 執行緒(一)
+除了上述說的這個方式創建執行緒，更好的方式是透過實現 interface Runnable 來做</description>
+    </item>
+    
+    <item>
+      <title>Java - Thread 執行緒(一)</title>
+      <link>https://sunwc2023.github.io/blog/thread/</link>
+      <pubDate>Thu, 23 Mar 2023 09:00:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/thread/</guid>
+      <description>什麼是Process？ 通常一個應用程序執行起來，就會在記憶體加載一個 Process ，對應到工作管理員來看，一個 Pross 就會對應到一個 PID (Process Identification)； 而一個 Process 會有多個執行緒 (Thread)，代表這個應用程序支持我們能夠使用它自身 同時在裡面做很多事情</description>
+    </item>
+    
     <item>
       <title>Java - 例外處理 (Exception)</title>
       <link>https://sunwc2023.github.io/blog/exception-example/</link>
       <pubDate>Wed, 22 Mar 2023 14:09:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/exception-example/</guid>
-      <description></description>
+      <description>Error：Java虛擬機(JVM)無法解決的嚴重問題。例如JVM系統內部錯誤、資源耗盡等嚴重情況 java.lang.StackOverflowError堆疊溢出 =&amp;gt; recursion終止條件沒寫好 java.lang.OutOfMemoryError 堆積溢出 =&amp;gt; Integer[] arr = new Integer[1024*1024*1024]; Exception：因為程式編輯錯誤或偶然的外在因素的一般性問題，可以使用針對性的程式進行處理 請看以下error/ exception 架構圖進行了解：</description>
     </item>
     
     <item>

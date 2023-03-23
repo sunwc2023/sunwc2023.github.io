@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>Sunwc&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="description" content="介紹 執行緒 如何透過繼承 Thread類方式創建">
+    
+  <meta name="author" content="sunwc">
+    
+  
+  <meta name="theme-name" content="liva-hugo" />
+  <meta name="generator" content="Hugo 0.111.1">
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+
+  
+
+  
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-259253267-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head>
+<body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://sunwc2023.github.io"><img class="img-fluid rounded-circle"
+          src="https://sunwc2023.github.io/images/logo.jpg" alt="">
+        <span class="text-body">Sunwc&#39;s Blog</span>
+      </a>
+          
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/">Blog</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/about/">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://sunwc2023.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+       
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container pl-4 pr-4">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <h3 class="text-center">Java - Thread 執行緒(一)</h3>
+        <div class="mb-3 text-center">
+          <span>By sunwc</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2023-03-23</span>
+          
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <a href="/categories/java"
+            class="text-primary">Java</a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <div class="content mb-4">
+          <p><img src="../../images/post/Thread/process-pid.jpg" alt=""></p>
+<ul>
+<li>什麼是Process？</li>
+</ul>
+<p>通常一個應用程序執行起來，就會在記憶體加載一個 Process ，對應到工作管理員來看，一個 Pross 就會對應到一個 PID (Process Identification)；
+而一個 Process 會有多個執行緒 (Thread)，代表這個應用程序支持我們能夠使用它自身 <code>同時</code>在裡面做很多事情</p>
+<p>例如 執行一個 Java 應用程序<code>java.exe</code>，其實至少有三個執行緒：main() 主執行緒、gc() 資源回收執行緒、例外處理執行緒。當然若有例外發生，會影響主執行緒</p>
+<ul>
+<li>什麼是併行 與 併發？
+併行：多個CPU同時執行多個任務。例如 多個人同時做不同的事
+併發：一個CPU快速切換不同執行緒執行任務。例如 搶演唱會門票、多個人做同一件事</li>
+</ul>
+<p><img src="../../images/post/thread/jvm-structure.jpg" alt=""></p>
+<ul>
+<li>JVM 的記憶體結構
+<ul>
+<li>每個 Thread 都有獨立的一套 VM Stack 與 Program Counter Register</li>
+<li>每個 Process 有獨立的一套 Method Area 與 Heap，即 多個執行緒 (Thread) 一起共用這些資源</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>有關創建多執行緒的方式 - 實現 interface Runnable，可以參考我的另一篇文章 <a href="/blog/implements-runnable">Java - Thread 執行緒(二) - interface Runnable</a></p>
+</blockquote>
+<ul>
+<li>多執行緒的創建 - 繼承 Thread 類</li>
+</ul>
+<p>方式一、</p>
+<ol>
+<li>創建一個繼承於Thread類的子類別</li>
+<li>覆寫Thread類的run()</li>
+<li>創建Thread類的子類物件</li>
+<li>通做此物件調用start()</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyThread</span> <span style="color:#000;font-weight:bold">extends</span> Thread <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    * 子執行緒輸出偶數
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">run</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#998;font-style:italic">// 在這裡寫 在子執行緒要做的事情
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>       <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span><span style="color:#000;font-weight:bold">;</span> i <span style="color:#000;font-weight:bold">&lt;=</span> <span style="color:#099">10</span><span style="color:#000;font-weight:bold">;</span> i<span style="color:#000;font-weight:bold">++)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>           <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>i <span style="color:#000;font-weight:bold">%</span> <span style="color:#099">2</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>               System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>Thread<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">currentThread</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34; : &#34;</span> <span style="color:#000;font-weight:bold">+</span> i<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* 多執行緒的創建
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* 遍歷10以內的所有偶數
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* @author sunwc
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* @create 2023-03-23 上午 10:23
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">ThreadTest</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#998;font-style:italic">// 主執行緒創建一個新執行緒
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>       MyThread t1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> MyThread<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#998;font-style:italic">// 主執行緒啟動子執行緒(會去執行run())
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>       t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">start</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#998;font-style:italic">// 測試一、不能通過調用run()的方式啟動執行緒
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">//        t1.run();
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>       <span style="color:#998;font-style:italic">// 測試二、子執行緒已經t1.start()啟動，不能再用一樣的語句再啟動一次，會拋出java.lang.IllegalThreadStateException
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>       <span style="color:#998;font-style:italic">// 若 threadStatus != 0 會拋此例外
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">//        t1.start();
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>       <span style="color:#998;font-style:italic">// 再創建第二個子執行緒
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>       MyThread t2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> MyThread<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>       t2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">start</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#998;font-style:italic">// 主執行緒輸出奇數
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>       <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span><span style="color:#000;font-weight:bold">;</span> i <span style="color:#000;font-weight:bold">&lt;=</span> <span style="color:#099">10</span><span style="color:#000;font-weight:bold">;</span> i<span style="color:#000;font-weight:bold">++)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>           <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>i <span style="color:#000;font-weight:bold">%</span> <span style="color:#099">2</span> <span style="color:#000;font-weight:bold">!=</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>               System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>Thread<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">currentThread</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34; : &#34;</span> <span style="color:#000;font-weight:bold">+</span> i<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>Thread-0 : 2
+</span></span><span style="display:flex;"><span>Thread-1 : 2
+</span></span><span style="display:flex;"><span>main : 1
+</span></span><span style="display:flex;"><span>Thread-1 : 4
+</span></span><span style="display:flex;"><span>Thread-0 : 4
+</span></span><span style="display:flex;"><span>Thread-0 : 6
+</span></span><span style="display:flex;"><span>Thread-0 : 8
+</span></span><span style="display:flex;"><span>Thread-0 : 10
+</span></span><span style="display:flex;"><span>Thread-1 : 6
+</span></span><span style="display:flex;"><span>main : 3
+</span></span><span style="display:flex;"><span>main : 5
+</span></span><span style="display:flex;"><span>main : 7
+</span></span><span style="display:flex;"><span>main : 9
+</span></span><span style="display:flex;"><span>Thread-1 : 8
+</span></span><span style="display:flex;"><span>Thread-1 : 10
+</span></span></code></pre></div><ul>
+<li>使用匿名子類創建子執行緒</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* 使用匿名子類創建兩個子執行緒
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* 一個執行緒 印奇數
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* 一個執行緒 印偶數
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* @author sunwc
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* @create 2023-03-23 上午 11:05
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">NonTitleThreadTest</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">new</span> Thread<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">run</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span><span style="color:#000;font-weight:bold">;</span> i <span style="color:#000;font-weight:bold">&lt;=</span> <span style="color:#099">10</span><span style="color:#000;font-weight:bold">;</span> i<span style="color:#000;font-weight:bold">++)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                   <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>i <span style="color:#000;font-weight:bold">%</span> <span style="color:#099">2</span> <span style="color:#000;font-weight:bold">!=</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                       Thread<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">currentThread</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">setName</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;thread 1&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>                       System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>Thread<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">currentThread</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34; : &#34;</span> <span style="color:#000;font-weight:bold">+</span> i<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>                   <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">}.</span><span style="color:#008080">start</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">new</span> Thread<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">run</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span><span style="color:#000;font-weight:bold">;</span> i <span style="color:#000;font-weight:bold">&lt;=</span> <span style="color:#099">10</span><span style="color:#000;font-weight:bold">;</span> i<span style="color:#000;font-weight:bold">++)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                   <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>i <span style="color:#000;font-weight:bold">%</span> <span style="color:#099">2</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                       Thread<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">currentThread</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">setName</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;thread 2&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>                       System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>Thread<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">currentThread</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34; : &#34;</span> <span style="color:#000;font-weight:bold">+</span> i<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>                   <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">}.</span><span style="color:#008080">start</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>thread 1 : 1
+</span></span><span style="display:flex;"><span>thread 1 : 3
+</span></span><span style="display:flex;"><span>thread 1 : 5
+</span></span><span style="display:flex;"><span>thread 1 : 7
+</span></span><span style="display:flex;"><span>thread 1 : 9
+</span></span><span style="display:flex;"><span>thread 2 : 2
+</span></span><span style="display:flex;"><span>thread 2 : 4
+</span></span><span style="display:flex;"><span>thread 2 : 6
+</span></span><span style="display:flex;"><span>thread 2 : 8
+</span></span><span style="display:flex;"><span>thread 2 : 10
+</span></span></code></pre></div><ul>
+<li>
+<p>Thread類常用的方法</p>
+<ol>
+<li>start()：啟動當前執行緒；調用當前執行緒的run()</li>
+<li>run()：通常需要覆寫Thread類中的此方法，將創建的執行緒要執行的操作寫在此方法中</li>
+<li>currentThread()：靜態方法，回傳當前程式的執行緒</li>
+<li>getName()：取得當前執行緒的名稱</li>
+<li>setName()：設置當前執行緒的名稱</li>
+<li>yield()：釋放當前CPU的執行權</li>
+<li>join()：在 執行緒A 中調用 執行緒B的join()，此時執行緒A就進入阻塞狀態，直到執行緒B全部執行完後，執行緒A才結束阻塞狀態</li>
+<li>stop：已過時不使用。當執行此方法時，強制結束當前執行緒</li>
+<li>sleep(long millitime)：讓當前執行緒“睡眠”指定的毫秒數，在指定的millitime時間內，當前的執行緒是阻塞狀態</li>
+<li>isAlive()：判斷當前執行緒是否還存活</li>
+</ol>
+</li>
+<li>
+<p>Thread 的優先級</p>
+<ol>
+<li>
+<p>MAX_PRIORITY: 10</p>
+<p>MIN_PRIORITY: 1</p>
+<p>NORM_PRIORITY: 5</p>
+</li>
+<li>
+<p>如何取得和設置當前執行緒的優先級</p>
+<p>getPriority()：取得執行緒的優先級</p>
+<p>setPriority(int priority)：設置執行緒的優先級</p>
+</li>
+</ol>
+</li>
+</ul>
+
+        </div>
+
+        
+        <script src="https://utteranc.es/client.js"
+        repo="sunwc2023/comment-utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script> 
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  var indexURL = "https://sunwc2023.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://sunwc2023.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/mark.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://sunwc2023.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>

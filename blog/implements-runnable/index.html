@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>Sunwc&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="description" content="以三個窗口賣20張車票的例子解釋 Runnable">
+    
+  <meta name="author" content="sunwc">
+    
+  
+  <meta name="theme-name" content="liva-hugo" />
+  <meta name="generator" content="Hugo 0.111.1">
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+
+  
+
+  
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-259253267-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head>
+<body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://sunwc2023.github.io"><img class="img-fluid rounded-circle"
+          src="https://sunwc2023.github.io/images/logo.jpg" alt="">
+        <span class="text-body">Sunwc&#39;s Blog</span>
+      </a>
+          
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/">Blog</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/about/">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://sunwc2023.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+       
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container pl-4 pr-4">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <h3 class="text-center">Java - Thread 執行緒(二) - interface Runnable</h3>
+        <div class="mb-3 text-center">
+          <span>By sunwc</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2023-03-23</span>
+          
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <a href="/categories/java"
+            class="text-primary">Java</a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <div class="content mb-4">
+          <blockquote>
+<p>有關創建多執行緒的方式 - 繼承 Thread類，可以參考我的另一篇文章 <a href="/blog/thread">Java - Thread 執行緒(一)</a></p>
+</blockquote>
+<p>除了上述說的這個方式創建執行緒，更好的方式是透過實現 interface Runnable 來做</p>
+<ol>
+<li>創建一個實現了 <code>interface Runnable</code> 的類別</li>
+<li>實現類去實現 Runnable 的抽象方法: <code>run()</code></li>
+<li>創建實現類的物件</li>
+<li>將此物件作為參數傳遞到 Thread 類的<code>建構子</code>中</li>
+<li>通過 Thread 類的物件調用 <code>start()</code></li>
+</ol>
+<p><strong>[註]</strong> 以下的例子為<code>非thread-safety</code>，還必須優化；下面會介紹兩個優化方法</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * 售票窗口類
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Window</span> <span style="color:#000;font-weight:bold">implements</span> Runnable <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">int</span> ticketAmount <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">20</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">run</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">while</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">true</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>ticketAmount <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#998;font-style:italic">// 進行賣票操作
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>Thread<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">currentThread</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34; : 售出票號 - &#34;</span> <span style="color:#000;font-weight:bold">+</span> ticketAmount<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>                ticketAmount<span style="color:#000;font-weight:bold">--;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#000;font-weight:bold">break</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * 測試類
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @author sunwc
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @create 2023-03-23 下午 03:01
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">ImplementsRunnableTest</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Window window <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Window<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Thread<span style="color:#000;font-weight:bold">(</span>window<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">setName</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Window 1&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        Thread t2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Thread<span style="color:#000;font-weight:bold">(</span>window<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        t2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">setName</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Window 2&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        Thread t3 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Thread<span style="color:#000;font-weight:bold">(</span>window<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        t3<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">setName</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Window 3&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">start</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        t2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">start</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        t3<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">start</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>Window 1 : 售出票號 - 20
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 19
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 18
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 20
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 20
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 16
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 17
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 14
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 15
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 13
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 10
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 11
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 8
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 12
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 7
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 9
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 4
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 5
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 6
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 2
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 3
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 1
+</span></span></code></pre></div><ul>
+<li>比較創建執行緒的兩種方式</li>
+</ul>
+<p>開發中<code>優先</code>選擇 實現 interface Runnable 方式</p>
+<p>原因：</p>
+<ol>
+<li>實現的方式<code>沒有</code>類別單一繼承的侷限性</li>
+<li>實現的方式更適合來處理多個執行緒有<code>共享資料</code>的情況</li>
+</ol>
+<p>其實原生的 Thread類別 也是實現 interface Runnable 的例子，
+所以不管是子類繼承 Thread 類 或 實現類實現 interface Runnable ，<code>相同點</code>是：
+需要覆寫 run()，將執行緒要執行的邏輯寫在 run() 中</p>
+<blockquote>
+<p>上面的售票的<code>執行緒安全問題</code>，問題點解釋：</p>
+</blockquote>
+<ol>
+<li>售票過程中，出現了重複售出同一個票號的票、超賣的情況</li>
+<li>原因：當某個執行緒操作車票的過程中，尚未操作完成時，其它的執行緒參與進來</li>
+</ol>
+<p><img src="../../images/post/implements-runnable/ticket-sale1.jpg" alt=""></p>
+<p><img src="../../images/post/implements-runnable/ticket-sale2.jpg" alt=""></p>
+<ol start="3">
+<li>如何解決執行緒安全問題：
+當一個執行緒A在操作ticket的時候，其它執行緒不能參與進來。直到執行緒A操作完ticket時，其它執行緒才可以開始操作ticket。這種情況即使執行A被阻塞了，也不能被改變</li>
+</ol>
+<p><strong>現實例子：</strong></p>
+<p>當某A在使用唯一一間廁所時，某B即使肚子痛要使用，也要等某A使用完才可以進入。因為某A鎖門了，某B只好等了</p>
+<ul>
+<li>在Java中，我們通過<code>同步</code>機制，來解決執行緒安全的問題
+<ul>
+<li><strong>優化方式一、同步程式區塊</strong></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">synchronized</span><span style="color:#000;font-weight:bold">(</span><span style="color:#a61717;background-color:#e3d2d2">同步監視器</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 需要被同步的程式
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>說明：</p>
+<ol>
+<li>
+<p>操作<code>共享資料</code>的程式，即為需要被同步的程式</p>
+</li>
+<li>
+<p>共享資料：<code>多個執行緒</code>共同操作的一個變數。以例子來說 ticketAmount 就是共享的資料</p>
+</li>
+<li>
+<p>同步監視器，俗稱：<code>鎖</code>。任何一個類別的物件都可以充當鎖</p>
+<p>要求：多個執行緒必須要共用<code>同一把鎖</code></p>
+</li>
+<li>
+<p>侷限性：操作同步程式區塊時，只能有一個執行緒參與，其它執行緒等待。相當於是一個單執行緒的過程，效率低</p>
+</li>
+</ol>
+<p>例子如下：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* 售票窗口類
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Window</span> <span style="color:#000;font-weight:bold">implements</span> Runnable <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">int</span> ticketAmount <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">20</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">run</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">true</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">// 同步程式區塊 - Window.class(當前類別)充當唯一一把鎖
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            <span style="color:#998;font-style:italic">// 因為類別只會加載一次，當作唯一鎖相對安全
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            <span style="color:#998;font-style:italic">// 用this的話要看這個類別在主執行緒(main方法)中new了幾個物件
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            <span style="color:#998;font-style:italic">// 若只有一個就可以用this當唯一鎖 
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            <span style="color:#000;font-weight:bold">synchronized</span> <span style="color:#000;font-weight:bold">(</span>Window<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#998;font-style:italic">// 或 synchronized (this)
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>                <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>ticketAmount <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#998;font-style:italic">// 執行緒阻塞，提高執行緒不安全機率
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                    <span style="color:#000;font-weight:bold">try</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                        Thread<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">sleep</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">100</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">catch</span> <span style="color:#000;font-weight:bold">(</span>InterruptedException e<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                        e<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">printStackTrace</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#998;font-style:italic">// 進行賣票操作
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>Thread<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">currentThread</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34; : 售出票號 - &#34;</span> <span style="color:#000;font-weight:bold">+</span> ticketAmount<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>                    ticketAmount<span style="color:#000;font-weight:bold">--;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#000;font-weight:bold">break</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>Window 1 : 售出票號 - 20
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 19
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 18
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 17
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 16
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 15
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 14
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 13
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 12
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 11
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 10
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 9
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 8
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 7
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 6
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 5
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 4
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 3
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 2
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 1
+</span></span></code></pre></div><ul>
+<li><strong>優化方式二、同步方法</strong></li>
+</ul>
+<p>若操作共享資料的程式完整的寫在一個方法中，我們不妨將此方法宣告成同步的</p>
+<p>例子如下：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * 售票窗口類
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Window</span> <span style="color:#000;font-weight:bold">implements</span> Runnable <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">int</span> ticketAmount <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">20</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">run</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">while</span> <span style="color:#000;font-weight:bold">(</span>ticketAmount <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">// 售票
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            sellTicket<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">//    private synchronized void sellTicket() {// 默認使用this當作鎖
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">synchronized</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">sellTicket</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#998;font-style:italic">// 默認使用Window.class當鎖
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>ticketAmount <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">// 執行緒阻塞，提高執行緒不安全機率
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            <span style="color:#000;font-weight:bold">try</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                Thread<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">sleep</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">100</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">catch</span> <span style="color:#000;font-weight:bold">(</span>InterruptedException e<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                e<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">printStackTrace</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">// 進行賣票操作
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>Thread<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">currentThread</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34; : 售出票號 - &#34;</span> <span style="color:#000;font-weight:bold">+</span> ticketAmount<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>            ticketAmount<span style="color:#000;font-weight:bold">--;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>Window 1 : 售出票號 - 20
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 19
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 18
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 17
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 16
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 15
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 14
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 13
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 12
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 11
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 10
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 9
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 8
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 7
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 6
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 5
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 4
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 3
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 2
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 1
+</span></span></code></pre></div>
+        </div>
+
+        
+        <script src="https://utteranc.es/client.js"
+        repo="sunwc2023/comment-utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script> 
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  var indexURL = "https://sunwc2023.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://sunwc2023.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/mark.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://sunwc2023.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>
