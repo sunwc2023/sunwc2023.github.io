@@ -137,22 +137,22 @@
         
         <div class="content mb-4">
           <ul>
-<li>Error：Java虛擬機(JVM)無法解決的嚴重問題。例如JVM系統內部錯誤、資源耗盡等嚴重情況
+<li>Error：此錯誤是 Java虛擬機 (JVM) 無法解決的嚴重問題。例如 JVM系統內部錯誤、資源耗盡等嚴重情況
 <ol>
-<li><code>java.lang.StackOverflowError</code>堆疊溢出 =&gt; recursion終止條件沒寫好</li>
-<li><code>java.lang.OutOfMemoryError</code> 堆積溢出 =&gt; <code>Integer[] arr = new Integer[1024*1024*1024];</code></li>
+<li><code>java.lang.StackOverflowError</code>堆疊溢出 =&gt; 例如 recursion終止條件沒寫好</li>
+<li><code>java.lang.OutOfMemoryError</code> 堆積溢出 =&gt; 例如 <code>Integer[] arr = new Integer[1024*1024*1024];</code></li>
 </ol>
 </li>
-<li>Exception：因為程式編輯錯誤或偶然的外在因素的一般性問題，可以使用針對性的程式進行處理</li>
+<li>Exception：由於程式編輯錯誤或偶然的外在因素的一般性問題，可以使用針對性的程式進行處理</li>
 </ul>
 <p>請看以下error/ exception 架構圖進行了解：</p>
 <p><img src="../../images/post/exception-example/exception-type.jpg" alt=""></p>
+<h3 id="例外體系結構">例外體系結構：</h3>
 <ul>
-<li>例外體系結構：
-<code>java.lang.Throwable</code>
+<li><code>java.lang.Throwable</code>
 <ul>
-<li><code>java.lang.Error</code>: 一般不編寫針對性地程式進行處理</li>
-<li><code>java.lang.Exception</code>: 可以進行例外的處理
+<li><code>java.lang.Error</code>： 一般不編寫針對性的程式進行處理</li>
+<li><code>java.lang.Exception</code>： 可以進行例外的處理
 <ul>
 <li>compile 時異常(checked)
 <ul>
@@ -180,20 +180,24 @@
 </ul>
 </li>
 </ul>
-<h2 id="java-例外處理的方式處理例外">java 例外處理的方式(處理例外)：</h2>
-<pre><code>* 方式一、```try-catch-finally```
-
-   狼來了，自己把狼驅走，保護好羊群
-   
-   能夠處理 compile 時期的例外，run 時期仍可能出現例外，相當於延遲例外情況到執行的時候才可能會出現；通常我們在開發時一定是先處理編譯時例外，執行時例外視情況處理
-
-* 方式二、```throws + 例外類型```
-
-    狼來了，自己趕快大喊，捕狼人來幫幫忙哦～ (自己沒辦法保護好羊群)
-
-    拋給方法的調用者去處理
-</code></pre>
-<h2 id="手動拋出一個例外物件生成例外">手動拋出一個例外物件(生成例外)</h2>
+<h2 id="例外處理的方式">例外處理的方式：</h2>
+<ul>
+<li>
+<p>方式一、<code>try-catch-finally</code></p>
+<blockquote>
+<p>狼來了，自己把狼驅走，保護好羊群</p>
+</blockquote>
+<p>能夠處理 compile 時期的例外，run 時期仍可能出現例外，相當於延遲例外情況到執行的時候才可能會出現；通常我們在開發時一定是先處理編譯時例外，執行時例外視情況處理</p>
+</li>
+<li>
+<p>方式二、<code>throws + 例外類型</code></p>
+<blockquote>
+<p>狼來了，自己趕快大喊，捕狼人來幫幫忙哦～ (自己沒辦法保護好羊群)</p>
+</blockquote>
+<p>拋給方法的調用者去處理</p>
+</li>
+</ul>
+<h2 id="手動拋出一個例外物件視業務邏輯必要時使用">手動拋出一個例外物件，視業務邏輯必要時使用：</h2>
 <p>使用 <code>throw</code> 關鍵字</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Student</span> <span style="color:#000;font-weight:bold">{</span>
 </span></span><span style="display:flex;"><span>
@@ -209,7 +213,14 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><h2 id="結論">結論</h2>
+<p>本文介紹</p>
+<p>1.Error/Exception 架構 父子層 關係</p>
+<pre><code>因此我們在需要捕獲多個例外時，若例外類別之間彼此有父子類關係，就先寫子類、再寫父類
+</code></pre>
+<p>2.例外處理的兩種方式</p>
+<p>3.視業務邏輯使用 throw 關鍵字拋出例外物件並輸出自定義訊息</p>
+
         </div>
 
         

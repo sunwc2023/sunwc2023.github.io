@@ -8,15 +8,13 @@
     <language>zh-tw</language>
     <lastBuildDate>Thu, 23 Mar 2023 15:37:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Java - Thread 的生命週期</title>
+      <title>Java - Thread 的 生命週期</title>
       <link>https://sunwc2023.github.io/blog/thread-lifecycle/</link>
       <pubDate>Thu, 23 Mar 2023 15:37:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/thread-lifecycle/</guid>
-      <description>JDK中用Thread.State類定義了執行緒的幾種狀態
-想實現多執行緒，必須在主執行緒中創建新的執行緒物件。
-Java語言使用 Thread 類及其子類的物件來表示執行緒，在它一個完整的生命週期中通常要經歷如下五個狀態：
-1. 新建：當一個 Thread 類或其子類的物件被宣告並創建時，新生的執行緒物件處於新建狀態2. 就緒：處於新建狀態的執行緒被start()後，將進入執行緒隊列等待CPU時間片，此時它已具備了執行的條件，只是沒分配到CPU資源3.</description>
+      <description>JDK中用Thread.State類定義了執行緒的幾種狀態如下：
+public enum State { NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED } Java語言使用 Thread 類及其子類別的物件來表示執行緒，在它一個完整的生命週期中通常要經歷如下五個狀態：</description>
     </item>
     
     <item>
@@ -25,8 +23,7 @@ Java語言使用 Thread 類及其子類的物件來表示執行緒，在它一�
       <pubDate>Thu, 23 Mar 2023 15:35:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/implements-runnable/</guid>
-      <description>有關創建多執行緒的方式 - 繼承 Thread類，可以參考我的另一篇文章 Java - Thread 執行緒(一)
-除了上述說的這個方式創建執行緒，更好的方式是透過實現 interface Runnable 來做</description>
+      <description>有關創建多執行緒 (Multi-threading) 的方式 - 繼承 Thread 類，可以參考我的另一篇文章 Java - Thread 執行緒(一)</description>
     </item>
     
     <item>
@@ -35,7 +32,7 @@ Java語言使用 Thread 類及其子類的物件來表示執行緒，在它一�
       <pubDate>Thu, 23 Mar 2023 09:00:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/thread/</guid>
-      <description>什麼是Process？ 通常一個應用程序執行起來，就會在記憶體加載一個 Process ，對應到工作管理員來看，一個 Pross 就會對應到一個 PID (Process Identification)； 而一個 Process 會有多個執行緒 (Thread)，代表這個應用程序支持我們能夠使用它自身 同時在裡面做很多事情</description>
+      <description>什麼是Process？ 通常一個應用程序執行起來，就會在記憶體加載一個 Process ，對應到工作管理員(上圖)來看，一個 Process 就會對應到一個 PID (Process Identification)； 而一個 Process 會有 Multi-threading (Thread)，代表這個應用程序支持我們能夠使用它 同時在裡面做很多事情</description>
     </item>
     
     <item>
@@ -44,7 +41,7 @@ Java語言使用 Thread 類及其子類的物件來表示執行緒，在它一�
       <pubDate>Wed, 22 Mar 2023 14:09:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/exception-example/</guid>
-      <description>Error：Java虛擬機(JVM)無法解決的嚴重問題。例如JVM系統內部錯誤、資源耗盡等嚴重情況 java.lang.StackOverflowError堆疊溢出 =&amp;gt; recursion終止條件沒寫好 java.lang.OutOfMemoryError 堆積溢出 =&amp;gt; Integer[] arr = new Integer[1024*1024*1024]; Exception：因為程式編輯錯誤或偶然的外在因素的一般性問題，可以使用針對性的程式進行處理 請看以下error/ exception 架構圖進行了解：</description>
+      <description>Error：此錯誤是 Java虛擬機 (JVM) 無法解決的嚴重問題。例如 JVM系統內部錯誤、資源耗盡等嚴重情況 java.lang.StackOverflowError堆疊溢出 =&amp;gt; 例如 recursion終止條件沒寫好 java.</description>
     </item>
     
     <item>
@@ -53,7 +50,9 @@ Java語言使用 Thread 類及其子類的物件來表示執行緒，在它一�
       <pubDate>Wed, 22 Mar 2023 10:26:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/interface/</guid>
-      <description>interface 可以定義全局常量、抽象方法、靜態方法與默認方法 interface 沒有 constructor，因此也不可以實例化 Java類可以 implements 多個 interface ，彌補了 Java 單繼承的侷限性 (先寫繼承後寫實現) 格式類似如下： public final class String extends Object implements java.</description>
+      <description>interface 特性 interface 可以定義全局常量、抽象方法、靜態方法與默認方法
+interface 沒有 constructor，因此也不可以實例化
+Java類可以 implements 多個 interface ，彌補了 Java 單繼承的侷限性 (先寫繼承後寫實現)</description>
     </item>
     
     <item>
@@ -62,9 +61,8 @@ Java語言使用 Thread 類及其子類的物件來表示執行緒，在它一�
       <pubDate>Wed, 22 Mar 2023 09:12:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/abstract/</guid>
-      <description>有關的例子，可以參考我的另一篇文章 Java - 多型 繼承
-abstract
-abstract 關鍵字只可以修飾 非final 類別, 非private、非static、非final 方法 抽象類別不可以實例化，抽象類別一定有constructor，以便讓子類別實例化的時候可以進行調用 抽象方法只有方法的宣告、沒有方法體 結論：</description>
+      <description> 有關的例子，可以參考我的另一篇文章 Java - 多型 繼承
+abstract的特性 abstract 關鍵字只可以修飾 非final 的類別、 非private、非static、非final 的方法 抽象類別不可以實例化，抽象類別一定有constructor，以便讓子類別實例化的時候可以進行調用 抽象方法只有方法的宣告、沒有方法體 結論： 包含 抽象方法 的類別，一定是抽象類別；反之，抽象類別中可以無抽象方法 若子類別覆寫父類別的所有抽象方法後，此子類別可以實例化；若子類別沒有覆寫父類的所有抽象方法，則此子類別也是一個抽象類別，需要使用 abstract 修飾 </description>
     </item>
     
     <item>

@@ -139,16 +139,16 @@
           <blockquote>
 <p>有關的例子，可以參考我的另一篇文章 <a href="/blog/abstract-human">Java - 多型 繼承</a></p>
 </blockquote>
-<p>abstract</p>
+<h2 id="abstract的特性">abstract的特性</h2>
 <ul>
-<li>abstract 關鍵字只可以修飾 <code>非final 類別</code>,<code> 非private、非static、非final 方法</code></li>
+<li>abstract 關鍵字只可以修飾 <code>非final</code> 的類別、  <code>非private、非static、非final</code> 的方法</li>
 <li>抽象類別<code>不可以</code>實例化，抽象類別一定有constructor，以便讓子類別實例化的時候可以進行調用</li>
 <li>抽象方法只有方法的宣告、沒有方法體</li>
 </ul>
-<p>結論：</p>
+<h2 id="結論">結論：</h2>
 <ol>
 <li>包含 抽象方法 的類別，一定是抽象類別；反之，抽象類別中可以無抽象方法</li>
-<li>若子類別覆寫父類別的所有抽象方法後，此子類別可以實例化；若子類別沒有覆寫父類的所有抽象方法，則此子類別也是一個抽象類別，需要使用abstract修飾</li>
+<li>若子類別覆寫父類別的所有抽象方法後，此子類別可以實例化；若子類別沒有覆寫父類的所有抽象方法，則此子類別也是一個抽象類別，需要使用 abstract 修飾</li>
 </ol>
 
         </div>

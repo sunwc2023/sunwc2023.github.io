@@ -137,18 +137,17 @@
         
         <div class="content mb-4">
           <blockquote>
-<p>有關創建多執行緒的方式 - 繼承 Thread類，可以參考我的另一篇文章 <a href="/blog/thread">Java - Thread 執行緒(一)</a></p>
+<p>有關創建多執行緒 (Multi-threading) 的方式 - 繼承 Thread 類，可以參考我的另一篇文章 <a href="/blog/thread">Java - Thread 執行緒(一)</a></p>
 </blockquote>
-<p>除了上述說的這個方式創建執行緒，更好的方式是透過實現 interface Runnable 來做</p>
-<h2 id="多執行緒的創建---實現-interface-runnable">多執行緒的創建 - 實現 interface Runnable</h2>
-<ol>
-<li>創建一個實現了 <code>interface Runnable</code> 的類別</li>
-<li>實現類去實現 Runnable 的抽象方法: <code>run()</code></li>
-<li>創建實現類的物件</li>
-<li>將此物件作為參數傳遞到 Thread 類的<code>建構子</code>中</li>
-<li>通過 Thread 類的物件調用 <code>start()</code></li>
-</ol>
-<p><strong>[註]</strong> 以下的例子為<code>非thread-safety</code>，還必須優化；下面會介紹兩個優化方法</p>
+<p>除了上述說的方式創建新的執行緒；</p>
+<p>在實際應用面，以透過實現 interface Runnable 來做是更好的方式，詳細的說明如下：</p>
+<h2 id="新執行緒的創建-multi-threading---實現-interface-runnable-之步驟">新執行緒的創建 (Multi-threading) - 實現 interface Runnable 之步驟</h2>
+<p>1.創建一個實現了 <code>interface Runnable</code> 的類別</p>
+<p>2.實現類去實現 Runnable 的抽象方法： <code>run()</code></p>
+<p>3.創建實現類的物件</p>
+<p>4.將此物件作為參數傳遞到 Thread 類的<code>建構子(constructor)</code>中</p>
+<p>5.通過 Thread 類的物件調用 <code>start()</code></p>
+<p><strong>[ 註 ]</strong> 以下的例子為<code>非thread-safety</code>，還必須優化；本文最後會介紹兩種優化方法</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * 售票窗口類
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> */</span>
@@ -201,76 +200,74 @@
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
 </span></span></code></pre></div><p>輸出結果：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>Window 1 : 售出票號 - 20
-</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 19
-</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 18
-</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 20
 </span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 20
-</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 16
-</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 17
-</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 14
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 20
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 18
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 16
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 19
 </span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 15
-</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 13
-</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 10
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 17
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 13
 </span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 11
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 10
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 9
 </span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 8
-</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 12
 </span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 7
-</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 9
-</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 4
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 6
 </span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 5
-</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 6
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 4
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 3
 </span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 2
-</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 3
-</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 1
-</span></span></code></pre></div><h2 id="比較創建執行緒的兩種方式">比較創建執行緒的兩種方式</h2>
-<p>開發中<code>優先</code>選擇 實現 interface Runnable 方式</p>
+</span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 1
+</span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 14
+</span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 12
+</span></span></code></pre></div><h2 id="創建新執行緒繼承-thread-類-vs-實現-interface-runnable">創建新執行緒：繼承 Thread 類 vs. 實現 interface Runnable</h2>
+<p>開發中會<code>優先</code>選擇 實現 interface Runnable 方式</p>
 <p>原因：</p>
 <ol>
-<li>實現的方式<code>沒有</code>類別單一繼承的侷限性</li>
-<li>實現的方式更適合來處理多個執行緒有<code>共享資料</code>的情況</li>
+<li>實現的方式<code>沒有</code> 類別單一繼承 的侷限性</li>
+<li>實現的方式更適合來處理 Multi-threading 有<code>共享資料</code>的情況</li>
 </ol>
-<p>其實原生的 Thread類別 也是實現 interface Runnable 的例子，
-所以不管是子類繼承 Thread 類 或 實現類實現 interface Runnable ，<code>相同點</code>是：
-需要覆寫 run()，將執行緒要執行的邏輯寫在 run() 中</p>
+<p>其實原生的 Thread 類別 也是 interface Runnable 的實現類，
+所以不管是子類繼承 Thread 類 或 實現類實現 interface Runnable ，相同點是：
+<code>需要 Override run()，將執行緒要執行的邏輯寫在 run() 中</code></p>
 <h2 id="上面的售票的執行緒安全問題問題點解釋">上面的售票的<code>執行緒安全問題</code>，問題點解釋：</h2>
 <ol>
 <li>售票過程中，出現了重複售出同一個票號的票、超賣的情況</li>
-<li>原因：當某個執行緒操作車票的過程中，尚未操作完成時，其它的執行緒參與進來</li>
+<li>原因：當某個執行緒操作車票的過程中，尚未操作完成時，其它的執行緒就參與進來</li>
 </ol>
 <p><img src="../../images/post/implements-runnable/ticket-sale1.jpg" alt=""></p>
 <p><img src="../../images/post/implements-runnable/ticket-sale2.jpg" alt=""></p>
-<ol start="3">
-<li>如何解決執行緒安全問題：
-當一個執行緒A在操作ticket的時候，其它執行緒不能參與進來。直到執行緒A操作完ticket時，其它執行緒才可以開始操作ticket。這種情況即使執行A被阻塞了，也不能被改變</li>
-</ol>
+<h2 id="如何解決執行緒安全問題">如何解決執行緒安全問題：</h2>
+<p>當一個執行緒A在操作ticket的時候，其它執行緒不能參與進來。直到執行緒A操作完ticket時，其它執行緒才可以開始操作ticket。這種情況即使執行A被阻塞了，其它執行緒也一定要等待</p>
 <p><strong>現實例子：</strong></p>
+<blockquote>
 <p>當某A在使用唯一一間廁所時，某B即使肚子痛要使用，也要等某A使用完才可以進入。因為某A鎖門了，某B只好等了</p>
+</blockquote>
 <ul>
-<li>
-<p>在Java中，我們通過<code>同步</code>機制，來解決執行緒安全的問題</p>
-<h3 id="優化方式一同步程式區塊">優化方式一、同步程式區塊</h3>
-</li>
+<li>在Java中，我們通過<code>同步</code>機制，來解決執行緒安全的問題</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">synchronized</span><span style="color:#000;font-weight:bold">(</span><span style="color:#a61717;background-color:#e3d2d2">同步監視器</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<h3 id="優化方式一同步程式區塊">優化方式一、同步程式區塊</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">synchronized</span><span style="color:#000;font-weight:bold">(</span><span style="color:#a61717;background-color:#e3d2d2">同步鎖</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 需要被同步的程式
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
 </span></span></code></pre></div><p>說明：</p>
 <ol>
 <li>
-<p>操作<code>共享資料</code>的程式，即為需要被同步的程式</p>
+<p>將<code>共享資料</code>的程式用<code>synchronized(同步鎖){}</code>包起來，當一個thread先進入這層，其它thread要先在這層外面等</p>
 </li>
 <li>
-<p>共享資料：<code>多個執行緒</code>共同操作的一個變數。以例子來說 ticketAmount 就是共享的資料</p>
+<p>共享資料：指的是<code>Multi-threading</code>中共同操作的一個變數，以例子來說 ticketAmount 就是共享的資料</p>
 </li>
 <li>
-<p>同步監視器，俗稱：<code>鎖</code>。任何一個類別的物件都可以充當鎖</p>
-<p>要求：多個執行緒必須要共用<code>同一把鎖</code></p>
+<p>什麼是同步鎖？</p>
+<p>任何一個類別的物件都可以充當鎖，但是Multi-threading 中的每個 thread 進入這層時都必須使用<code>同一把鎖</code></p>
 </li>
 <li>
-<p>侷限性：操作同步程式區塊時，只能有一個執行緒參與，其它執行緒等待。相當於是一個單執行緒的過程，效率低</p>
+<p>侷限性：在同步程式區塊內，只能有一個執行緒參與，其它執行緒等待。區塊內相當於是一個單執行緒的過程，效率會比較低</p>
 </li>
 </ol>
-<p>例子如下：</p>
+<h3 id="優化後一的售票窗口類">優化後(一)的售票窗口類：</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* 售票窗口類
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">*/</span>
@@ -332,13 +329,18 @@
 </span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 2
 </span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 1
 </span></span></code></pre></div><h3 id="優化方式二同步方法">優化方式二、同步方法</h3>
-<p>若操作共享資料的程式完整的寫在一個方法中，我們不妨將此方法宣告成同步的</p>
+<p>若使用到共享資料的程式完整的寫在一個方法中，我們不妨將此方法宣告成同步的</p>
 <ol>
-<li>同步方法仍然涉及到同步監視器，只是不需要我們顯示的宣告</li>
-<li>非靜態的同步方法，同步監視器是：this
-靜態的同步方法，同步監視器是：當前類別本身</li>
+<li>
+<p>同步方法仍然涉及到同步鎖，只是不需要我們顯示的宣告</p>
+</li>
+<li>
+<p>同步鎖 ：</p>
+<p>非靜態的同步方法：this (當前物件本身)</p>
+<p>靜態的同步方法：當前類別本身</p>
+</li>
 </ol>
-<p>例子如下：</p>
+<h3 id="優化後二的售票窗口類">優化後(二)的售票窗口類：</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * 售票窗口類
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> */</span>
@@ -397,7 +399,11 @@
 </span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 3
 </span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 2
 </span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 1
-</span></span></code></pre></div>
+</span></span></code></pre></div><h2 id="結論">結論</h2>
+<p>本文幫助了解如何</p>
+<p>1.透過實現類 implements interface Runnable 達成 Multi-threading</p>
+<p>2.透過將共享資源宣告成「同步的」以解決執行緒不安全問題</p>
+
         </div>
 
         

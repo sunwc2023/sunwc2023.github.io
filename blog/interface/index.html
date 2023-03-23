@@ -136,24 +136,31 @@
 
         
         <div class="content mb-4">
-          <ol>
-<li>interface 可以定義全局常量、抽象方法、靜態方法與默認方法</li>
-<li>interface 沒有 constructor，因此也不可以實例化</li>
-<li>Java類可以 implements 多個 interface ，彌補了 Java 單繼承的侷限性
-(先寫繼承後寫實現)
-<ul>
-<li>格式類似如下：</li>
-</ul>
+          <h2 id="interface-特性">interface 特性</h2>
+<ol>
+<li>
+<p>interface 可以定義全局常量、抽象方法、靜態方法與默認方法</p>
+</li>
+<li>
+<p>interface 沒有 constructor，因此也不可以實例化</p>
+</li>
+<li>
+<p>Java類可以 implements 多個 interface ，彌補了 Java 單繼承的侷限性
+(先寫繼承後寫實現)</p>
+</li>
+</ol>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">final</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">String</span> <span style="color:#000;font-weight:bold">extends</span> Object <span style="color:#000;font-weight:bold">implements</span> java<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">io</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Serializable</span><span style="color:#000;font-weight:bold">,</span> Comparable<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">&gt;,</span> CharSequence <span style="color:#000;font-weight:bold">{</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div></li>
+</span></span></code></pre></div><ol start="4">
 <li>interface 之間可以多重繼承</li>
 <li>interface 體現多型的特性</li>
 <li>可以把 interface 看作是一種規範 (contract)</li>
 </ol>
+<blockquote>
 <p>現實例子：
-USB adaptor、JDBC interface 操作資料庫的規範(MySQL Driver, MSSQL Driver, Oracle Driver,&hellip;.)</p>
+USB adaptor、JDBC interface 資料庫連線的規範(MySQL Driver, MSSQL Driver, Oracle Driver,&hellip;.)</p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * interface USB
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @Description
@@ -165,10 +172,10 @@ USB adaptor、JDBC interface 操作資料庫的規範(MySQL Driver, MSSQL Driver
 </span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 全局常量：定義了長、寬、高、最小傳輸速度等
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">final</span> <span style="color:#458;font-weight:bold">int</span> WIDTH <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">3</span><span style="color:#000;font-weight:bold">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 驅動
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 開始驅動
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">abstract</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">start</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#998;font-style:italic">// public abstract可省略
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
-</span></span><span style="display:flex;"><span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">stop</span><span style="color:#000;font-weight:bold">();</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">// 移除驅動
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">stop</span><span style="color:#000;font-weight:bold">();</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 靜態方法(有方法體)
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">staticMethod</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
@@ -286,7 +293,7 @@ USB adaptor、JDBC interface 操作資料庫的規範(MySQL Driver, MSSQL Driver
 <pre><code>interface 與 抽象類別 都不能被實例化，因此均體現 多型 的特性，需要子類別來繼承 或 實現類來實現
 </code></pre>
 <blockquote>
-<p>以上面的例子來說，電腦傳輸資料時，可以接受符合USB規範的各種物件，這就是多型的體現方式，因為電腦不用管USB adaptor、硬碟 (hard disk) 是哪種牌子，只要是符合interface USB規範都可以，也就能夠透過<code>USB usb</code>變數去執行 實現類別(implements) Override 的 開始驅動 與 移除驅動 的方法了</p>
+<p>以上面的例子來說，電腦傳輸資料時，均接受符合USB規範的各種物件，這就是多型的體現方式，因為電腦不用管USB adaptor、硬碟 (hard disk) 是哪種牌子，只要是符合interface USB規範都可以，也就能夠透過<code>USB usb</code>變數接受的不同 實現類別 而執行不同的 開始驅動 與 移除驅動 的方法了，藉以展現不同的行為模式</p>
 </blockquote>
 
         </div>
