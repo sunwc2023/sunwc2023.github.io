@@ -137,13 +137,15 @@
         
         <div class="content mb-4">
           <blockquote>
-<p>static 關鍵字：有些時候，我們希望「某些特定資料在記憶體中只有一份」，且這份資料是大家<code>共享的</code>，而不會隨著物件而不同的，例如：存款利率、最低存款金額、工具類</p>
+<p>static 關鍵字：
+有些時候，我們希望「某些特定資料在記憶體中只有一份」，且這份資料是大家<code>共享的</code>，而不會隨著物件而不同的，例如：存款利率、最低存款金額、工具類</p>
 </blockquote>
 <pre><code>access      靜態變數    實例變數
 類別        Yes           No
 
 物件        Yes           Yes
 </code></pre>
+<h3 id="static-特性">static 特性：</h3>
 <ul>
 <li>static 可以修飾 屬性、方法、程式區塊、內部類
 <ul>
@@ -165,9 +167,7 @@
 <li>由於類別只會加載一次，因此靜態修飾的結構<code>只會在記憶體中存在一份資料</code>，存在在方法區的靜態域</li>
 <li>靜態方法<code>只可以</code>存取靜態變數與靜態方法(早出生不能調晚出生的)；實例方法可以存取靜態結構與實例結構(晚出生能調早出生的)，原因是看在生命週期被創建的時間點</li>
 </ul>
-<blockquote>
-<p>單例設計模式：</p>
-</blockquote>
+<h3 id="單例設計模式">單例設計模式：</h3>
 <ol>
 <li>
 <p>所謂類別的單例設計模式，就是採取一定的方法保證在整個程式系統中，對某個類別只能存在一個物件實例。</p>
@@ -196,7 +196,7 @@
 </li>
 </ol>
 <ul>
-<li>方式一</li>
+<li>單例設計模式 方式一</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 餓漢式
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">SingletonTest</span> <span style="color:#000;font-weight:bold">{</span>
@@ -231,7 +231,7 @@
 ```txt
 bank1 == bank2 : true
 </code></pre><ul>
-<li>方式二</li>
+<li>單例設計模式 方式二</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 懶漢式
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">SingletonTest2</span> <span style="color:#000;font-weight:bold">{</span>

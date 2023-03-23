@@ -73,8 +73,8 @@ abstract 關鍵字只可以修飾 非final 類別, 非private、非static、非f
       <pubDate>Tue, 21 Mar 2023 17:55:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/static-example/</guid>
-      <description>static 關鍵字：有些時候，我們希望「某些特定資料在記憶體中只有一份」，且這份資料是大家共享的，而不會隨著物件而不同的，例如：存款利率、最低存款金額、工具類
-access 靜態變數 實例變數類別 Yes No物件 Yes Yesstatic 可以修飾 屬性、方法、程式區塊、內部類 靜態程式區塊 (static block)：(用於類別初始化) 隨著類別加載時，就會執行，且只會執行一次 static { System.</description>
+      <description>static 關鍵字： 有些時候，我們希望「某些特定資料在記憶體中只有一份」，且這份資料是大家共享的，而不會隨著物件而不同的，例如：存款利率、最低存款金額、工具類
+access 靜態變數 實例變數類別 Yes No物件 Yes Yesstatic 特性： static 可以修飾 屬性、方法、程式區塊、內部類 靜態程式區塊 (static block)：(用於類別初始化) 隨著類別加載時，就會執行，且只會執行一次 static { System.</description>
     </item>
     
     <item>
@@ -83,7 +83,8 @@ access 靜態變數 實例變數類別 Yes No物件 Yes Yesstatic 可以修�
       <pubDate>Tue, 21 Mar 2023 14:17:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/equals/</guid>
-      <description>Object 的 euqals() 與 == 作用是相同的，是比較兩個物件的記憶體地址是否相同 public boolean equals(Object obj) { return (this == obj); } String, java.</description>
+      <description>Object 的 euqals() 與 == 作用是相同的 是比較兩個物件的記憶體地址是否相同
+public boolean equals(Object obj) { return (this == obj); } String, java.</description>
     </item>
     
     <item>
@@ -92,9 +93,8 @@ access 靜態變數 實例變數類別 Yes No物件 Yes Yesstatic 可以修�
       <pubDate>Tue, 21 Mar 2023 14:11:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/final-finally-finalize/</guid>
-      <description>finalize 方法： 一般來說，在物件被回收之前會先存取 物件.finalize()，但是我們不要主動去調finalize()，gc回收機制會主動去調 物件.finalize()
-final 關鍵字
-final 修飾類別： 代表本類別就不能被繼承，例如 String, System, StringBuffer 類別 final 修飾方法： 代表本方法不能被覆寫 (Override)，例如Object類別的getClass() final 修飾變數： 代表本變數為常量，不能做修改；可以考慮指定值的位置有：顯示初始化、non-static-block 中初始化、constructor 中初始化 public class SingletonTest2 { final int WIDTH; final int HEIGHT; final double PI; // non-static-block { PI = Math.</description>
+      <description>finalize 方法 一般來說，在物件被回收之前會先存取 物件.finalize()，但是我們不要主動去調finalize()，gc回收機制會主動去調 物件.finalize()
+final 關鍵字 * final 修飾類別： 代表本類別就不能被繼承，例如 String, System, StringBuffer 類別* final 修飾方法： 代表本方法不能被覆寫 (Override)，例如Object類別的getClass()* final 修飾變數： 代表本變數為常量，不能做修改；可以考慮指定值的位置有：顯示初始化、non-static-block 中初始化、constructor 中初始化```javapublic class SingletonTest2 {final int WIDTH;final int HEIGHT;final double PI;// non-static-block{PI = Math.</description>
     </item>
     
     <item>
@@ -103,8 +103,8 @@ final 修飾類別： 代表本類別就不能被繼承，例如 String, System,
       <pubDate>Mon, 20 Mar 2023 17:35:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/oop/</guid>
-      <description>encapsulation封裝性：Java提供了4種存取修飾符(private ,不寫(default), protected , public )來修飾類別及類別的內部結構，體現類別及內部結構在被存取時的可見性(visible)的大小
-inheritance繼承性：減少程式碼的冗餘，也方便功能的擴展，先有一個類別(子)去繼承另一個類別(父)，而有了父類與子類的關係，子類可以使用父類的所有功能，且子類還可以在父類的基礎之上擴展其他功能 =&amp;gt; is-a 關係(子類 is a 父類)</description>
+      <description>encapsulation封裝性： Java提供了4種存取修飾符(private ,不寫(default), protected , public )來修飾類別及類別的內部結構，體現類別及內部結構在被存取時的可見性(visible)的大小
+inheritance繼承性： 減少程式碼的冗餘，也方便功能的擴展，先有一個類別(子)去繼承另一個類別(父)，而有了父類與子類的關係，子類可以使用父類的所有功能，且子類還可以在父類的基礎之上擴展其他功能 =&amp;gt; is-a 關係(子類 is a 父類)</description>
     </item>
     
     <item>

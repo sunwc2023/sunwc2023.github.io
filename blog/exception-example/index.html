@@ -180,27 +180,21 @@
 </ul>
 </li>
 </ul>
-<ul>
-<li>
-<p>java 例外處理的方式(處理例外)：</p>
-<ul>
-<li>
-<p>方式一、<code>try-catch-finally</code></p>
-<p>狼來了，自己把狼驅走，保護好羊群</p>
-<p>能夠處理 compile 時期的例外，run 時期仍可能出現例外，相當於延遲例外情況到執行的時候才可能會出現；通常我們在開發時一定是先處理編譯時例外，執行時例外視情況處理</p>
-</li>
-<li>
-<p>方式二、<code>throws + 例外類型</code></p>
-<p>狼來了，自己趕快大喊，捕狼人來幫幫忙哦～ (自己沒辦法保護好羊群)</p>
-<p>拋給方法的調用者去處理</p>
-</li>
-</ul>
-</li>
-<li>
-<p>手動拋出一個例外物件(生成例外)</p>
-<ul>
-<li>使用 <code>throw</code> 關鍵字</li>
-</ul>
+<h2 id="java-例外處理的方式處理例外">java 例外處理的方式(處理例外)：</h2>
+<pre><code>* 方式一、```try-catch-finally```
+
+   狼來了，自己把狼驅走，保護好羊群
+   
+   能夠處理 compile 時期的例外，run 時期仍可能出現例外，相當於延遲例外情況到執行的時候才可能會出現；通常我們在開發時一定是先處理編譯時例外，執行時例外視情況處理
+
+* 方式二、```throws + 例外類型```
+
+    狼來了，自己趕快大喊，捕狼人來幫幫忙哦～ (自己沒辦法保護好羊群)
+
+    拋給方法的調用者去處理
+</code></pre>
+<h2 id="手動拋出一個例外物件生成例外">手動拋出一個例外物件(生成例外)</h2>
+<p>使用 <code>throw</code> 關鍵字</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Student</span> <span style="color:#000;font-weight:bold">{</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">int</span> id<span style="color:#000;font-weight:bold">;</span>
@@ -215,9 +209,7 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div></li>
-</ul>
-
+</span></span></code></pre></div>
         </div>
 
         

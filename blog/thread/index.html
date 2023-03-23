@@ -136,39 +136,29 @@
 
         
         <div class="content mb-4">
-          <p><img src="../../images/post/Thread/process-pid.jpg" alt=""></p>
-<ul>
-<li>什麼是Process？</li>
-</ul>
+          <p><img src="../../images/post/thread/process-pid.png" alt=""></p>
+<h2 id="什麼是process">什麼是Process？</h2>
 <p>通常一個應用程序執行起來，就會在記憶體加載一個 Process ，對應到工作管理員來看，一個 Pross 就會對應到一個 PID (Process Identification)；
 而一個 Process 會有多個執行緒 (Thread)，代表這個應用程序支持我們能夠使用它自身 <code>同時</code>在裡面做很多事情</p>
 <p>例如 執行一個 Java 應用程序<code>java.exe</code>，其實至少有三個執行緒：main() 主執行緒、gc() 資源回收執行緒、例外處理執行緒。當然若有例外發生，會影響主執行緒</p>
-<ul>
-<li>什麼是併行 與 併發？
-併行：多個CPU同時執行多個任務。例如 多個人同時做不同的事
-併發：一個CPU快速切換不同執行緒執行任務。例如 搶演唱會門票、多個人做同一件事</li>
-</ul>
+<h2 id="什麼是併行-與-併發">什麼是併行 與 併發？</h2>
+<p>併行：多個CPU同時執行多個任務。例如 多個人同時做不同的事</p>
+<p>併發：一個CPU快速切換不同執行緒執行任務。例如 搶演唱會門票、多個人做同一件事</p>
 <p><img src="../../images/post/thread/jvm-structure.jpg" alt=""></p>
-<ul>
-<li>JVM 的記憶體結構
-<ul>
-<li>每個 Thread 都有獨立的一套 VM Stack 與 Program Counter Register</li>
-<li>每個 Process 有獨立的一套 Method Area 與 Heap，即 多個執行緒 (Thread) 一起共用這些資源</li>
-</ul>
-</li>
-</ul>
+<h2 id="jvm-的記憶體結構">JVM 的記憶體結構</h2>
+<pre><code>每個 Thread 都有獨立的一套 VM Stack 與 Program Counter Register
+每個 Process 有獨立的一套 Method Area 與 Heap，即 多個執行緒 (Thread) 一起共用這些資源
+</code></pre>
 <blockquote>
 <p>有關創建多執行緒的方式 - 實現 interface Runnable，可以參考我的另一篇文章 <a href="/blog/implements-runnable">Java - Thread 執行緒(二) - interface Runnable</a></p>
 </blockquote>
-<ul>
-<li>多執行緒的創建 - 繼承 Thread 類</li>
-</ul>
+<h2 id="多執行緒的創建---繼承-thread-類">多執行緒的創建 - 繼承 Thread 類</h2>
 <p>方式一、</p>
 <ol>
 <li>創建一個繼承於Thread類的子類別</li>
 <li>覆寫Thread類的run()</li>
 <li>創建Thread類的子類物件</li>
-<li>通做此物件調用start()</li>
+<li>通過此物件調用start()</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyThread</span> <span style="color:#000;font-weight:bold">extends</span> Thread <span style="color:#000;font-weight:bold">{</span>
 </span></span><span style="display:flex;"><span>
@@ -241,9 +231,7 @@
 </span></span><span style="display:flex;"><span>main : 9
 </span></span><span style="display:flex;"><span>Thread-1 : 8
 </span></span><span style="display:flex;"><span>Thread-1 : 10
-</span></span></code></pre></div><ul>
-<li>使用匿名子類創建子執行緒</li>
-</ul>
+</span></span></code></pre></div><h2 id="使用匿名子類創建子執行緒">使用匿名子類創建子執行緒</h2>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* 使用匿名子類創建兩個子執行緒
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* 一個執行緒 印奇數
@@ -293,38 +281,30 @@
 </span></span><span style="display:flex;"><span>thread 2 : 6
 </span></span><span style="display:flex;"><span>thread 2 : 8
 </span></span><span style="display:flex;"><span>thread 2 : 10
-</span></span></code></pre></div><ul>
-<li>
-<p>Thread類常用的方法</p>
-<ol>
-<li>start()：啟動當前執行緒；調用當前執行緒的run()</li>
-<li>run()：通常需要覆寫Thread類中的此方法，將創建的執行緒要執行的操作寫在此方法中</li>
-<li>currentThread()：靜態方法，回傳當前程式的執行緒</li>
-<li>getName()：取得當前執行緒的名稱</li>
-<li>setName()：設置當前執行緒的名稱</li>
-<li>yield()：釋放當前CPU的執行權</li>
-<li>join()：在 執行緒A 中調用 執行緒B的join()，此時執行緒A就進入阻塞狀態，直到執行緒B全部執行完後，執行緒A才結束阻塞狀態</li>
-<li>stop：已過時不使用。當執行此方法時，強制結束當前執行緒</li>
-<li>sleep(long millitime)：讓當前執行緒“睡眠”指定的毫秒數，在指定的millitime時間內，當前的執行緒是阻塞狀態</li>
-<li>isAlive()：判斷當前執行緒是否還存活</li>
-</ol>
-</li>
-<li>
-<p>Thread 的優先級</p>
-<ol>
-<li>
-<p>MAX_PRIORITY: 10</p>
-<p>MIN_PRIORITY: 1</p>
-<p>NORM_PRIORITY: 5</p>
-</li>
-<li>
-<p>如何取得和設置當前執行緒的優先級</p>
-<p>getPriority()：取得執行緒的優先級</p>
-<p>setPriority(int priority)：設置執行緒的優先級</p>
-</li>
-</ol>
-</li>
-</ul>
+</span></span></code></pre></div><h2 id="thread類常用的方法">Thread類常用的方法</h2>
+<pre><code> 1. start()：啟動當前執行緒；調用當前執行緒的run()
+ 2. run()：通常需要覆寫Thread類中的此方法，將創建的執行緒要執行的操作寫在此方法中
+ 3. currentThread()：靜態方法，回傳當前程式的執行緒
+ 4. getName()：取得當前執行緒的名稱
+ 5. setName()：設置當前執行緒的名稱
+ 6. yield()：釋放當前CPU的執行權
+ 7. join()：在 執行緒A 中調用 執行緒B的join()，此時執行緒A就進入阻塞狀態，直到執行緒B全部執行完後，執行緒A才結束阻塞狀態
+ 8. stop：已過時不使用。當執行此方法時，強制結束當前執行緒
+ 9. sleep(long millitime)：讓當前執行緒“睡眠”指定的毫秒數，在指定的millitime時間內，當前的執行緒是阻塞狀態
+ 10. isAlive()：判斷當前執行緒是否還存活
+</code></pre>
+<h2 id="thread-的優先級">Thread 的優先級</h2>
+<pre><code>1. MAX_PRIORITY: 10
+
+   MIN_PRIORITY: 1
+
+   NORM_PRIORITY: 5
+2. 如何取得和設置當前執行緒的優先級
+   
+   getPriority()：取得執行緒的優先級
+   
+   setPriority(int priority)：設置執行緒的優先級
+</code></pre>
 
         </div>
 

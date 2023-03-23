@@ -140,6 +140,7 @@
 <p>有關創建多執行緒的方式 - 繼承 Thread類，可以參考我的另一篇文章 <a href="/blog/thread">Java - Thread 執行緒(一)</a></p>
 </blockquote>
 <p>除了上述說的這個方式創建執行緒，更好的方式是透過實現 interface Runnable 來做</p>
+<h2 id="多執行緒的創建---實現-interface-runnable">多執行緒的創建 - 實現 interface Runnable</h2>
 <ol>
 <li>創建一個實現了 <code>interface Runnable</code> 的類別</li>
 <li>實現類去實現 Runnable 的抽象方法: <code>run()</code></li>
@@ -221,9 +222,7 @@
 </span></span><span style="display:flex;"><span>Window 2 : 售出票號 - 2
 </span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 3
 </span></span><span style="display:flex;"><span>Window 3 : 售出票號 - 1
-</span></span></code></pre></div><ul>
-<li>比較創建執行緒的兩種方式</li>
-</ul>
+</span></span></code></pre></div><h2 id="比較創建執行緒的兩種方式">比較創建執行緒的兩種方式</h2>
 <p>開發中<code>優先</code>選擇 實現 interface Runnable 方式</p>
 <p>原因：</p>
 <ol>
@@ -233,9 +232,7 @@
 <p>其實原生的 Thread類別 也是實現 interface Runnable 的例子，
 所以不管是子類繼承 Thread 類 或 實現類實現 interface Runnable ，<code>相同點</code>是：
 需要覆寫 run()，將執行緒要執行的邏輯寫在 run() 中</p>
-<blockquote>
-<p>上面的售票的<code>執行緒安全問題</code>，問題點解釋：</p>
-</blockquote>
+<h2 id="上面的售票的執行緒安全問題問題點解釋">上面的售票的<code>執行緒安全問題</code>，問題點解釋：</h2>
 <ol>
 <li>售票過程中，出現了重複售出同一個票號的票、超賣的情況</li>
 <li>原因：當某個執行緒操作車票的過程中，尚未操作完成時，其它的執行緒參與進來</li>
@@ -249,10 +246,9 @@
 <p><strong>現實例子：</strong></p>
 <p>當某A在使用唯一一間廁所時，某B即使肚子痛要使用，也要等某A使用完才可以進入。因為某A鎖門了，某B只好等了</p>
 <ul>
-<li>在Java中，我們通過<code>同步</code>機制，來解決執行緒安全的問題
-<ul>
-<li><strong>優化方式一、同步程式區塊</strong></li>
-</ul>
+<li>
+<p>在Java中，我們通過<code>同步</code>機制，來解決執行緒安全的問題</p>
+<h3 id="優化方式一同步程式區塊">優化方式一、同步程式區塊</h3>
 </li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">synchronized</span><span style="color:#000;font-weight:bold">(</span><span style="color:#a61717;background-color:#e3d2d2">同步監視器</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
@@ -335,9 +331,7 @@
 </span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 3
 </span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 2
 </span></span><span style="display:flex;"><span>Window 1 : 售出票號 - 1
-</span></span></code></pre></div><ul>
-<li><strong>優化方式二、同步方法</strong></li>
-</ul>
+</span></span></code></pre></div><h3 id="優化方式二同步方法">優化方式二、同步方法</h3>
 <p>若操作共享資料的程式完整的寫在一個方法中，我們不妨將此方法宣告成同步的</p>
 <ol>
 <li>同步方法仍然涉及到同步監視器，只是不需要我們顯示的宣告</li>

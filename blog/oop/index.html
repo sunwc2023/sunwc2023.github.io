@@ -136,15 +136,11 @@
 
         
         <div class="content mb-4">
-          <blockquote>
-<p>encapsulation封裝性：Java提供了4種存取修飾符<code>(private ,不寫(default), protected , public )</code>來修飾類別及類別的內部結構，體現類別及內部結構在被存取時的可見性(visible)的大小</p>
-</blockquote>
-<blockquote>
-<p>inheritance繼承性：減少程式碼的冗餘，也方便功能的擴展，先有一個類別(子)去繼承另一個類別(父)，而有了父類與子類的關係，子類可以使用父類的所有功能，且子類還可以在父類的基礎之上擴展其他功能 =&gt; is-a 關係(子類 is a 父類)</p>
-</blockquote>
-<blockquote>
-<p>polymorphism多型性：</p>
-</blockquote>
+          <h2 id="encapsulation封裝性">encapsulation封裝性：</h2>
+<p>Java提供了4種存取修飾符<code>(private ,不寫(default), protected , public )</code>來修飾類別及類別的內部結構，體現類別及內部結構在被存取時的可見性(visible)的大小</p>
+<h2 id="inheritance繼承性">inheritance繼承性：</h2>
+<p>減少程式碼的冗餘，也方便功能的擴展，先有一個類別(子)去繼承另一個類別(父)，而有了父類與子類的關係，子類可以使用父類的所有功能，且子類還可以在父類的基礎之上擴展其他功能 =&gt; is-a 關係(子類 is a 父類)</p>
+<h2 id="polymorphism多型性">polymorphism多型性：</h2>
 <ul>
 <li>類別的繼承關係</li>
 <li>子類要覆寫 (Override) 父類的方法，就能透過父類別使用子類別覆寫的功能</li>
@@ -229,9 +225,7 @@
 </span></span><span style="display:flex;"><span>age=10
 </span></span><span style="display:flex;"><span>學生認真學習！
 </span></span><span style="display:flex;"><span>學生要睡飽才會長高
-</span></span></code></pre></div><blockquote>
-<p>Overload (多載) vs. Override (覆寫)</p>
-</blockquote>
+</span></span></code></pre></div><h2 id="overload-多載-vs-override-覆寫">Overload (多載) vs. Override (覆寫)</h2>
 <ul>
 <li>Overload (概念可稱同名方法) 在編譯 (compile) 時期就會去檢查 方法宣告的參數列表 是否符合 多載 的規定</li>
 <li>Override 在編譯 (complie) 時期 會先以父類別變數去存取父類別方法來判斷編譯通不通過，直到執行 (run) 時期 若使用父類別變數存取的方法 子類別有覆寫 (多型概念)，則會是在執行時才在heap區去存取子類別覆寫的方法</li>
