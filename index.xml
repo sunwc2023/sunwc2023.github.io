@@ -57,6 +57,17 @@ Java語言使用 Thread 類及其子類的物件來表示執行緒，在它一�
     </item>
     
     <item>
+      <title>Java - 抽象類別 抽象方法</title>
+      <link>https://sunwc2023.github.io/blog/abstract/</link>
+      <pubDate>Wed, 22 Mar 2023 09:12:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/abstract/</guid>
+      <description>有關的例子，可以參考我的另一篇文章 Java - 多型 繼承
+abstract
+abstract 關鍵字只可以修飾 非final 類別, 非private、非static、非final 方法 抽象類別不可以實例化，抽象類別一定有constructor，以便讓子類別實例化的時候可以進行調用 抽象方法只有方法的宣告、沒有方法體 結論：</description>
+    </item>
+    
+    <item>
       <title>Java - static 關鍵字 vs. 單例 (Singleton) 設計模式</title>
       <link>https://sunwc2023.github.io/blog/static-example/</link>
       <pubDate>Tue, 21 Mar 2023 17:55:00 +0800</pubDate>
@@ -189,17 +200,6 @@ public static void main(String[] args) { // 原始random區間為包含0.</descr
       <guid>https://sunwc2023.github.io/blog/thread-local/</guid>
       <description>有關在實際工作上使用到 ThreadLocal 的例子，可以參考我的另一篇文章 Java - ThreadLocal 實際應用
 ThreadLocal 實現原理 ThreadLocal 從字面義直翻，就是執行緒 (Thread) 的局部變數，是每一個執行緒所單獨持有，其他執行緒不能對其進行存取</description>
-    </item>
-    
-    <item>
-      <title>Java - 抽象類別 抽象方法</title>
-      <link>https://sunwc2023.github.io/blog/abstract/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://sunwc2023.github.io/blog/abstract/</guid>
-      <description>有關的例子，可以參考我的另一篇文章 Java - 多型 繼承
-abstract
-abstract 關鍵字只可以修飾 非final 類別, 非private、非static、非final 方法 抽象類別不可以實例化，抽象類別一定有constructor，以便讓子類別實例化的時候可以進行調用 抽象方法只有方法的宣告、沒有方法體 結論：</description>
     </item>
     
   </channel>

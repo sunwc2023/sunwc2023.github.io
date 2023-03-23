@@ -339,6 +339,11 @@
 <li><strong>優化方式二、同步方法</strong></li>
 </ul>
 <p>若操作共享資料的程式完整的寫在一個方法中，我們不妨將此方法宣告成同步的</p>
+<ol>
+<li>同步方法仍然涉及到同步監視器，只是不需要我們顯示的宣告</li>
+<li>非靜態的同步方法，同步監視器是：this
+靜態的同步方法，同步監視器是：當前類別本身</li>
+</ol>
 <p>例子如下：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * 售票窗口類
