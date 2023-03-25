@@ -6,7 +6,26 @@
     <description>Recent content in Practice on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 19 Mar 2023 21:36:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/categories/practice/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Mar 2023 15:51:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/categories/practice/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java - 多執行緒 通訊</title>
+      <link>https://sunwc2023.github.io/blog/concurrent-produnct/</link>
+      <pubDate>Fri, 24 Mar 2023 15:51:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/concurrent-produnct/</guid>
+      <description>題目 生產者(Producer)將產品將給店員(Clerk)，而消費者(Consumer)從店員出取走商品，店員一次只能持有固定數量的產品(例如:20)，如果生產者試圖生產更多的產品，店員會較生產者暫停一下，如果店中有空位可以放產品了在通知生產者繼續生產；如果店中沒有產品了，店員會告知消費者等一下，如果店中有產品了再通知消費者來取走產品
+/** * @author sunwc * @create 2023-03-24 下午 03:49 */ public class ConcurrentProduct { public static void main(String[] args) { // 共享資源 Clerk clerk = new Clerk(); // 第一個生產者 Producer producer1 = new Producer(clerk); // 第一個消費者 Consumer consumer1 = new Consumer(clerk); Consumer consumer2 = new Consumer(clerk); producer1.</description>
+    </item>
+    
+    <item>
+      <title>Java - Lock &amp; synchronized 使用</title>
+      <link>https://sunwc2023.github.io/blog/deposit-concurrent-example/</link>
+      <pubDate>Fri, 24 Mar 2023 12:49:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/deposit-concurrent-example/</guid>
+      <description>方式一、 使用鎖 import java.util.concurrent.locks.ReentrantLock; /** * 演示案例：銀行有一個帳戶 * 有兩個存戶分別向同一個帳戶存3000元，每次存1000，存3次。 * 每次存完輸出帳戶餘額 * @author sunwc * @create 2023-03-24 下午 12:23 */ public class ConcurrentAccount { public static void main(String[] args) { // 帳戶為共享資源，只new一次 Account account = new Account(); Depositor depositor = new Depositor(account); Thread t1 = new Thread(depositor); Thread t2 = new Thread(depositor); t1.</description>
+    </item>
+    
     <item>
       <title>Java - 陣列快速排序法 Quick Sort</title>
       <link>https://sunwc2023.github.io/blog/quick-sort/</link>

@@ -6,7 +6,57 @@
     <description>Recent content in Java on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 23 Mar 2023 15:37:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Mar 2023 21:34:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java -  Thread 執行緒(四) Thread Pool</title>
+      <link>https://sunwc2023.github.io/blog/thread-pool/</link>
+      <pubDate>Fri, 24 Mar 2023 21:34:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/thread-pool/</guid>
+      <description>Thread Pool 特性 背景：經常創建和銷毀、使用量特別大的資源，例如併發情況下的執行緒，對效能影響很大 思路：提前創建 Multi thread，放入 Thread Pool中，使用時直接取得，使用完後放回池中。可以避免頻繁創建與銷毀、實現重複利用。類似生活中大眾交通工具 好處： 提高響應速度(減少了創建新 Thread 的時間) 降低資源消耗(重複利用Thread Pool中的Thread，不需要每次都創建) 便於 Thread 管理 corePoolSize: 核心池的大小 maximumPoolSize: 最大 Thread 數 keepAliveTime: Thread 在沒有任務時最多保持多長時間後會終止 Thread Pool 相關 API JDK 5.</description>
+    </item>
+    
+    <item>
+      <title>Java - Thread 執行緒(三) - interface Callable</title>
+      <link>https://sunwc2023.github.io/blog/implements-callable/</link>
+      <pubDate>Fri, 24 Mar 2023 20:44:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/implements-callable/</guid>
+      <description>JDK 5.0 新增
+新執行緒的創建 (Multi-threading) - 實現 interface Callable 之步驟 1.</description>
+    </item>
+    
+    <item>
+      <title>Java - 執行緒 交互輸出1-50的數字</title>
+      <link>https://sunwc2023.github.io/blog/wait-notify/</link>
+      <pubDate>Fri, 24 Mar 2023 15:20:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/wait-notify/</guid>
+      <description>執行緒通訊 Multi-threading 中 如何讓執行緒可以交互執行 會涉及到三個方法：
+java.lang.Object.wait()：一但執行此方法，當前執行緒就會進入阻塞狀態，並釋放同步鎖 java.lang.Object.notify()：一但執行此方法，就會喚醒正在wait()中的執行緒。如果有多個執行緒wait()中，就先喚醒優先級較高的 java.lang.Object.notifyAll()：一但執行此方法，就會喚醒所有wait()中的執行緒 wait(),notify(),notifyAll()使用前提 這三個方法只能使用在synchronized修飾的區塊 或 同步方法中 這三個方法的調用者必須是同步鎖this；若調用此三個方法的物件與同步鎖不一致，會出現IllegalMonitorStateException /** * @author sunwc * @create 2023-03-24 下午 03:02 */ public class PrintNumberInteraction { public static void main(String[] args) { Number number = new Number(); Thread t1 = new Thread(number); Thread t2 = new Thread(number); t1.</description>
+    </item>
+    
+    <item>
+      <title>Java - Lock - 解決執行緒不安全</title>
+      <link>https://sunwc2023.github.io/blog/lock-reentrantlock/</link>
+      <pubDate>Fri, 24 Mar 2023 12:04:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/lock-reentrantlock/</guid>
+      <description>為什麼要用鎖(Lock)？ 鎖 相對於 synchronized 機制，是更加靈活的，它一樣能夠解決執行緒不安全的問題；
+不同點在於：synchronized機制在執行完相應的區塊後，會自動釋放同步鎖；而Lock就需要手動啟動同步 以及 手動結束同步 java.util.concurrent.locks.ReentrantLock; 是JDK 5.</description>
+    </item>
+    
+    <item>
+      <title>Java - Thread 的 Deadlock</title>
+      <link>https://sunwc2023.github.io/blog/thread-deadlock/</link>
+      <pubDate>Thu, 23 Mar 2023 15:37:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/thread-deadlock/</guid>
+      <description>什麼是死鎖？ 當不同執行緒分別占用對方需要的同步資源不放棄，都在等待對方放棄自己需要的同步資源，就形成了執行緒的死鎖
+死鎖出現後的現象？ 出現死鎖後，不會出現例外，也不會有提示，只是所有執行緒都處於阻塞的狀態；因此我們在使用 synchronized 的時候，要避免死鎖的情況發生
+如何避免死鎖？ 盡量減少同步資源的宣告，例如 有 static 關鍵字 避免嵌套synchronized(同步鎖){} /** * 演示執行緒死鎖問題 * @author sunwc * @create 2023-03-24 上午 10:49 */ public class DeadlockTest { public static void main(String[] args) { // 1.</description>
+    </item>
+    
     <item>
       <title>Java - Thread 的 生命週期</title>
       <link>https://sunwc2023.github.io/blog/thread-lifecycle/</link>
@@ -62,7 +112,7 @@ Java類可以 implements 多個 interface ，彌補了 Java 單繼承的侷限�
       
       <guid>https://sunwc2023.github.io/blog/abstract/</guid>
       <description> 有關的例子，可以參考我的另一篇文章 Java - 多型 繼承
-abstract的特性 abstract 關鍵字只可以修飾 非final 的類別、 非private、非static、非final 的方法 抽象類別不可以實例化，抽象類別一定有constructor，以便讓子類別實例化的時候可以進行調用 抽象方法只有方法的宣告、沒有方法體 結論： 包含 抽象方法 的類別，一定是抽象類別；反之，抽象類別中可以無抽象方法 若子類別覆寫父類別的所有抽象方法後，此子類別可以實例化；若子類別沒有覆寫父類的所有抽象方法，則此子類別也是一個抽象類別，需要使用 abstract 修飾 </description>
+abstract的特性 abstract 關鍵字只可以修飾 非final 的類別、 非private、非static、非final 的方法 抽象類別不可以實例化，抽象類別一定有constructor，以便讓子類別實例化的時候可以進行調用 抽象方法只有方法的宣告、沒有方法體 總結： 包含 抽象方法 的類別，一定是抽象類別；反之，抽象類別中可以無抽象方法 若子類別覆寫父類別的所有抽象方法後，此子類別可以實例化；若子類別沒有覆寫父類的所有抽象方法，則此子類別也是一個抽象類別，需要使用 abstract 修飾 </description>
     </item>
     
     <item>
@@ -101,7 +151,7 @@ final 關鍵字 * final 修飾類別： 代表本類別就不能被繼承，例�
       <pubDate>Mon, 20 Mar 2023 17:35:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/oop/</guid>
-      <description>encapsulation封裝性： Java提供了4種存取修飾符(private ,不寫(default), protected , public )來修飾類別及類別的內部結構，體現類別及內部結構在被存取時的可見性(visible)的大小
+      <description>encapsulation封裝性： Java提供了4種存取修飾符private ,不寫(default), protected , public來修飾類別及類別的內部結構，體現類別及內部結構在被存取時的可見性(visible)的大小
 inheritance繼承性： 減少程式碼的冗餘，也方便功能的擴展，先有一個類別(子)去繼承另一個類別(父)，而有了父類與子類的關係，子類可以使用父類的所有功能，且子類還可以在父類的基礎之上擴展其他功能 =&amp;gt; is-a 關係(子類 is a 父類)</description>
     </item>
     
