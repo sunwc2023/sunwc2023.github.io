@@ -142,6 +142,7 @@
 <li>不同點在於：synchronized機制在執行完相應的區塊後，會自動釋放同步鎖；而Lock就需要手動啟動同步 以及 手動結束同步</li>
 <li><code>java.util.concurrent.locks.ReentrantLock;</code> 是JDK 5.0新增的特性，新特性可以考慮優先使用</li>
 </ul>
+<h2 id="例子">例子</h2>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * 演示使用Lock解決執行緒不安全問題
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @author sunwc
@@ -215,7 +216,8 @@
 </span></span><span style="display:flex;"><span>窗口3 : 售出的票號 - 2
 </span></span><span style="display:flex;"><span>窗口2 : 售出的票號 - 2
 </span></span><span style="display:flex;"><span>窗口1 : 售出的票號 - -1
-</span></span></code></pre></div><h2 id="使用-reentrantlock-使得-thread-safety">使用 ReentrantLock 使得 Thread-safety</h2>
+</span></span></code></pre></div><hr>
+<h2 id="使用-reentrantlock-使得-thread-safety">使用 ReentrantLock 使得 Thread-safety</h2>
 <p>修改窗口類</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Window</span> <span style="color:#000;font-weight:bold">implements</span> Runnable <span style="color:#000;font-weight:bold">{</span>
 </span></span><span style="display:flex;"><span>

@@ -149,12 +149,12 @@
 <li>corePoolSize: 核心池的大小</li>
 <li>maximumPoolSize: 最大 Thread 數</li>
 <li>keepAliveTime: Thread 在沒有任務時最多保持多長時間後會終止</li>
-<li></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<hr>
 <h2 id="thread-pool-相關-api">Thread Pool 相關 API</h2>
 <ul>
 <li>JDK 5.0 起提供了 Thread Pool 相關 API: <code>ExecutorService</code>和 <code>Executors</code></li>
@@ -174,10 +174,12 @@
 </ul>
 </li>
 </ul>
+<hr>
 <h2 id="使用-thread-pool-實現-multi-threading-步驟">使用 Thread Pool 實現 Multi-threading 步驟</h2>
 <p>1.提供指定 Thread 數的 Thread Pool</p>
 <p>2.執行指定的 Thread，需要提供Runnable 或 Callable 的實現類別物件</p>
 <p>3.關閉 Thread Pool</p>
+<h3 id="例子">例子</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @author sunwc
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @create 2023-03-25 上午 10:22

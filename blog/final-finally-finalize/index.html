@@ -138,6 +138,7 @@
         <div class="content mb-4">
           <h2 id="finalize-方法">finalize 方法</h2>
 <p>一般來說，在物件被回收之前會先存取 <code>物件.finalize()</code>，但是我們不要主動去調<code>finalize()</code>，gc回收機制會主動去調 <code>物件.finalize()</code></p>
+<hr>
 <h2 id="final-關鍵字">final 關鍵字</h2>
 <pre><code>* final 修飾類別： 代表本類別就不能被繼承，例如 String, System, StringBuffer 類別
 * final 修飾方法： 代表本方法不能被覆寫 (Override)，例如Object類別的getClass()
@@ -198,6 +199,7 @@ final面試題二、
 
 * stactic final修飾屬性：代表本屬性為 全局常數
 </code></pre>
+<hr>
 <h2 id="try-catch-finally">try-catch-finally：</h2>
 <ul>
 <li>
@@ -240,9 +242,10 @@ final面試題二、
 </span></span><span style="display:flex;"><span>進finally~
 </span></span><span style="display:flex;"><span>2
 </span></span></code></pre></div></li>
-<li>
-<p>JVM 對於物理連接，例如資料庫連線、輸入輸出流、Socket連線銷毀無能為力，否則有內存洩漏的危險，此時資源的釋放，就需要宣告在finally中</p>
-</li>
+</ul>
+<h2 id="finally-關閉資源">finally 關閉資源</h2>
+<ul>
+<li>JVM 對於物理連接，例如資料庫連線、輸入輸出流、Socket連線銷毀無能為力，否則有內存洩漏的危險，此時資源的釋放，就需要宣告在finally中</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Test</span>
@@ -273,7 +276,9 @@ final面試題二、
 </span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><h2 id="總結">總結</h2>
+<p>面試中考題層出現問它們三倆有什麼關係 final, finally, finalize，其實並沒有關係，只是長得像就被放在一起了，透過這篇文章能夠更了解各自的意義，不要下次又搞混了就好了 :)</p>
+
         </div>
 
         

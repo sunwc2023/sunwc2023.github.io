@@ -144,11 +144,13 @@
 <li>java.lang.Object.notify()：一但執行此方法，就會喚醒正在wait()中的執行緒。如果有多個執行緒wait()中，就先喚醒優先級較高的</li>
 <li>java.lang.Object.notifyAll()：一但執行此方法，就會喚醒所有wait()中的執行緒</li>
 </ul>
+<hr>
 <h2 id="waitnotifynotifyall使用前提">wait(),notify(),notifyAll()使用前提</h2>
 <ul>
 <li>這三個方法只能使用在synchronized修飾的區塊 或 同步方法中</li>
 <li>這三個方法的調用者必須是同步鎖this；若調用此三個方法的物件與同步鎖不一致，會出現IllegalMonitorStateException</li>
 </ul>
+<h3 id="例子">例子</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @author sunwc
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @create 2023-03-24 下午 03:02

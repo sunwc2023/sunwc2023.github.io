@@ -262,7 +262,8 @@
 </span></span><span style="display:flex;"><span>        currentThreadSDF<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">remove</span><span style="color:#000;font-weight:bold">();</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><p>LogBox 類使用情境</p>
+</span></span></code></pre></div><hr>
+<p>LogBox 類使用情境</p>
 <h3 id="情境一這個-logbox-類實際上是可以應用在-filter-interface">情境一、這個 LogBox 類實際上是可以應用在 Filter interface</h3>
 <p>透過建立一個客製類實作 Filter 並實現 doFilter 方法，一開始透過 <code>createCurrentThreadLogBox(title)</code> 建立屬於該 request (該執行緒) 的 <code>ThreadLocal&lt;LogBox&gt;</code> 物件，中間還可以從 request 中取得 requestURI、requestParams 並取得 response 等資訊都加入 <code>ThreadLocal&lt;LogBox&gt;</code> ，<em>等程式從controller層回到 doFilter</em> 再 <code>removeLogBoxAndGetLog()</code> 清除當前執行緒 <code>ThreadLocal&lt;LogBox&gt;</code></p>
 <p>因為有上面提及的這層操作，因此在SpringBoot framework 的 Controller 或 Service 層的 function 中，就只需要<code>getCurrentThreadLogBox()</code> 取得當前執行緒的 LogBox，並將當前API、業務邏輯所需顯示的 log 內容，透過 <code>log.info(&quot;xxxx&quot;)</code>, <code>log.error(exeption message)</code>,&hellip; 將不同層級訊息加到 LogBox 中</p>
@@ -280,7 +281,11 @@
 <ul>
 <li>改善後的寫法：</li>
 </ul>
-<p>將 LogBox 物件當作傳參送到 <code>callTransferLimitUpPer30Mins(logBox)</code> ，才解決了問題，<em>請看以下例子：</em></p>
+<p>將 LogBox 物件當作傳參送到 <code>callTransferLimitUpPer30Mins(logBox)</code> ，才解決了問題</p>
+<h2 id="例子">例子</h2>
+<ul>
+<li>quartz入口類</li>
+</ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Slf4j</span>
 </span></span><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@DisallowConcurrentExecution</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">RaiseupTransferLimitJob</span> <span style="color:#000;font-weight:bold">extends</span> QuartzJobBean <span style="color:#000;font-weight:bold">{</span>
@@ -324,7 +329,10 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">cancelTaskPer60MINS</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">throws</span> Exception <span style="color:#000;font-weight:bold">{</span>
+</span></span></code></pre></div><ul>
+<li>quartz入口類呼叫ScheduleService類方法</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">cancelTaskPer60MINS</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">throws</span> Exception <span style="color:#000;font-weight:bold">{</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    LogBox logBox <span style="color:#000;font-weight:bold">=</span> LogBox<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getThreadLocalLogBox</span><span style="color:#000;font-weight:bold">();</span>
 </span></span><span style="display:flex;"><span>    ExecutorService executor <span style="color:#000;font-weight:bold">=</span> Executors<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">newSingleThreadExecutor</span><span style="color:#000;font-weight:bold">();</span>
@@ -356,6 +364,7 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">}</span>
 </span></span></code></pre></div><p><img src="../../images/post/thread-local-example/newSingleThreadExecutor.png" alt=""></p>
 <p><a href="https://zhuanlan.zhihu.com/p/428425263">圖片參考</a></p>
+<h2 id="總結">總結</h2>
 <p>關於 log 印不出來，我的想法是 原來在主執行緒的 LogBox ，與 Executors 建立的單一執行緒裡的 LogBox 彼此之間是不互相影響的；但是只有主執行緒的 LogBox 可以印出 log (因為最後有 <code>removeLogBoxAndGetLog()</code> )，所以我就必須將主執行緒產生出來的 LogBox 當作傳參送入 <code>callTransferLimitUpPer30Mins(logBox)</code>，這樣就沒問題啦！</p>
 
         </div>

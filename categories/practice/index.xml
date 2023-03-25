@@ -33,7 +33,7 @@
       
       <guid>https://sunwc2023.github.io/blog/quick-sort/</guid>
       <description>值轉換數字失敗，會拋出NumberFormatException，詳情請看private static Double isNumeric(Object obj) function
-/** * 題目：取得一個Object Array，包含不同data types，排除不是數字、不是浮點型的值 * 再將剩下的值使用quick sort進行排序(不可使用Arrays.</description>
+題目 取得一個Object Array，包含不同data types，排除不是數字、不是浮點型的值</description>
     </item>
     
     <item>

@@ -147,7 +147,7 @@
 <li>典型例子：資料庫連線 父、子類的設計</li>
 <li>物件的多型性：只適用於方法 (Method) =&gt; 又稱 存取虛擬方法 ；但不適用屬性 (Field)！</li>
 </ul>
-<p>多型的例子，請看下面：</p>
+<h2 id="多型-例子">多型 例子</h2>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">package</span> <span style="color:#555">day08.oop</span><span style="color:#000;font-weight:bold">;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Person</span> <span style="color:#000;font-weight:bold">{</span>
@@ -225,7 +225,8 @@
 </span></span><span style="display:flex;"><span>age=10
 </span></span><span style="display:flex;"><span>學生認真學習！
 </span></span><span style="display:flex;"><span>學生要睡飽才會長高
-</span></span></code></pre></div><h2 id="overload-多載-vs-override-覆寫">Overload (多載) vs. Override (覆寫)</h2>
+</span></span></code></pre></div><hr>
+<h2 id="overload-多載-vs-override-覆寫">Overload (多載) vs. Override (覆寫)</h2>
 <ul>
 <li>Overload (概念可稱同名方法) 在編譯 (compile) 時期就會去檢查 方法宣告的參數列表 是否符合 多載 的規定</li>
 <li>Override 在編譯 (complie) 時期 會先以父類別變數去存取父類別方法來判斷編譯通不通過，直到執行 (run) 時期 若使用父類別變數存取的方法 子類別有覆寫 (多型概念)，則會是在執行時才在heap區去存取子類別覆寫的方法</li>

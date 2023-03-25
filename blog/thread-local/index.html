@@ -153,6 +153,7 @@
 </ul>
 </li>
 </ul>
+<h2 id="jdk-souce-code">JDK Souce code</h2>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Thread</span> <span style="color:#000;font-weight:bold">implements</span> Runnable <span style="color:#000;font-weight:bold">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#998;font-style:italic">// Thread 類裡的threadLocals 存放此執行緒的專有 ThreadLocalMap 副本
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    ThreadLocal<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">ThreadLocalMap</span> threadLocals <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">null</span><span style="color:#000;font-weight:bold">;</span>
@@ -221,7 +222,8 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>      
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><h2 id="threadlocal-常用方法">ThreadLocal 常用方法</h2>
+</span></span></code></pre></div><hr>
+<h2 id="threadlocal-常用方法">ThreadLocal 常用方法</h2>
 <ul>
 <li>set(x) : 設置此執行緒的想要放的值 x</li>
 <li>get() : 取得此執行緒當初存放的值，如果沒有存放過則返回 null</li>
@@ -231,6 +233,7 @@
 <ul>
 <li>像是以下的例子，在 main 執行緒中的 ThreadLocalMap ，就有兩個 key-value 的映射，userIdThreadLocal -&gt; 100、userNameThreadLocal -&gt; hello</li>
 </ul>
+<h3 id="例子">例子</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">){</span>
 </span></span><span style="display:flex;"><span>        ThreadLocal<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span> userIdThreadLocal <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ThreadLocal<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
@@ -240,7 +243,8 @@
 </span></span><span style="display:flex;"><span>        userName<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">set</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;hello&#34;</span><span style="color:#000;font-weight:bold">);</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><h2 id="threadlocal-存在內存洩露">ThreadLocal 存在內存洩露</h2>
+</span></span></code></pre></div><hr>
+<h2 id="threadlocal-存在內存洩露">ThreadLocal 存在內存洩露</h2>
 <p>這邊不多去探討這個議題，內存洩漏是可以避免的，只要當前執行緒要結束前記得即時的<code>remove()</code>，也就是是使得 ThreadLocalMap 中不要存在這個 key-value 對，這樣才能確保 GC 能正確回收</p>
 <p>以下有更多的文章，仔細地談論 ThreadLocal 內存洩漏問題 與 Java 自身解決的方式，但都不治本！還是當前執行緒用完 ThreadLocal 記得呼叫<code>remove()</code>，才是確保線程安全的根本之道！</p>
 <p>參考資料：</p>
@@ -252,8 +256,10 @@
 <p><a href="https://juejin.cn/post/6959333602748268575">ThreadLocal使用與原理</a></p>
 </li>
 </ul>
+<hr>
 <h2 id="simpledateformat-非線程安全">SimpleDateFormat 非線程安全？</h2>
 <p>由於 SimpleDateFormat 本身非 synchronized ，所以如果在不同執行緒使用同一個 SimpleDateFormat ，就會導致輸出的時間異常，請看以下的例子</p>
+<h3 id="例子-1">例子</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
 </span></span><span style="display:flex;"><span>    DateFormat sdf <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> SimpleDateFormat<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span style="color:#000;font-weight:bold">);</span>
 </span></span><span style="display:flex;"><span>    Date date1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Date<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1614820308016L</span><span style="color:#000;font-weight:bold">);</span>
