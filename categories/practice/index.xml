@@ -9,84 +9,84 @@
     <lastBuildDate>Fri, 24 Mar 2023 15:51:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/categories/practice/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java - 多執行緒 通訊</title>
-      <link>https://sunwc2023.github.io/blog/concurrent-produnct/</link>
+      <link>https://sunwc2023.github.io/blog/thread/concurrent-produnct/</link>
       <pubDate>Fri, 24 Mar 2023 15:51:00 +0800</pubDate>
       
-      <guid>https://sunwc2023.github.io/blog/concurrent-produnct/</guid>
+      <guid>https://sunwc2023.github.io/blog/thread/concurrent-produnct/</guid>
       <description>題目 生產者(Producer)將產品將給店員(Clerk)，而消費者(Consumer)從店員出取走商品，店員一次只能持有固定數量的產品(例如:20)，如果生產者試圖生產更多的產品，店員會較生產者暫停一下，如果店中有空位可以放產品了在通知生產者繼續生產；如果店中沒有產品了，店員會告知消費者等一下，如果店中有產品了再通知消費者來取走產品
 /** * @author sunwc * @create 2023-03-24 下午 03:49 */ public class ConcurrentProduct { public static void main(String[] args) { // 共享資源 Clerk clerk = new Clerk(); // 第一個生產者 Producer producer1 = new Producer(clerk); // 第一個消費者 Consumer consumer1 = new Consumer(clerk); Consumer consumer2 = new Consumer(clerk); producer1.</description>
     </item>
     
     <item>
       <title>Java - Lock &amp; synchronized 使用</title>
-      <link>https://sunwc2023.github.io/blog/deposit-concurrent-example/</link>
+      <link>https://sunwc2023.github.io/blog/thread/deposit-concurrent-example/</link>
       <pubDate>Fri, 24 Mar 2023 12:49:00 +0800</pubDate>
       
-      <guid>https://sunwc2023.github.io/blog/deposit-concurrent-example/</guid>
+      <guid>https://sunwc2023.github.io/blog/thread/deposit-concurrent-example/</guid>
       <description>方式一、 使用鎖 import java.util.concurrent.locks.ReentrantLock; /** * 演示案例：銀行有一個帳戶 * 有兩個存戶分別向同一個帳戶存3000元，每次存1000，存3次。 * 每次存完輸出帳戶餘額 * @author sunwc * @create 2023-03-24 下午 12:23 */ public class ConcurrentAccount { public static void main(String[] args) { // 帳戶為共享資源，只new一次 Account account = new Account(); Depositor depositor = new Depositor(account); Thread t1 = new Thread(depositor); Thread t2 = new Thread(depositor); t1.</description>
     </item>
     
     <item>
       <title>Java - 陣列快速排序法 Quick Sort</title>
-      <link>https://sunwc2023.github.io/blog/quick-sort/</link>
+      <link>https://sunwc2023.github.io/blog/array/quick-sort/</link>
       <pubDate>Sun, 19 Mar 2023 21:36:00 +0800</pubDate>
       
-      <guid>https://sunwc2023.github.io/blog/quick-sort/</guid>
+      <guid>https://sunwc2023.github.io/blog/array/quick-sort/</guid>
       <description>值轉換數字失敗，會拋出NumberFormatException，詳情請看private static Double isNumeric(Object obj) function
 題目 取得一個Object Array，包含不同data types，排除不是數字、不是浮點型的值</description>
     </item>
     
     <item>
       <title>Java - 陣列二分搜尋</title>
-      <link>https://sunwc2023.github.io/blog/array-search/</link>
+      <link>https://sunwc2023.github.io/blog/array/array-search/</link>
       <pubDate>Sun, 19 Mar 2023 11:15:00 +0800</pubDate>
       
-      <guid>https://sunwc2023.github.io/blog/array-search/</guid>
+      <guid>https://sunwc2023.github.io/blog/array/array-search/</guid>
       <description>public static void main(String[] args) { // 二分搜尋 // 前提：所要搜尋的陣列必須有序 int[] arr = {-98,-34,2,34,54,66,79,105,210,333}; int target = 34; int startInx = 0; int endInx = arr.</description>
     </item>
     
     <item>
       <title>Java - 陣列反轉/字串反轉</title>
-      <link>https://sunwc2023.github.io/blog/array-reversion/</link>
+      <link>https://sunwc2023.github.io/blog/reversion/array-reversion/</link>
       <pubDate>Sun, 19 Mar 2023 11:15:00 +0800</pubDate>
       
-      <guid>https://sunwc2023.github.io/blog/array-reversion/</guid>
+      <guid>https://sunwc2023.github.io/blog/reversion/array-reversion/</guid>
       <description>陣列反轉 public static void main(String[] args) { String[] arr = new String[] {&amp;#34;PP&amp;#34;,&amp;#34;BB&amp;#34;,&amp;#34;MM&amp;#34;,&amp;#34;GG&amp;#34;,&amp;#34;JJ&amp;#34;,&amp;#34;DD&amp;#34;,&amp;#34;MM&amp;#34;}; String temp; // 方式一、交換arr.</description>
     </item>
     
     <item>
       <title>Java - 找1-100中所有質數</title>
-      <link>https://sunwc2023.github.io/blog/find-prime-number/</link>
+      <link>https://sunwc2023.github.io/blog/exmaple/find-prime-number/</link>
       <pubDate>Sat, 18 Mar 2023 11:37:00 +0800</pubDate>
       
-      <guid>https://sunwc2023.github.io/blog/find-prime-number/</guid>
+      <guid>https://sunwc2023.github.io/blog/exmaple/find-prime-number/</guid>
       <description>public static void main(String[] args) { for (int i = 2; i &amp;lt;= 100; i++) { boolean flag = true; // 質數是只能被1與自己整除，所以判斷非質數範圍就只能是 2 ~ (i-1) // for (int j = 2; j &amp;lt; i ; j++) { for (int j = 2; j &amp;lt;= Math.</description>
     </item>
     
     <item>
       <title>Java - 打印菱形</title>
-      <link>https://sunwc2023.github.io/blog/print-diamond/</link>
+      <link>https://sunwc2023.github.io/blog/exmaple/print-diamond/</link>
       <pubDate>Sat, 18 Mar 2023 10:09:00 +0800</pubDate>
       
-      <guid>https://sunwc2023.github.io/blog/print-diamond/</guid>
+      <guid>https://sunwc2023.github.io/blog/exmaple/print-diamond/</guid>
       <description>public static void main(String[] args) { /* 內層迴圈每次執行10次 第1行(i=5) 印星號 j=5 第2行(i=4) 印星號 j=4、6 第3行(i=3) 印星號 j=3、5、7 第4行(i=2) 印星號 j=2、4、6、8 第5行(i=1) 印星號 j=1、3、5、7、9 j其餘情況印一個空白 輸出上半部： * * * * * * * * * * * * * * * */ for (int i = 5; i &amp;gt; 0; i--) { // 計算當前是第幾行，第0行即不用找下一個印星號的位置 int line = 5 - i; int nextPosition = 0; for (int j = 1; j &amp;lt; 10; j++) { // 當 內層迴圈 第一次 i == j 的時候，就先去找下一個印*號的位置 // j == nextPosition(下一個印星號的位置)，就印星號 if (line &amp;gt;= 0 &amp;amp;&amp;amp; (j == i || nextPosition == j)) { System.</description>
     </item>
     
     <item>
       <title>Java - Switch-case 計算X年X月X日為第X年第幾天</title>
-      <link>https://sunwc2023.github.io/blog/days-of-year/</link>
+      <link>https://sunwc2023.github.io/blog/exmaple/days-of-year/</link>
       <pubDate>Fri, 17 Mar 2023 13:01:23 +0800</pubDate>
       
-      <guid>https://sunwc2023.github.io/blog/days-of-year/</guid>
+      <guid>https://sunwc2023.github.io/blog/exmaple/days-of-year/</guid>
       <description>思路：越下面的 case 被執行的機率越高，因此要從最下面的 case 1 倒著累加至第一個 case 12；由於沒有 break 語句，因此進入某個 case 後，其 case 下面的所有 case 都會被執行</description>
     </item>
     
     <item>
       <title>Java - 多型 繼承</title>
-      <link>https://sunwc2023.github.io/blog/abstract-human/</link>
+      <link>https://sunwc2023.github.io/blog/abstract/abstract-human/</link>
       <pubDate>Thu, 16 Mar 2023 14:32:00 +0800</pubDate>
       
-      <guid>https://sunwc2023.github.io/blog/abstract-human/</guid>
+      <guid>https://sunwc2023.github.io/blog/abstract/abstract-human/</guid>
       <description>學習目標: 多型 繼承 --多型-- 撰寫一個 Human 類別 代表人 在這裡我們有兩個衍伸類別 Man 與 Woman 他們用不同的規則活著： Man : 吃飯時 印出&amp;#34;好好吃&amp;#34; 睡覺時 印出&amp;#34;zzz&amp;#34; Woman: 吃飯時 印出&amp;#34;Orzz&amp;#34; 睡覺時 印出&amp;#34;:)&amp;#34; (印出代表用System.</description>
     </item>
     

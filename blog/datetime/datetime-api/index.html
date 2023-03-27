@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>Sunwc&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="description" content="了解 Java 時間相關API">
+    
+  <meta name="author" content="sunwc">
+    
+  
+  <meta name="theme-name" content="liva-hugo" />
+  <meta name="generator" content="Hugo 0.111.1">
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+
+  
+
+  
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-259253267-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head>
+<body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://sunwc2023.github.io"><img class="img-fluid rounded-circle"
+          src="https://sunwc2023.github.io/images/logo.jpg" alt="">
+        <span class="text-body">Sunwc&#39;s Blog</span>
+      </a>
+          
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/">Blog</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/about/">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://sunwc2023.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+       
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container pl-4 pr-4">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <h3 class="text-center">Java - 時間相關API</h3>
+        <div class="mb-3 text-center">
+          <span>By sunwc</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2023-03-26</span>
+          
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <a href="/categories/java"
+            class="text-primary">Java</a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <div class="content mb-4">
+          <h2 id="jdk-8-以前日期時間api">JDK 8 以前日期時間API</h2>
+<ul>
+<li>
+<p>java.lang.System.currentTimeMillis()：回傳(long值)當前時間與1970年1月1日0時0分0秒之間以毫秒為單位的時間差(時間戳)</p>
+<ul>
+<li>UTC 統一標準時間</li>
+<li>GMT 格林威治標準時間</li>
+<li>CST 中央標準時間</li>
+</ul>
+</li>
+<li>
+<p>java.util.Date</p>
+<ul>
+<li>java.sql.Date</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#998;font-style:italic">// 1. toString()：顯示當前的年、月、日、時、分、秒
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>  <span style="color:#998;font-style:italic">// 2. getTime()：取得當前Date物件對應的毫秒數(時間戳)
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#998;font-style:italic">// 3.當前時間Date物件
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>  Date date <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Date<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>  System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>date<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toString</span><span style="color:#000;font-weight:bold">());</span> <span style="color:#998;font-style:italic">// Sun Mar 26 21:13:32 GMT+08:00 2023
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>  System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>date<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getTime</span><span style="color:#000;font-weight:bold">());</span> <span style="color:#998;font-style:italic">// 1679836437117
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#998;font-style:italic">// 4. 指定毫秒數Date物件
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>  Date date2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Date<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1679836437117L</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// Sun Mar 26 21:13:57 GMT+08:00 2023
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#998;font-style:italic">// 5. 如何將java.sql.Date, java.util.Date 互轉
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>  <span style="color:#998;font-style:italic">// java.sql.Date 轉 java.util.Date(子轉父)
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>  Date date3 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> java<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">sql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Date</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">1679836437117L</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>  System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>date3<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toString</span><span style="color:#000;font-weight:bold">());</span> <span style="color:#998;font-style:italic">// 2023-03-26
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#998;font-style:italic">// java.util.Date 轉 java.sql.Date(父轉子)
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>  java<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">sql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Date</span> date4 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> java<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">sql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Date</span><span style="color:#000;font-weight:bold">(</span>date3<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getTime</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>  System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>date4<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toString</span><span style="color:#000;font-weight:bold">());</span> <span style="color:#998;font-style:italic">// 2023-03-26
+</span></span></span></code></pre></div><hr>
+<ul>
+<li>java.text.SimpleDateFormat：對Date類的格式化和解析</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>SimpleDateFormat sdf <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> SimpleDateFormat<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 格式化：日期 -&gt; 字串
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>sdf<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Date<span style="color:#000;font-weight:bold">()));</span> <span style="color:#998;font-style:italic">// 2023-03-26 21:46:26
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 解析：字串 -&gt; 日期
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>Date parse <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">null</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">try</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    parse <span style="color:#000;font-weight:bold">=</span> sdf<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">parse</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;2023-03-26 21:46:26&#34;</span><span style="color:#000;font-weight:bold">);</span> 
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">catch</span> <span style="color:#000;font-weight:bold">(</span>ParseException e<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    e<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">printStackTrace</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>parse <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">null</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>parse<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toString</span><span style="color:#000;font-weight:bold">());</span> <span style="color:#998;font-style:italic">// Sun Mar 26 21:46:26 GMT+08:00 2023
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><hr>
+<ul>
+<li>
+<p>java.util.Calendar(抽象類)</p>
+<p>常用方法：</p>
+<ul>
+<li>get()</li>
+<li>set()</li>
+<li>add()</li>
+<li>getTime()</li>
+<li>setTime()</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>取得月份時，一月是0、二月是1，以此類推&hellip;十二月是11</li>
+<li>取得星期時，週日是1、週一是2，以此類推&hellip;週六是7</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// Date 偏移量 YEAR從1900開始、月從0開始
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>Date date <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Date<span style="color:#000;font-weight:bold">(</span><span style="color:#099">2023</span><span style="color:#000;font-weight:bold">-</span><span style="color:#099">1900</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">3</span><span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">27</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>date<span style="color:#000;font-weight:bold">);</span>
+</span></span></code></pre></div></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 方式一、創建其子類(GregorianCalendar)的物件
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 方式二、調用其靜態方法 getInstance()
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>Calendar calendar <span style="color:#000;font-weight:bold">=</span> Calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getInstance</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getClass</span><span style="color:#000;font-weight:bold">());</span> <span style="color:#998;font-style:italic">// class java.util.GregorianCalendar
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// get()
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">int</span> days <span style="color:#000;font-weight:bold">=</span> calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>Calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">DAY_OF_MONTH</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>days<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 這個月的第幾天
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>Calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">DAY_OF_YEAR</span><span style="color:#000;font-weight:bold">));</span> <span style="color:#998;font-style:italic">// 這個年的第幾天
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// add()
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>Calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">DAY_OF_YEAR</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">3</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>days <span style="color:#000;font-weight:bold">=</span> calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>Calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">DAY_OF_YEAR</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>days<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 這個年的第幾天
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// getTime()
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>Date date <span style="color:#000;font-weight:bold">=</span> calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getTime</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>date<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// Mon Mar 27 09:42:12 GMT+08:00 2023
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// setTime()
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>Date date1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Date<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">setTime</span><span style="color:#000;font-weight:bold">(</span>date1<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>Calendar<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">DAY_OF_YEAR</span><span style="color:#000;font-weight:bold">));</span> <span style="color:#998;font-style:italic">// 這個年的第幾天
+</span></span></span></code></pre></div><h3 id="練習">練習</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 字串&#34;2020-09-08&#34; 轉換為 java.sql.Date
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>SimpleDateFormat sdf <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> SimpleDateFormat<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;yyyy-MM-dd&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>Date date <span style="color:#000;font-weight:bold">=</span> sdf<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">parse</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;2020-09-08&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>java<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">sql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Date</span> date1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> java<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">sql</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Date</span><span style="color:#000;font-weight:bold">(</span>date<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getTime</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>date1<span style="color:#000;font-weight:bold">);</span><span style="color:#998;font-style:italic">// 2020-09-08
+</span></span></span></code></pre></div><hr>
+<h2 id="jdk-8-以後日期時間api">JDK 8 以後日期時間API</h2>
+<ul>
+<li>LocalDate</li>
+<li>LocalTime</li>
+<li>LocalDateTime
+<img src="../../images/post/datetime-api/local-datetime.jpg" alt=""></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">LocalDateTest</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// now() 取得當前日期、時間、日期+時間
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    LocalDate localDate <span style="color:#000;font-weight:bold">=</span> LocalDate<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">now</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    LocalTime localTime <span style="color:#000;font-weight:bold">=</span> LocalTime<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">now</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    LocalDateTime localDateTime <span style="color:#000;font-weight:bold">=</span> LocalDateTime<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">now</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// of() 設置指定的年、月、時、分、秒。沒有偏移量
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    LocalDateTime localDateTime1 <span style="color:#000;font-weight:bold">=</span> localDateTime<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">of</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">2023</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">3</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">27</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">10</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">13</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime1<span style="color:#000;font-weight:bold">);</span><span style="color:#998;font-style:italic">// 2023-03-27T10:13
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// getXxx() 取得相關屬性
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getDayOfMonth</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getDayOfWeek</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getMonth</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getMonthValue</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getMinute</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// LocalDate 不可變性
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">// withXxx() 設置相關屬性
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    LocalDate localDate1 <span style="color:#000;font-weight:bold">=</span> localDate<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">withDayOfMonth</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">31</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDate<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 2023-03-27
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDate1<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 2023-03-31
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// LocalDateTime 不可變性
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    LocalDateTime localDateTime2 <span style="color:#000;font-weight:bold">=</span> localDateTime<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">withHour</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">12</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 2023-03-27T10:22:58.529
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime2<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 2023-03-27T12:22:58.529
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// plusXxx()
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    LocalDateTime localDateTime3 <span style="color:#000;font-weight:bold">=</span> localDateTime<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">plusMonths</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">3</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 2023-03-27T10:24:37.844
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime3<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 2023-06-27T10:24:37.844
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// minusXxx()
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    LocalDateTime localDateTime4 <span style="color:#000;font-weight:bold">=</span> localDateTime<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">minusDays</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">6</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 2023-03-27T10:25:47.916
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>localDateTime4<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 2023-03-21T10:25:47.916
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><hr>
+<ul>
+<li>java.time.Instant</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">instantTest</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// now() 取得本初子午線對應的標準時間
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    Instant now <span style="color:#000;font-weight:bold">=</span> Instant<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">now</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 考慮時區問題 UTC+8 小時
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    OffsetDateTime offsetDateTime <span style="color:#000;font-weight:bold">=</span> now<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">atOffset</span><span style="color:#000;font-weight:bold">(</span>ZoneOffset<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">ofHours</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">8</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>offsetDateTime<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 2023-03-27T10:38:16.822+08:00
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 直接指定台灣台北時區
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    ZonedDateTime zonedDateTime <span style="color:#000;font-weight:bold">=</span> now<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">atZone</span><span style="color:#000;font-weight:bold">(</span>ZoneId<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">of</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Asia/Taipei&#34;</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>zonedDateTime<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toLocalDateTime</span><span style="color:#000;font-weight:bold">());</span> <span style="color:#998;font-style:italic">// 2023-03-27T10:43:59.249
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// toEpochMills()：取得自1970年1月1日0時0分0秒(UTC)開始的毫秒數
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">long</span> milli <span style="color:#000;font-weight:bold">=</span> now<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toEpochMilli</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>milli<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 1679885289697
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// ofEpochMilli()：通過指定的毫秒數，取得Instant實例
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    Instant instant <span style="color:#000;font-weight:bold">=</span> Instant<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">ofEpochMilli</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">1679885289697L</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    OffsetDateTime offsetDateTime1 <span style="color:#000;font-weight:bold">=</span> instant<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">atOffset</span><span style="color:#000;font-weight:bold">(</span>ZoneOffset<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">ofHours</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">8</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>offsetDateTime1<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 2023-03-27T10:48:09.697+08:00
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    ZonedDateTime zonedDateTime1 <span style="color:#000;font-weight:bold">=</span> instant<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">atZone</span><span style="color:#000;font-weight:bold">(</span>ZoneId<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">of</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Asia/Taipei&#34;</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>zonedDateTime1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toLocalDateTime</span><span style="color:#000;font-weight:bold">());</span> <span style="color:#998;font-style:italic">// 2023-03-27T10:48:09.697
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div>
+        </div>
+
+        
+        <script src="https://utteranc.es/client.js"
+        repo="sunwc2023/comment-utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script> 
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  var indexURL = "https://sunwc2023.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://sunwc2023.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/mark.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://sunwc2023.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>

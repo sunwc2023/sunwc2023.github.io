@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>Sunwc&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="description" content="了解 字串是 不可變的">
+    
+  <meta name="author" content="sunwc">
+    
+  
+  <meta name="theme-name" content="liva-hugo" />
+  <meta name="generator" content="Hugo 0.111.1">
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+
+  
+
+  
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-259253267-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head>
+<body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://sunwc2023.github.io"><img class="img-fluid rounded-circle"
+          src="https://sunwc2023.github.io/images/logo.jpg" alt="">
+        <span class="text-body">Sunwc&#39;s Blog</span>
+      </a>
+          
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/">Blog</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/about/">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://sunwc2023.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+       
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container pl-4 pr-4">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <h3 class="text-center">Java - String 不可變的</h3>
+        <div class="mb-3 text-center">
+          <span>By sunwc</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2023-03-25</span>
+          
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <a href="/categories/java"
+            class="text-primary">Java</a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <div class="content mb-4">
+          <h2 id="例子">例子</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * String 代表不可變的CharSequence，簡稱不可變性
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @author sunwc
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @create 2023-03-25 下午 02:51
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">StringTest</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> String str <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> String<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;good&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">[]</span> ch <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#d14">&#39;t&#39;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#d14">&#39;e&#39;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#d14">&#39;s&#39;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#d14">&#39;t&#39;</span><span style="color:#000;font-weight:bold">};</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">change</span><span style="color:#000;font-weight:bold">(</span>String str<span style="color:#000;font-weight:bold">,</span> <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">[]</span> ch<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        str <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;test ok&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        ch<span style="color:#000;font-weight:bold">[</span><span style="color:#099">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;b&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        StringTest stringTest <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> StringTest<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        stringTest<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">change</span><span style="color:#000;font-weight:bold">(</span>stringTest<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">str</span><span style="color:#000;font-weight:bold">,</span> stringTest<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">ch</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>stringTest<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">str</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// good
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>stringTest<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">ch</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// best
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><h3 id="以圖解釋main執行時記憶體分配資源的示意圖">以圖解釋main()執行時，記憶體分配資源的示意圖</h3>
+<blockquote>
+<p>幫助理解為什麼String 是不可變的
+<img src="../../images/post/unchangeable-string/unchangeable-string.png" alt=""></p>
+</blockquote>
+<hr>
+<h2 id="string-常見面試題">String 常見面試題</h2>
+<h3 id="第一題">第一題</h3>
+<pre><code>取得兩個字串中最大相同子串。例如str1 = &quot;abcwerthelloyuiodef&quot;, str2 = &quot;cvhellobnm&quot;;
+
+提示：將較短的字串在每一輪時總長度--，並在這個長度下得出不同組合，
+
+例如 str2 = &quot;cvhellobnm&quot; 
+
+第一輪會變成 =&gt; cvhellobnm =&gt; str1進行比較；
+
+第二輪會變成 cvhellobn 與 vhellobnm =&gt; str1進行比較；
+
+第三輪會變成 cvhellob 與 vhellobn 與 hellobnm =&gt; str1進行比較；...以此類推 
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @author sunwc
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @create 2023-03-26 下午 01:08
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">StringDemo</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">getLongestSubString</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        String str1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;abcwerthelloyuiodef&#34;</span><span style="color:#000;font-weight:bold">,</span> str2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;cvhellobnm&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// 1.定義較長與較短字串
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        String maxString <span style="color:#000;font-weight:bold">=</span> str1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">&gt;</span> str2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">?</span> str1 <span style="color:#000;font-weight:bold">:</span> str2<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        String minString <span style="color:#000;font-weight:bold">=</span> str1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">&lt;</span> str2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">?</span> str1 <span style="color:#000;font-weight:bold">:</span> str2<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// 2.定義較短字串長度
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        <span style="color:#458;font-weight:bold">int</span> minLength <span style="color:#000;font-weight:bold">=</span> minString<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">         * 先假設minString = abcdefg
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">         * 第一輪 i = 0, substring(0, minLength) =&gt; abcdefg;
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">         * 第二輪 i = 1, substring(0, minLength - 1) =&gt; abcdef,
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">         *              substring(1, minLength) =&gt; bcdefg;
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">         * 第三輪 i = 2, substring(0, minLength - 2) =&gt; abcde,
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">         *              substring(1, minLength -1) =&gt; bcdef,
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">         *              substring(2, minLength) =&gt; cdefg
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">         *  以此類推......
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">         */</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">        back:</span><span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">;</span> i <span style="color:#000;font-weight:bold">&lt;</span> minLength<span style="color:#000;font-weight:bold">;</span> i<span style="color:#000;font-weight:bold">++)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> start <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">,</span> end <span style="color:#000;font-weight:bold">=</span> minLength <span style="color:#000;font-weight:bold">-</span> i<span style="color:#000;font-weight:bold">;</span> end <span style="color:#000;font-weight:bold">&lt;=</span> minLength<span style="color:#000;font-weight:bold">;</span> start<span style="color:#000;font-weight:bold">++,</span> end<span style="color:#000;font-weight:bold">++)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#998;font-style:italic">// 3. 取得此輪固定長度下的不同組合subString
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                    String subString <span style="color:#000;font-weight:bold">=</span> minString<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">substring</span><span style="color:#000;font-weight:bold">(</span>start<span style="color:#000;font-weight:bold">,</span> end<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#998;font-style:italic">// 4. 判斷較長字串是否包含minString的substring
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                    <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>maxString<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">contains</span><span style="color:#000;font-weight:bold">(</span>subString<span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;找到longest substring為：&#34;</span> <span style="color:#000;font-weight:bold">+</span> subString<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#998;font-style:italic">// 直接挑出外層迴圈
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                        <span style="color:#000;font-weight:bold">break</span> back<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>找到longest substring為：hello
+</span></span></code></pre></div><p><a href="https://juejin.cn/post/7038392510263066637">參考來源</a></p>
+<hr>
+<h3 id="第二題">第二題</h3>
+<pre><code>取得一個字串在另一個字串中出現的次數，例如：取得&quot;ab&quot;在&quot;abkkcadkabkebfkabkskab&quot;中出現的次數
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">duplicateString</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String minString <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;ab&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    String maxString <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;abkkcadkabkebfkabkskab&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#458;font-weight:bold">int</span> count <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">;</span> i <span style="color:#000;font-weight:bold">&lt;</span> maxString<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">();)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// 不是-1代表有找到
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>maxString<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">indexOf</span><span style="color:#000;font-weight:bold">(</span>minString<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            count<span style="color:#000;font-weight:bold">++;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">// startIndex後移minString.length()位
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            maxString <span style="color:#000;font-weight:bold">=</span> maxString<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">substring</span><span style="color:#000;font-weight:bold">(</span>i <span style="color:#000;font-weight:bold">+=</span> minString<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">// startIndex後移1位
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            maxString <span style="color:#000;font-weight:bold">=</span> maxString<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">substring</span><span style="color:#000;font-weight:bold">(++</span>i<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;字串在另一個字串中出現的次數為：&#34;</span> <span style="color:#000;font-weight:bold">+</span> count<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>字串在另一個字串中出現的次數為：4
+</span></span></code></pre></div><hr>
+<h3 id="第三題">第三題</h3>
+<p>對字串String str1 = &ldquo;abcwerthelloyuiodef&quot;中的字符進行自然順序排序</p>
+<p>提示</p>
+<p>1.字串變成char array</p>
+<p>2.對陣列排序(選擇排序、氣泡排序、Arrays.sort())</p>
+<p>3.將排序後的陣列變成字串</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">orderStringAlphabetical</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String str1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;abcwerthelloyuiodef&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#458;font-weight:bold">char</span><span style="color:#000;font-weight:bold">[]</span> chars <span style="color:#000;font-weight:bold">=</span> str1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toCharArray</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">;</span> i <span style="color:#000;font-weight:bold">&lt;</span> chars<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">;</span> i<span style="color:#000;font-weight:bold">++)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> j <span style="color:#000;font-weight:bold">=</span> i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span><span style="color:#000;font-weight:bold">;</span> j <span style="color:#000;font-weight:bold">&lt;</span> chars<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">;</span> j<span style="color:#000;font-weight:bold">++)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>chars<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">&gt;</span> chars<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">])</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#998;font-style:italic">// swap
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                <span style="color:#458;font-weight:bold">char</span> temp <span style="color:#000;font-weight:bold">=</span> chars<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span>                chars<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> chars<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span>                chars<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> temp<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>chars<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>abcdeeefhilloortuwy
+</span></span></code></pre></div><p>參考來源
+<a href="https://youtu.be/AFOEXJ8-nGE">Sort String Characters In Alphabetical Order</a></p>
+
+        </div>
+
+        
+        <script src="https://utteranc.es/client.js"
+        repo="sunwc2023/comment-utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script> 
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  var indexURL = "https://sunwc2023.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://sunwc2023.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/mark.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://sunwc2023.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>
