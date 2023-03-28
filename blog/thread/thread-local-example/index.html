@@ -137,7 +137,7 @@
         
         <div class="content mb-4">
           <blockquote>
-<p>有關如何使用 ThreadLocal 確保 Thread-safety，可以參考我的另一篇文章 <a href="/blog/thread-local">Java - ThreadLocal 類的使用</a></p>
+<p>有關如何使用 ThreadLocal 確保 Thread-safety，可以參考我的另一篇文章 <a href="/blog/thread/thread-local">Java - ThreadLocal 類的使用</a></p>
 </blockquote>
 <p>筆者曾經在不了解 ThreadLocal 類的情況下，錯用 ThreadLocal<!-- raw HTML omitted --> 客製Log物件的工具類，後來理解 ThreadLocal 運作原理後，在這裡特別記錄下來</p>
 <h3 id="客製-logbox-類">客製 LogBox 類</h3>
@@ -267,7 +267,7 @@
 <h3 id="情境一這個-logbox-類實際上是可以應用在-filter-interface">情境一、這個 LogBox 類實際上是可以應用在 Filter interface</h3>
 <p>透過建立一個客製類實作 Filter 並實現 doFilter 方法，一開始透過 <code>createCurrentThreadLogBox(title)</code> 建立屬於該 request (該執行緒) 的 <code>ThreadLocal&lt;LogBox&gt;</code> 物件，中間還可以從 request 中取得 requestURI、requestParams 並取得 response 等資訊都加入 <code>ThreadLocal&lt;LogBox&gt;</code> ，<em>等程式從controller層回到 doFilter</em> 再 <code>removeLogBoxAndGetLog()</code> 清除當前執行緒 <code>ThreadLocal&lt;LogBox&gt;</code></p>
 <p>因為有上面提及的這層操作，因此在SpringBoot framework 的 Controller 或 Service 層的 function 中，就只需要<code>getCurrentThreadLogBox()</code> 取得當前執行緒的 LogBox，並將當前API、業務邏輯所需顯示的 log 內容，透過 <code>log.info(&quot;xxxx&quot;)</code>, <code>log.error(exeption message)</code>,&hellip; 將不同層級訊息加到 LogBox 中</p>
-<p><img src="../../images/post/thread-local-example/log-filter.png" alt=""></p>
+<p><img src="../../../images/post/thread/thread-local-example/log-filter.png" alt=""></p>
 <p><a href="https://youtu.be/BXL3FE3b6ic">圖片來源</a></p>
 <h3 id="情境二這個-logbox-類實際上是可以應用在-quartz-排程">情境二、這個 LogBox 類實際上是可以應用在 quartz 排程</h3>
 <p>透過建立一個客製類繼承 QuartzJobBean 並覆寫 executeInternal 方法，一開始透過 <code>createCurrentThreadLogBox(title)</code> 建立屬於該排程 (該執行緒) 的 <code>ThreadLocal&lt;LogBox&gt;</code> 物件；不過，此方法可能會再存取 ScheduleService 類的方法，因此在 ScheduleService 層就只需要　<code>getCurrentThreadLogBox()</code> 取得當前執行緒的 LogBox ，並添加業務邏輯所需顯示的 log 內容，透過 <code>log.info(&quot;xxxx&quot;)</code>, <code>log.error(exeption message)</code>,&hellip; 將不同層級訊息加到 LogBox 中，<em>等排程快結束時程式回到 executeInternal 方法</em>，再 <code>removeLogBoxAndGetLog()</code> 清除當前執行緒 <code>ThreadLocal&lt;LogBox&gt;</code></p>
@@ -362,7 +362,7 @@
 </span></span><span style="display:flex;"><span>    executor<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">shutdownNow</span><span style="color:#000;font-weight:bold">();</span>
 </span></span><span style="display:flex;"><span>    logBox<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">info</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;cancelTaskPer60MINS shutdown now&#34;</span><span style="color:#000;font-weight:bold">);</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><p><img src="../../images/post/thread-local-example/newSingleThreadExecutor.png" alt=""></p>
+</span></span></code></pre></div><p><img src="../../../images/post/thread/thread-local-example/newSingleThreadExecutor.png" alt=""></p>
 <p><a href="https://zhuanlan.zhihu.com/p/428425263">圖片參考</a></p>
 <h2 id="總結">總結</h2>
 <p>關於 log 印不出來，我的想法是 原來在主執行緒的 LogBox ，與 Executors 建立的單一執行緒裡的 LogBox 彼此之間是不互相影響的；但是只有主執行緒的 LogBox 可以印出 log (因為最後有 <code>removeLogBoxAndGetLog()</code> )，所以我就必須將主執行緒產生出來的 LogBox 當作傳參送入 <code>callTransferLimitUpPer30Mins(logBox)</code>，這樣就沒問題啦！</p>

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
-  <meta name="description" content="介紹 Java 抽象 (abstract) 的概念">
+  <meta name="description" content="介紹 interface List 的實現類：ArrayList, LinkedList, Vector">
     
   <meta name="author" content="sunwc">
     
@@ -119,12 +119,12 @@
   <div class="container pl-4 pr-4">
     <div class="row">
       <div class="col-lg-9 mx-auto">
-        <h3 class="text-center">Java - 抽象類別 抽象方法</h3>
+        <h3 class="text-center">Java - Collection - ArrayList, LinkedList, Vector</h3>
         <div class="mb-3 text-center">
           <span>By sunwc</span>
           
           <span class="border-bottom border-primary px-2 mx-1"></span>
-          <span>2023-03-22</span>
+          <span>2023-03-28</span>
           
           
           <span class="border-bottom border-primary px-2 mx-1"></span>
@@ -136,20 +136,65 @@
 
         
         <div class="content mb-4">
-          <blockquote>
-<p>有關的例子，可以參考我的另一篇文章 <a href="/blog/abstract/abstract-human">Java - 多型 繼承</a></p>
-</blockquote>
-<h2 id="abstract的特性">abstract的特性</h2>
+          <h2 id="collection-框架">Collection 框架</h2>
 <ul>
-<li>abstract 關鍵字只可以修飾 <code>非final</code> 的類別、  <code>非private、非static、非final</code> 的方法</li>
-<li>抽象類別<code>不可以</code>實例化，抽象類別一定有constructor，以便讓子類別實例化的時候可以進行調用</li>
-<li>抽象方法只有方法的宣告、沒有方法體</li>
+<li>
+<p>interface Collection：單列集合，用來儲存一個一個的物件</p>
+<ul>
+<li>
+<p>interface List：儲存有序的、可重複的資料 =&gt; &ldquo;動態&quot;陣列，替換原有的陣列</p>
+<ul>
+<li>ArrayList：作為 interface List 的主要實現類；執行緒不安全的，效率高；底層使用Object[] elementData儲存資料</li>
+<li>LinkedList：對於頻繁地插入、刪除操作，使用此類效率比ArrayList高；底層使用雙向鏈結串列儲存資料</li>
+<li>Vector：作為 interface List 的古老實現類；執行緒安全，效率低；底層使用Object[] elementData儲存資料</li>
 </ul>
-<h2 id="總結">總結：</h2>
-<ol>
-<li>包含 抽象方法 的類別，一定是抽象類別；反之，抽象類別中可以無抽象方法</li>
-<li>若子類別覆寫父類別的所有抽象方法後，此子類別可以實例化；若子類別沒有覆寫父類的所有抽象方法，則此子類別也是一個抽象類別，需要使用 abstract 修飾</li>
-</ol>
+</li>
+<li>
+<p>interface Set：儲存無序的、不可重複的資料</p>
+<ul>
+<li>無序性：儲存的資料在底層陣列中並非按照陣列索引的順序新增，而是根據資料的 hash code 決定的</li>
+<li>不可重複性：</li>
+</ul>
+<ul>
+<li>
+<p>HashSet：作為 interface Set 的主要實現類別；執行緒不安全的；可以儲存null值</p>
+<ul>
+<li>
+<p>HashSet 新增元素的過程：
+我們向 HashSet 中新增元素a，首先調用元素a的 hashCode()，計算元素a的哈希值，以此哈希值計算出在 HashSet 底層陣列中的存放位置(即為：索引位置)，判斷陣列此索引位置上是否有元素：</p>
+<pre><code>若此位置上沒有其他元素，則元素a新增成功 =&gt; 情況1
+若此位置上有其他元素b(或以鏈結串列形式存在多個元素)，則比較元素a與元素b的哈希值
+
+    若哈希值不相同，則元素a新增成功 =&gt; 情況2
+    若哈希值相同，進而需要調用元素a所在類別的 equals()
+
+        equals() 回傳true，元素a新增失敗
+        equals() 回傳false，元素a新增成功  =&gt; 情況3
+</code></pre>
+</li>
+<li>
+<p>HashSet 底層結構： 陣列 + 鏈結串列</p>
+</li>
+</ul>
+<p><img src="../../../../images/post/list-set/hashset-add-element.jpg" alt=""></p>
+<ul>
+<li>LinkedHashSet：作為 HashSet 的子類；遍歷其內部資料時，可以按照新增元素的順序進行遍歷</li>
+</ul>
+</li>
+<li>
+<p>TreeSet：可以按照新增元素的<code>指定屬性</code>進行排序</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>面試題：ArrayList, LinkedList, Vector 三者有何不同？ 見上</p>
+<ul>
+<li>相同點：三個類都是實現了 interface List，儲存資料的特點相同：儲存有序的、可重複的資料</li>
+</ul>
+</li>
+</ul>
 
         </div>
 

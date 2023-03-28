@@ -136,7 +136,7 @@
 
         
         <div class="content mb-4">
-          <p><img src="../../images/post/thread/process-pid.png" alt=""></p>
+          <p><img src="../../../images/post/thread/process-pid.png" alt=""></p>
 <h2 id="什麼是process">什麼是Process？</h2>
 <p>通常一個應用程序執行起來，就會在記憶體加載一個 Process ，對應到工作管理員(上圖)來看，一個 Process 就會對應到一個 PID (Process Identification)；
 而一個 Process 會有 Multi-threading  (Thread)，代表這個應用程序支持我們能夠使用它 <code>同時</code>在裡面做很多事情</p>
@@ -146,14 +146,14 @@
 <p>併行：多個CPU同時執行多個任務。例如 多個人同時做不同的事情</p>
 <p>併發：一個CPU快速切換不同執行緒以執行任務。例如 搶演唱會門票、多個人做同一件事情</p>
 <hr>
-<p><img src="../../images/post/thread/jvm-structure.jpg" alt=""></p>
+<p><img src="../../../images/post/thread/jvm-structure.jpg" alt=""></p>
 <h2 id="jvm-的記憶體結構">JVM 的記憶體結構</h2>
 <pre><code>每個 Thread 都有獨立的一套 VM Stack 與 Program Counter Register
 每個 Process 有獨立的一套 Method Area 與 Heap，即 Multi-threading 一起共用這些資源
 </code></pre>
 <hr>
 <blockquote>
-<p>有關創建多執行緒的方式 - 實現 interface Runnable，可以參考我的另一篇文章 <a href="/blog/implements-runnable">Java - Thread 執行緒(二) - interface Runnable</a></p>
+<p>有關創建多執行緒的方式 - 實現 interface Runnable，可以參考我的另一篇文章 <a href="/blog/thread/implements-runnable">Java - Thread 執行緒(二) - interface Runnable</a></p>
 </blockquote>
 <h2 id="新執行緒的創建-multi-threading---繼承-thread-類-之步驟">新執行緒的創建 (Multi-threading) - 繼承 Thread 類 之步驟</h2>
 <p>1.創建一個繼承於 Thread 類的子類別</p>

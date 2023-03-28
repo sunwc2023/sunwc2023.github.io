@@ -137,7 +137,7 @@
         
         <div class="content mb-4">
           <blockquote>
-<p>有關創建多執行緒 (Multi-threading) 的方式 - 繼承 Thread 類，可以參考我的另一篇文章 <a href="/blog/thread">Java - Thread 執行緒(一)</a></p>
+<p>有關創建多執行緒 (Multi-threading) 的方式 - 繼承 Thread 類，可以參考我的另一篇文章 <a href="/blog/thread/thread">Java - Thread 執行緒(一)</a></p>
 </blockquote>
 <p>除了上述說的方式創建新的執行緒；</p>
 <p>在實際應用面，以透過實現 interface Runnable 來做是更好的方式，詳細的說明如下：</p>
@@ -239,8 +239,8 @@
 <li>售票過程中，出現了重複售出同一個票號的票、超賣的情況</li>
 <li>原因：當某個執行緒操作車票的過程中，尚未操作完成時，其它的執行緒就參與進來</li>
 </ol>
-<p><img src="../../images/post/implements-runnable/ticket-sale1.jpg" alt=""></p>
-<p><img src="../../images/post/implements-runnable/ticket-sale2.jpg" alt=""></p>
+<p><img src="../../../images/post/thread/implements-runnable/ticket-sale1.jpg" alt=""></p>
+<p><img src="../../../images/post/thread/implements-runnable/ticket-sale2.jpg" alt=""></p>
 <h2 id="如何解決執行緒安全問題">如何解決執行緒安全問題：</h2>
 <p>當一個執行緒A在操作ticket的時候，其它執行緒不能參與進來。直到執行緒A操作完ticket時，其它執行緒才可以開始操作ticket。這種情況即使執行A被阻塞了，其它執行緒也一定要等待</p>
 <p><strong>現實例子：</strong></p>
@@ -410,7 +410,7 @@
 <p>1.透過實現類 implements interface Runnable 達成 Multi-threading</p>
 <p>2.透過將共享資源宣告成「同步的」以解決執行緒不安全問題</p>
 <blockquote>
-<p>延伸學習：有關透過鎖 Lock 解決執行緒不安全問題，可以參考我的另一篇文章 <a href="/blog/lock-reentrantlock">Java - Lock - 解決執行緒不安全</a></p>
+<p>延伸學習：有關透過鎖 Lock 解決執行緒不安全問題，可以參考我的另一篇文章 <a href="/blog/thread/lock-reentrantlock">Java - Lock - 解決執行緒不安全</a></p>
 </blockquote>
 
         </div>

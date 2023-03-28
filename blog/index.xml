@@ -6,7 +6,27 @@
     <description>Recent content in Blogs on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 27 Mar 2023 16:05:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Mar 2023 13:47:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java - Collection - ArrayList, LinkedList, Vector</title>
+      <link>https://sunwc2023.github.io/blog/collection/list-set/</link>
+      <pubDate>Tue, 28 Mar 2023 13:47:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/collection/list-set/</guid>
+      <description>Collection 框架 interface Collection：單列集合，用來儲存一個一個的物件
+interface List：儲存有序的、可重複的資料 =&amp;gt; &amp;ldquo;動態&amp;quot;陣列，替換原有的陣列
+ArrayList：作為 interface List 的主要實現類；執行緒不安全的，效率高；底層使用Object[] elementData儲存資料 LinkedList：對於頻繁地插入、刪除操作，使用此類效率比ArrayList高；底層使用雙向鏈結串列儲存資料 Vector：作為 interface List 的古老實現類；執行緒安全，效率低；底層使用Object[] elementData儲存資料 interface Set：儲存無序的、不可重複的資料</description>
+    </item>
+    
+    <item>
+      <title>Java - Collection - iterator 方法</title>
+      <link>https://sunwc2023.github.io/blog/collection/collection-iterator/</link>
+      <pubDate>Tue, 28 Mar 2023 12:41:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/collection/collection-iterator/</guid>
+      <description>/** * @author sunwc * @create 2023-03-28 上午 09:56 */ public class CollectionTest { @Test public void testCollection() { Collection collection = new ArrayList&amp;lt;&amp;gt;(); Person person = new Person(&amp;#34;Jerry&amp;#34;, 20); collection.</description>
+    </item>
+    
     <item>
       <title>Java - enum class</title>
       <link>https://sunwc2023.github.io/blog/enum/enum-class/</link>
@@ -78,10 +98,10 @@ UTC 統一標準時間 GMT 格林威治標準時間 CST 中央標準時間 java.
     
     <item>
       <title>Java - 多執行緒 通訊</title>
-      <link>https://sunwc2023.github.io/blog/thread/concurrent-produnct/</link>
+      <link>https://sunwc2023.github.io/blog/thread/concurrent-product/</link>
       <pubDate>Fri, 24 Mar 2023 15:51:00 +0800</pubDate>
       
-      <guid>https://sunwc2023.github.io/blog/thread/concurrent-produnct/</guid>
+      <guid>https://sunwc2023.github.io/blog/thread/concurrent-product/</guid>
       <description>題目 生產者(Producer)將產品將給店員(Clerk)，而消費者(Consumer)從店員出取走商品，店員一次只能持有固定數量的產品(例如:20)，如果生產者試圖生產更多的產品，店員會較生產者暫停一下，如果店中有空位可以放產品了在通知生產者繼續生產；如果店中沒有產品了，店員會告知消費者等一下，如果店中有產品了再通知消費者來取走產品
 /** * @author sunwc * @create 2023-03-24 下午 03:49 */ public class ConcurrentProduct { public static void main(String[] args) { // 共享資源 Clerk clerk = new Clerk(); // 第一個生產者 Producer producer1 = new Producer(clerk); // 第一個消費者 Consumer consumer1 = new Consumer(clerk); Consumer consumer2 = new Consumer(clerk); producer1.</description>
     </item>
