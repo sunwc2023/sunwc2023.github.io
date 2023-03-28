@@ -145,9 +145,16 @@
 <p>interface List：儲存有序的、可重複的資料 =&gt; &ldquo;動態&quot;陣列，替換原有的陣列</p>
 <ul>
 <li>ArrayList：作為 interface List 的主要實現類；執行緒不安全的，效率高；底層使用Object[] elementData儲存資料</li>
+</ul>
+<hr>
+<ul>
 <li>LinkedList：對於頻繁地插入、刪除操作，使用此類效率比ArrayList高；底層使用雙向鏈結串列儲存資料</li>
+</ul>
+<hr>
+<ul>
 <li>Vector：作為 interface List 的古老實現類；執行緒安全，效率低；底層使用Object[] elementData儲存資料</li>
 </ul>
+<hr>
 </li>
 <li>
 <p>interface Set：儲存無序的、不可重複的資料</p>
@@ -156,8 +163,7 @@
 <li>不可重複性：</li>
 </ul>
 <ul>
-<li>
-<p>HashSet：作為 interface Set 的主要實現類別；執行緒不安全的；可以儲存null值</p>
+<li>HashSet：作為 interface Set 的主要實現類別；執行緒不安全的；可以儲存null值
 <ul>
 <li>
 <p>HashSet 新增元素的過程：
@@ -176,14 +182,179 @@
 <p>HashSet 底層結構： 陣列 + 鏈結串列</p>
 </li>
 </ul>
-<p><img src="../../../../images/post/list-set/hashset-add-element.jpg" alt=""></p>
-<ul>
-<li>LinkedHashSet：作為 HashSet 的子類；遍歷其內部資料時，可以按照新增元素的順序進行遍歷</li>
+</li>
 </ul>
+<ul>
+<li>
+<p>要求向 Set 新增元素時，其元素所在的類別一定要 override hashCode() 與 equals()</p>
 </li>
 <li>
-<p>TreeSet：可以按照新增元素的<code>指定屬性</code>進行排序</p>
+<p>要求 override 的 hashCode() 與 equals() 盡可能保持一致性：相同物件元素必須具有相同的散列碼</p>
+<p><img src="../../../../images/post/list-set/hashset-add-element.jpg" alt=""></p>
+<hr>
+<ul>
+<li>LinkedHashSet：作為 HashSet 的子類；遍歷其內部資料時，可以按照新增元素的順序進行遍歷
+<ul>
+<li>LinkedHashSet 在新增元素時，每個元素還維護了兩個reference，紀錄資料的前一個與後一個元素的位置；對於頻繁的遍歷操作，LinkedHashSet 效率高於 HashSet</li>
+</ul>
 </li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>TreeSet：可以按照新增元素的<code>指定屬性</code>進行排序</p>
+<ul>
+<li>要求向 TreeSet 新增元素時，必須是相同類別的物件</li>
+<li>兩種排序方式：自然排序(實現 interface Comparable) 和 定制排序(實現 interface Comparator)</li>
+<li>自然排序中，比較兩個物件是否想同的標準為：compareTo()回傳0</li>
+<li>定制排序中，比較兩個物件是否想同的標準為：compareTo()回傳0</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* @author sunwc
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* @create 2023-03-28 下午 09:31
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">TreeSetTest</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    * 自然排序
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">treeSetTest</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        TreeSet treeSet <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> TreeSet<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Flask&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">33</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Ice&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">18</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Gary&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">54</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Tim&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">26</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Daniel&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">40</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Daniel&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">37</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">size</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// 在建立多個User物件、放入TreeSet中後，卻拋出以下例外
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        <span style="color:#998;font-style:italic">// java.lang.ClassCastException: com.atguigu.java.User cannot be cast to java.lang.Comparable
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        <span style="color:#998;font-style:italic">// 因為TreeSet的特性會針對指定元素屬性進行比較，而自定義類別要有比較的功能就必須實現 interface Comparable - compareTo()
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        <span style="color:#998;font-style:italic">// 另外，若比較User的姓名若有重複，就要在compareTo()中定義要如何比較另一個屬性，
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        <span style="color:#998;font-style:italic">// 否則TreeSet就會認定只要新增的元素去調用compareTo()回傳的值為0時，就代表該元素是重複的而造成新增失敗；反之，就可以新增成功
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>        Iterator iterator <span style="color:#000;font-weight:bold">=</span> treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">iterator</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">while</span> <span style="color:#000;font-weight:bold">(</span>iterator<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">hasNext</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>iterator<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">next</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    * 定制排序
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">treeSetTest2</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Comparator comparator <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Comparator<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">            * 只比較年齡從小到大
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">            * @param o1
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">            * @param o2
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">            * @return
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">            */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">compare</span><span style="color:#000;font-weight:bold">(</span>User o1<span style="color:#000;font-weight:bold">,</span> User o2<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#000;font-weight:bold">return</span> Integer<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">compare</span><span style="color:#000;font-weight:bold">(</span>o1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getAge</span><span style="color:#000;font-weight:bold">(),</span> o2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getAge</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">};</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        TreeSet treeSet <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> TreeSet<span style="color:#000;font-weight:bold">(</span>comparator<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Flask&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">33</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Ice&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">18</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Gary&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">54</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Tim&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">26</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Daniel&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">26</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Daniel&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">37</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Iterator iterator <span style="color:#000;font-weight:bold">=</span> treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">iterator</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">while</span> <span style="color:#000;font-weight:bold">(</span>iterator<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">hasNext</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>iterator<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">next</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">implements</span> Comparable<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> String name<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">int</span> age<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#900;font-weight:bold">User</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#900;font-weight:bold">User</span><span style="color:#000;font-weight:bold">(</span>String name<span style="color:#000;font-weight:bold">,</span> <span style="color:#458;font-weight:bold">int</span> age<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">name</span> <span style="color:#000;font-weight:bold">=</span> name<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">age</span> <span style="color:#000;font-weight:bold">=</span> age<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> String <span style="color:#900;font-weight:bold">getName</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> name<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">setName</span><span style="color:#000;font-weight:bold">(</span>String name<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">name</span> <span style="color:#000;font-weight:bold">=</span> name<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">getAge</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> age<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">setAge</span><span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> age<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">age</span> <span style="color:#000;font-weight:bold">=</span> age<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> String <span style="color:#900;font-weight:bold">toString</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">final</span> StringBuilder sb <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> StringBuilder<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;User{&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;name=&#39;&#34;</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span>name<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#39;\&#39;&#39;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;, age=&#34;</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span>age<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#39;}&#39;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toString</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    * 排序規則
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    * 姓名從大到小排
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    * 年齡從小到大排
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    * @param o
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    * @return
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">compareTo</span><span style="color:#000;font-weight:bold">(</span>User o<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#458;font-weight:bold">int</span> compareNameVal <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">name</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">compareTo</span><span style="color:#000;font-weight:bold">(</span>o<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">name</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// 姓名不一樣就直接回傳compareNameVal
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>compareNameVal <span style="color:#000;font-weight:bold">!=</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">return</span> compareNameVal<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">// 姓名一樣就還要再比較年齡
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            <span style="color:#000;font-weight:bold">return</span> Integer<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">compare</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">age</span><span style="color:#000;font-weight:bold">,</span> o<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">age</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>TreeSet 自然排序 輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>6
+</span></span><span style="display:flex;"><span>User{name=&#39;Tim&#39;, age=26}
+</span></span><span style="display:flex;"><span>User{name=&#39;Ice&#39;, age=18}
+</span></span><span style="display:flex;"><span>User{name=&#39;Gary&#39;, age=54}
+</span></span><span style="display:flex;"><span>User{name=&#39;Flask&#39;, age=33}
+</span></span><span style="display:flex;"><span>User{name=&#39;Daniel&#39;, age=37}
+</span></span><span style="display:flex;"><span>User{name=&#39;Daniel&#39;, age=40}
+</span></span></code></pre></div><p>TreeSet 定制排序 輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>User{name=&#39;Ice&#39;, age=18}
+</span></span><span style="display:flex;"><span>User{name=&#39;Tim&#39;, age=26}
+</span></span><span style="display:flex;"><span>User{name=&#39;Flask&#39;, age=33}
+</span></span><span style="display:flex;"><span>User{name=&#39;Daniel&#39;, age=37}
+</span></span><span style="display:flex;"><span>User{name=&#39;Gary&#39;, age=54}
+</span></span></code></pre></div></li>
 </ul>
 </li>
 </ul>
@@ -194,8 +365,91 @@
 <li>相同點：三個類都是實現了 interface List，儲存資料的特點相同：儲存有序的、可重複的資料</li>
 </ul>
 </li>
+<li>
+<p>練習一、在list中去除重複的數字值，要求盡量簡單</p>
+</li>
 </ul>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">test3</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    List list <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Integer<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Integer<span style="color:#000;font-weight:bold">(</span><span style="color:#099">2</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Integer<span style="color:#000;font-weight:bold">(</span><span style="color:#099">2</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Integer<span style="color:#000;font-weight:bold">(</span><span style="color:#099">4</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Integer<span style="color:#000;font-weight:bold">(</span><span style="color:#099">4</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    List list1 <span style="color:#000;font-weight:bold">=</span> removeDuplicate<span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span>Object o <span style="color:#000;font-weight:bold">:</span> list1<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>o<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">private</span> List <span style="color:#900;font-weight:bold">removeDuplicate</span><span style="color:#000;font-weight:bold">(</span>List list<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    Set set <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> HashSet<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    set<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">addAll</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">(</span>set<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><ul>
+<li>練習二、有點難度</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">HashSetTest</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">test4</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        HashSet set <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> HashSet<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        Person2 p1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Person2<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1001</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;AA&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        Person2 p2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Person2<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1002</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;BB&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        set<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>p1<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>p2<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>set<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        p1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">name</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;CC&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">remove</span><span style="color:#000;font-weight:bold">(</span>p1<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 以1001, CC 換算hashcode找到的索引位置 沒有值
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>set<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Person2<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1001</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;CC&#34;</span><span style="color:#000;font-weight:bold">));</span> <span style="color:#998;font-style:italic">// 同上，1001, CC 換算hashcode找到的索引位置 沒有值，所以這個元素新增成功
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>set<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Person2<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1001</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;AA&#34;</span><span style="color:#000;font-weight:bold">));</span> <span style="color:#998;font-style:italic">// 以1001, AA 換算hashcode找到的索引位置 有值 但是 !&#34;CC&#34;.equals(&#34;AA&#34;)，所以這個元素也新增成功
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>set<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 最後這個set實際會輸出4個元素
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Person2</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#458;font-weight:bold">int</span> id<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    String name<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#900;font-weight:bold">Person2</span><span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> id<span style="color:#000;font-weight:bold">,</span> String name<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">id</span> <span style="color:#000;font-weight:bold">=</span> id<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">name</span> <span style="color:#000;font-weight:bold">=</span> name<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> String <span style="color:#900;font-weight:bold">toString</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">final</span> StringBuilder sb <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> StringBuilder<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Person2{&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;id=&#34;</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span>id<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;, name=&#39;&#34;</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span>name<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#39;\&#39;&#39;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#39;}&#39;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toString</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">equals</span><span style="color:#000;font-weight:bold">(</span>Object o<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">this</span> <span style="color:#000;font-weight:bold">==</span> o<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>o <span style="color:#000;font-weight:bold">==</span> <span style="color:#000;font-weight:bold">null</span> <span style="color:#000;font-weight:bold">||</span> getClass<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">!=</span> o<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getClass</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">false</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        Person2 person2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span>Person2<span style="color:#000;font-weight:bold">)</span> o<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> id <span style="color:#000;font-weight:bold">==</span> person2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">id</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> Objects<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span>name<span style="color:#000;font-weight:bold">,</span> person2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">name</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">hashCode</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> Objects<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">hash</span><span style="color:#000;font-weight:bold">(</span>id<span style="color:#000;font-weight:bold">,</span> name<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div>
         </div>
 
         
