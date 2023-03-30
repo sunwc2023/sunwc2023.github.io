@@ -6,16 +6,43 @@
     <description>Recent content on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 28 Mar 2023 13:47:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Mar 2023 10:26:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Java - Collection - ArrayList, LinkedList, Vector</title>
+      <title>Java - File</title>
+      <link>https://sunwc2023.github.io/blog/io/file/</link>
+      <pubDate>Thu, 30 Mar 2023 10:26:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/io/file/</guid>
+      <description>File 類的使用 1.File 類的一個物件，代表一個文件或一個文件目錄(俗稱：文件夾)
+2.File 類宣告在 java.io package下
+3.File 類涉及到關於文件或文件目錄的創建、刪除、重命名、修改時間、取得文件大小等方法，並未涉及到寫入或讀取文件內容的操作。如果需要讀取或寫入文件內容，必須使用IO流來完成</description>
+    </item>
+    
+    <item>
+      <title>Java - Collections - 操作 Collection、Map 工具類</title>
+      <link>https://sunwc2023.github.io/blog/collection/collections-list-set-map/</link>
+      <pubDate>Wed, 29 Mar 2023 14:28:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/collection/collections-list-set-map/</guid>
+      <description>Collections 工具類 常用方法 reverse(List) ：反轉 List 中的元素 shuffle(List)：對 List 集合元素進行隨機排序 sort(List)：根據元素的自然順序對指定 List 集合元素按升冪排序 sort(List, Comparator)：根據指定的 Comparator 產生的順序對 List 集合元素進行排序 swap(List, int, int)：將指定 list 集合中的 index i元素 與 index j元素進行交換 Object max(Collection)：根據元素的自然排序，回傳給定集合中的最大元素 Object max(Collection, Comparator)：根據 Comparator 指定的順序，回傳給訂集合中的最大元素 Object min(Collection) Object min(Collection, Comparator) int frequency(Collection, Object)：回傳指定集合中指定元素的出現次數 void copy(List dest, List src)：將 src 中的內容複製到 dest 中 /** * @author sunwc * @create 2023-03-29 下午 03:20 */ public class CollectionsTest { @Test public void testCollections() { List list = new ArrayList(); list.</description>
+    </item>
+    
+    <item>
+      <title>Java - Collection(二)</title>
+      <link>https://sunwc2023.github.io/blog/collection/map/</link>
+      <pubDate>Wed, 29 Mar 2023 08:53:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/collection/map/</guid>
+      <description>JDK 1.8 Collection 框架 - interface Map 架構 interface Map：雙列資料，儲存key-value對的資料</description>
+    </item>
+    
+    <item>
+      <title>Java - Collection(一)</title>
       <link>https://sunwc2023.github.io/blog/collection/list-set/</link>
       <pubDate>Tue, 28 Mar 2023 13:47:00 +0800</pubDate>
       
       <guid>https://sunwc2023.github.io/blog/collection/list-set/</guid>
-      <description>Collection 框架 interface Collection：單列集合，用來儲存一個一個的物件
-interface List：儲存有序的、可重複的資料 =&amp;gt; &amp;ldquo;動態&amp;quot;陣列，替換原有的陣列
-ArrayList：作為 interface List 的主要實現類；執行緒不安全的，效率高；底層使用Object[] elementData儲存資料 LinkedList：對於頻繁地插入、刪除操作，使用此類效率比ArrayList高；底層使用雙向鏈結串列儲存資料 Vector：作為 interface List 的古老實現類；執行緒安全，效率低；底層使用Object[] elementData儲存資料 interface Set：儲存無序的、不可重複的資料</description>
+      <description>JDK 1.8 Collection 框架 - interface List, interface Set 架構 interface Collection：單列集合，用來儲存一個一個的物件 interface List：儲存有序的、可重複的資料 =&amp;gt; &amp;ldquo;動態&amp;quot;陣列，替換原有的陣列</description>
     </item>
     
     <item>

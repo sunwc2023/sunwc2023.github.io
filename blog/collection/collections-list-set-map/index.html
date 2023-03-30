@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>Sunwc&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="description" content="介紹 Collections 工具類 常用方法">
+    
+  <meta name="author" content="sunwc">
+    
+  
+  <meta name="theme-name" content="liva-hugo" />
+  <meta name="generator" content="Hugo 0.111.1">
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+
+  
+
+  
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-259253267-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head>
+<body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://sunwc2023.github.io"><img class="img-fluid rounded-circle"
+          src="https://sunwc2023.github.io/images/logo.jpg" alt="">
+        <span class="text-body">Sunwc&#39;s Blog</span>
+      </a>
+          
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/">Blog</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/about/">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://sunwc2023.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+       
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container pl-4 pr-4">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <h3 class="text-center">Java - Collections - 操作 Collection、Map 工具類</h3>
+        <div class="mb-3 text-center">
+          <span>By sunwc</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2023-03-29</span>
+          
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <a href="/categories/java"
+            class="text-primary">Java</a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <div class="content mb-4">
+          <h2 id="collections-工具類-常用方法">Collections 工具類 常用方法</h2>
+<ul>
+<li>reverse(List) ：反轉 List 中的元素</li>
+<li>shuffle(List)：對 List 集合元素進行隨機排序</li>
+<li>sort(List)：根據元素的自然順序對指定 List 集合元素按升冪排序</li>
+<li>sort(List, Comparator)：根據指定的 Comparator 產生的順序對 List 集合元素進行排序</li>
+<li>swap(List, int, int)：將指定 list 集合中的 index i元素 與 index j元素進行交換</li>
+<li>Object max(Collection)：根據元素的自然排序，回傳給定集合中的最大元素</li>
+<li>Object max(Collection, Comparator)：根據 Comparator 指定的順序，回傳給訂集合中的最大元素</li>
+<li>Object min(Collection)</li>
+<li>Object min(Collection, Comparator)</li>
+<li>int frequency(Collection, Object)：回傳指定集合中指定元素的出現次數</li>
+<li>void copy(List dest, List src)：將 src 中的內容複製到 dest 中</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @author sunwc
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @create 2023-03-29 下午 03:20
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">CollectionsTest</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">testCollections</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        List list <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">353</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">0</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">4838</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">43</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">52</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(-</span><span style="color:#099">432</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">9</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// 使用Collecitons.copy()，要先撐開dest collection 的長度 至 source 的 長度
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        <span style="color:#998;font-style:italic">// tips: 先讓裝載的元素一樣多
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        List dest <span style="color:#000;font-weight:bold">=</span> Arrays<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">asList</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Object<span style="color:#000;font-weight:bold">[</span>list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">size</span><span style="color:#000;font-weight:bold">()]);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// 再把值複製過來
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        Collections<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">copy</span><span style="color:#000;font-weight:bold">(</span>dest<span style="color:#000;font-weight:bold">,</span> list<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>dest<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><ul>
+<li>boolean replaceAll(List list, Object oldVal, Object newVal)：使用新值替換 List 對</li>
+<li>同步控制 <code>synchronizedXxx()</code>方法：該方法可使指定集合包裝成執行緒同步的集合，進而解決多執行緒併發存取集合時的執行緒不安全問題</li>
+</ul>
+<p><img src="../../../../images/post/collections-list-set-map/synchronized.jpg" alt=""></p>
+<hr>
+<h2 id="練習">練習</h2>
+<ul>
+<li>隨機的數字List，請reverse list後顯示；從大到小排序顯示</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">testCollections2</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        List list <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">353</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">0</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">4838</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">43</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">52</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(-</span><span style="color:#099">432</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#099">9</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Collections<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">reverse</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;reverse=&#34;</span><span style="color:#000;font-weight:bold">+</span>list<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Collections<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">sort</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">new</span> Comparator<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">compare</span><span style="color:#000;font-weight:bold">(</span>Integer o1<span style="color:#000;font-weight:bold">,</span> Integer o2<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">-</span>Integer<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">compare</span><span style="color:#000;font-weight:bold">(</span>o1<span style="color:#000;font-weight:bold">,</span>o2<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">});</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;大到小=&#34;</span><span style="color:#000;font-weight:bold">+</span>list<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>reverse=[9, -432, 52, 43, 4838, 0, 353]
+</span></span><span style="display:flex;"><span>大到小=[4838, 353, 52, 43, 9, 0, -432]
+</span></span></code></pre></div><hr>
+<ul>
+<li>請把學生名與考試分數記錄到集合中，例如TreeSet(Student(id,name,score)); 並按分數顯示前三名成績的學生姓名</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @author sunwc
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * @create 2023-03-29 下午 03:20
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">CollectionsTest</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">testCollections3</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        TreeSet<span style="color:#000;font-weight:bold">&lt;</span>Student<span style="color:#000;font-weight:bold">&gt;</span> treeSet <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> TreeSet<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Student<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1001</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;Jack&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">99</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Student<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1002</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;Hannah&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">88</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Student<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1003</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;Lily&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">45</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Student<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1004</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;Becky&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">84</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Student<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1005</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;May&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">60</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Student<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1006</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;Denial&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">77</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Student<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1007</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;Vicent&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">67</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Student<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1008</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;Potter&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">56</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>        treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Student<span style="color:#000;font-weight:bold">(</span><span style="color:#099">1009</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;Hank&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#099">98</span><span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Iterator<span style="color:#000;font-weight:bold">&lt;</span>Student<span style="color:#000;font-weight:bold">&gt;</span> iterator <span style="color:#000;font-weight:bold">=</span> treeSet<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">iterator</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#458;font-weight:bold">int</span> count <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">while</span> <span style="color:#000;font-weight:bold">(</span>iterator<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">hasNext</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> count <span style="color:#000;font-weight:bold">&lt;=</span> <span style="color:#099">2</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            Student next <span style="color:#000;font-weight:bold">=</span> iterator<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">next</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;學生姓名:&#34;</span><span style="color:#000;font-weight:bold">+</span>next<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">()+</span><span style="color:#d14">&#34;, 學生成績：&#34;</span><span style="color:#000;font-weight:bold">+</span>next<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getScore</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>            count<span style="color:#000;font-weight:bold">++;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Student</span> <span style="color:#000;font-weight:bold">implements</span> Comparable<span style="color:#000;font-weight:bold">&lt;</span>Student<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">int</span> id<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> String name<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">int</span> score<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#900;font-weight:bold">Student</span><span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> id<span style="color:#000;font-weight:bold">,</span> String name<span style="color:#000;font-weight:bold">,</span> <span style="color:#458;font-weight:bold">int</span> score<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">id</span> <span style="color:#000;font-weight:bold">=</span> id<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">name</span> <span style="color:#000;font-weight:bold">=</span> name<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">score</span> <span style="color:#000;font-weight:bold">=</span> score<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">getId</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> id<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">setId</span><span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> id<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">id</span> <span style="color:#000;font-weight:bold">=</span> id<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> String <span style="color:#900;font-weight:bold">getName</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> name<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">setName</span><span style="color:#000;font-weight:bold">(</span>String name<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">name</span> <span style="color:#000;font-weight:bold">=</span> name<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">getScore</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> score<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">setScore</span><span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> score<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">score</span> <span style="color:#000;font-weight:bold">=</span> score<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> String <span style="color:#900;font-weight:bold">toString</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">final</span> StringBuilder sb <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> StringBuilder<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Student{&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;id=&#34;</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span>id<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;, name=&#39;&#34;</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span>name<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#39;\&#39;&#39;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;, score=&#34;</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span>score<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#39;}&#39;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> sb<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">toString</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">equals</span><span style="color:#000;font-weight:bold">(</span>Object o<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">this</span> <span style="color:#000;font-weight:bold">==</span> o<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>o <span style="color:#000;font-weight:bold">==</span> <span style="color:#000;font-weight:bold">null</span> <span style="color:#000;font-weight:bold">||</span> getClass<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">!=</span> o<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getClass</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">false</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        Student student <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span>Student<span style="color:#000;font-weight:bold">)</span> o<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> id <span style="color:#000;font-weight:bold">==</span> student<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">id</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> score <span style="color:#000;font-weight:bold">==</span> student<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">score</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> Objects<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span>name<span style="color:#000;font-weight:bold">,</span> student<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">name</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">hashCode</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> Objects<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">hash</span><span style="color:#000;font-weight:bold">(</span>id<span style="color:#000;font-weight:bold">,</span> name<span style="color:#000;font-weight:bold">,</span> score<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     * 成績從高到低
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     * @param o
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     * @return
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">compareTo</span><span style="color:#000;font-weight:bold">(</span>Student o<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">-</span>Integer<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">compare</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getScore</span><span style="color:#000;font-weight:bold">(),</span> o<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getScore</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>學生姓名:Jack, 學生成績：99
+</span></span><span style="display:flex;"><span>學生姓名:Hank, 學生成績：98
+</span></span><span style="display:flex;"><span>學生姓名:Hannah, 學生成績：88
+</span></span></code></pre></div>
+        </div>
+
+        
+        <script src="https://utteranc.es/client.js"
+        repo="sunwc2023/comment-utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script> 
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  var indexURL = "https://sunwc2023.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://sunwc2023.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/mark.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://sunwc2023.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>Sunwc&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="description" content="介紹 File 常用方法">
+    
+  <meta name="author" content="sunwc">
+    
+  
+  <meta name="theme-name" content="liva-hugo" />
+  <meta name="generator" content="Hugo 0.111.1">
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://sunwc2023.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://sunwc2023.github.io/images/favicon.png " type="image/x-icon">
+
+  
+
+  
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-259253267-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head>
+<body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://sunwc2023.github.io"><img class="img-fluid rounded-circle"
+          src="https://sunwc2023.github.io/images/logo.jpg" alt="">
+        <span class="text-body">Sunwc&#39;s Blog</span>
+      </a>
+          
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/">Blog</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://sunwc2023.github.io/about/">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://sunwc2023.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+       
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container pl-4 pr-4">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <h3 class="text-center">Java - File</h3>
+        <div class="mb-3 text-center">
+          <span>By sunwc</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2023-03-30</span>
+          
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <a href="/categories/java"
+            class="text-primary">Java</a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <div class="content mb-4">
+          <h2 id="file-類的使用">File 類的使用</h2>
+<p>1.File 類的一個物件，代表一個文件或一個文件目錄(俗稱：文件夾)</p>
+<p>2.File 類宣告在 java.io package下</p>
+<p>3.File 類涉及到關於文件或文件目錄的創建、刪除、重命名、修改時間、取得文件大小等方法，並未涉及到寫入或讀取文件內容的操作。如果需要讀取或寫入文件內容，必須使用IO流來完成</p>
+<p>4.File 類的物件常會作為參數傳遞到流的 constructor 中，指名讀取或寫入的 “終點”</p>
+<h2 id="file-常用方法">File 常用方法</h2>
+<ul>
+<li>public String getAbsolutePath()：取得絕對路徑</li>
+<li>public String getPath()：取得路徑</li>
+<li>public String getName()：取得名稱</li>
+<li>public String getParent()：取得上層文件目錄路徑；若無，回傳null</li>
+<li>public long length()：取得文件長度(即byte數)；不能取得目錄的l長度</li>
+<li>public long lastModified()：取得最後一次的修改時間，毫秒值</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    * 測試當文件都不存在的時候
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">    */</span>
+</span></span><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">fileTest</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    File file1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;hello.txt&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    File file2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;d:\\io\\hi.txt&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getAbsolutePath</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getPath</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getParent</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> Date<span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">lastModified</span><span style="color:#000;font-weight:bold">()));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getAbsolutePath</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getPath</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getParent</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">lastModified</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\day08\hello.txt
+</span></span><span style="display:flex;"><span>hello.txt
+</span></span><span style="display:flex;"><span>hello.txt
+</span></span><span style="display:flex;"><span>null
+</span></span><span style="display:flex;"><span>11
+</span></span><span style="display:flex;"><span>Thu Mar 30 10:21:01 GMT+08:00 2023
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>d:\io\hi.txt
+</span></span><span style="display:flex;"><span>d:\io\hi.txt
+</span></span><span style="display:flex;"><span>hi.txt
+</span></span><span style="display:flex;"><span>d:\io
+</span></span><span style="display:flex;"><span>0
+</span></span><span style="display:flex;"><span>0
+</span></span></code></pre></div><ul>
+<li>public String[] list()：取得指定目錄下的所有文件或者文件目錄的名稱陣列</li>
+<li>public File[] listFiles()：取得指定目錄下的所有文件或文件目錄的File陣列</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">listFileTest</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        File file <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;C:\\Users\\ching\\IdeaProjects\\JavaSenior&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String<span style="color:#000;font-weight:bold">[]</span> list <span style="color:#000;font-weight:bold">=</span> file<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">list</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span>String name<span style="color:#000;font-weight:bold">:</span> list<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>name<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        File<span style="color:#000;font-weight:bold">[]</span> files <span style="color:#000;font-weight:bold">=</span> file<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">listFiles</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span>File file1 <span style="color:#000;font-weight:bold">:</span> files<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>輸出結果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>.idea
+</span></span><span style="display:flex;"><span>day01
+</span></span><span style="display:flex;"><span>day02
+</span></span><span style="display:flex;"><span>day03
+</span></span><span style="display:flex;"><span>day04
+</span></span><span style="display:flex;"><span>day05
+</span></span><span style="display:flex;"><span>day06
+</span></span><span style="display:flex;"><span>day07
+</span></span><span style="display:flex;"><span>day08
+</span></span><span style="display:flex;"><span>JavaSenior.iml
+</span></span><span style="display:flex;"><span>out
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\.idea
+</span></span><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\day01
+</span></span><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\day02
+</span></span><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\day03
+</span></span><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\day04
+</span></span><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\day05
+</span></span><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\day06
+</span></span><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\day07
+</span></span><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\day08
+</span></span><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\JavaSenior.iml
+</span></span><span style="display:flex;"><span>C:\Users\ching\IdeaProjects\JavaSenior\out
+</span></span></code></pre></div><ul>
+<li>public boolean renameTo(File dest)：把文件重命名為指定的文件路徑，例如file1.renameTo(file2)</li>
+</ul>
+<blockquote>
+<p>若想要保證回傳 true， file1 需在硬碟中、且 file2 目錄在硬碟中但檔案<code>不在</code>硬碟中</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">renameToTest</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    File file1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;C:\\Users\\ching\\IdeaProjects\\JavaSenior\\day08\\hello.txt&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    File file2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;C:\\io\\hi.txt&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(!</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">exists</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getParent</span><span style="color:#000;font-weight:bold">()).</span><span style="color:#008080">mkdir</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">renameTo</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><ul>
+<li>public boolean isDirectory()：判斷是否是文件目錄</li>
+<li>public boolean isFile()：判斷是否是文件</li>
+<li>public boolean exists()：判斷是否存在</li>
+<li>public boolean canRead()：判斷是否可讀</li>
+<li>public boolean canWrite()：判斷是否可寫</li>
+<li>public boolean isHidden()：判斷是否隱藏</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">fileBooleanTest</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 存在的檔案
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    File file1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;C:\\Users\\ching\\IdeaProjects\\JavaSenior\\hello.txt&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 不存在的檔案
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    file1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;C:\\Users\\ching\\IdeaProjects\\JavaSenior\\hello1.txt&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">exists</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">isFile</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">isDirectory</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">canWrite</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">canRead</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">isHidden</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 存在的目錄
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    File file2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;C:\\io&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 不存在的目錄
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    file2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;C:\\io1&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">exists</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">isFile</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">isDirectory</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">canWrite</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">canRead</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>file2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">isHidden</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><h3 id="創建硬碟對應的文件或文件目錄">創建硬碟對應的文件或文件目錄</h3>
+<ul>
+<li>
+<p>public boolean createNewFile()：創建文件；若文件存在，則不創建，回傳false</p>
+</li>
+<li>
+<p>public boolean mkdir()：創建文件目錄；若此文件目錄存在，就不創建了；若此文件目錄的上層目錄不存在，也不創建</p>
+</li>
+<li>
+<p>public boolean mkdirs()：創建文件目錄；若上層目錄不存在，一並創建</p>
+</li>
+<li>
+<p>public boolean delete()：刪除文件或者文件夾；注意Java中的刪除不走回收站</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">fileCreationTest</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">throws</span> IOException <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 不存在的檔案
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    File file1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;hello1.txt&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(!</span>file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">exists</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">createNewFile</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;創建成功&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">delete</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;刪除成功&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><h2 id="練習">練習</h2>
+<ul>
+<li>判斷指定目錄下是否有後綴名為.jpg的文件，如果有，就輸出該文件名稱</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">getPostfixJPG</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    File file <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;C:\\Users\\ching\\Pictures&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    File<span style="color:#000;font-weight:bold">[]</span> files <span style="color:#000;font-weight:bold">=</span> file<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">listFiles</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span>File file1 <span style="color:#000;font-weight:bold">:</span> files<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        String fileName <span style="color:#000;font-weight:bold">=</span> file1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>fileName<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">endsWith</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;.jpg&#34;</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>fileName<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><ul>
+<li>創建一個與 file 同目錄下的另一個文件，文件名為：helloworld.txt</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">createNewFileTest</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">throws</span> IOException <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    File file <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;C:\\Users\\ching\\IdeaProjects\\JavaSenior\\day08\\hello.txt&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    File destFile <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span>file<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getParent</span><span style="color:#000;font-weight:bold">(),</span> <span style="color:#d14">&#34;helloworld.txt&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(!</span>destFile<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">exists</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        destFile<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">createNewFile</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;創建成功&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><ul>
+<li>遍歷指定目錄所有文件名稱，包括子文件目錄中的文件
+<ul>
+<li>拓展1：並計算指定目錄佔用空間的大小</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> <span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">loopAllUnderTheDirectory</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        File file <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;C:\\IdeaProjects\\ infotrends-plugin-cathay&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#458;font-weight:bold">long</span> totalOccupied <span style="color:#000;font-weight:bold">=</span> printFilePath<span style="color:#000;font-weight:bold">(</span>file<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>totalOccupied<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     * 這道題涉及到了遞迴，對遞迴的感悟是：
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     * &lt;p&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     * 每執行一次遞迴方法就開闢一塊不同的Stack空間，所以遞迴方法裡變數儘管同名，但值不同。
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     * 遞迴如果按層次理解，遞迴先往內一層一層進入，在最內層方法執行結束後，外層的方法沒有結束（return），會再往外一層層return。最重要的是取得每層方法的回傳值結果。
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     * @param dir
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     * @return
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">long</span> <span style="color:#900;font-weight:bold">printFilePath</span><span style="color:#000;font-weight:bold">(</span>File dir<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#458;font-weight:bold">long</span> totalOccupied <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>L<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>dir<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">isFile</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">// 是檔案就直接做事
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>dir<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getAbsolutePath</span><span style="color:#000;font-weight:bold">());</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">// 是檔案就計算檔案bytes數
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            totalOccupied <span style="color:#000;font-weight:bold">+=</span> dir<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">// 是目錄就展開目錄後再調用自己 再判斷子層裡是目錄還是檔案
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            
+</span></span><span style="display:flex;"><span>            File<span style="color:#000;font-weight:bold">[]</span> listFiles <span style="color:#000;font-weight:bold">=</span> dir<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">listFiles</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span>File listFile <span style="color:#000;font-weight:bold">:</span> listFiles<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#998;font-style:italic">// 收集每層遞迴方法回傳的值，而不要把需要收集的值傳遞過去
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                totalOccupied <span style="color:#000;font-weight:bold">+=</span> printFilePath<span style="color:#000;font-weight:bold">(</span>listFile<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> totalOccupied<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p><a href="https://blog.csdn.net/weixin_47681071/article/details/119549483">參考來源</a></p>
+<hr>
+<ul>
+<li>
+<p>拓展2：刪除指定文件目錄及其下的所有文件</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#3c5d5d;font-weight:bold">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">deleteFileTest</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    File file <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> File<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;C:\\IdeaProjects\\infotrends-plugin-cathay&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    deleteFile<span style="color:#000;font-weight:bold">(</span>file<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">deleteFile</span><span style="color:#000;font-weight:bold">(</span>File dir<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>dir<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">isFile</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// 是檔案就直接做事
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        dir<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">delete</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// 是目錄就展開目錄後再調用自己 再判斷子層裡是目錄還是檔案
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        File<span style="color:#000;font-weight:bold">[]</span> listFiles <span style="color:#000;font-weight:bold">=</span> dir<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">listFiles</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span>File listFile <span style="color:#000;font-weight:bold">:</span> listFiles<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            deleteFile<span style="color:#000;font-weight:bold">(</span>listFile<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 指定目錄此時為空，可以刪除
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">return</span> dir<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">delete</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p><a href="https://www.cnblogs.com/eczhou/archive/2012/01/16/2323431.html">參考來源</a></p>
+</li>
+</ul>
+
+        </div>
+
+        
+        <script src="https://utteranc.es/client.js"
+        repo="sunwc2023/comment-utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script> 
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  var indexURL = "https://sunwc2023.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://sunwc2023.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/mark.js"></script>
+
+<script src="https://sunwc2023.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://sunwc2023.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>
