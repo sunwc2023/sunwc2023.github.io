@@ -6,7 +6,29 @@
     <description>Recent content on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 30 Mar 2023 10:26:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Mar 2023 20:12:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java - System.in、 System.out, PrintStream, Data Stream(Byte、Character)</title>
+      <link>https://sunwc2023.github.io/blog/io/other-stream/</link>
+      <pubDate>Fri, 31 Mar 2023 20:12:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/io/other-stream/</guid>
+      <description>System類 System.in：標準輸入，默認s從鍵盤輸入；其類別為InputStream System.out：標準輸出，默認從console輸出；其類別為PrintStream，為OutputStream的子類 練習一 System.in(return InputStream 類) 讀取鍵盤輸入的兩種方式 從鍵盤輸入字串，要求將讀取到的整行字串轉成大寫輸出。然後繼續進行輸入操作，直至當輸入“e”或“exit”時，退出程式
+public static void main(String[] args) { // 方法一 使用Scanner實現 // Scanner scan = new Scanner(System.</description>
+    </item>
+    
+    <item>
+      <title>Java - InputStream, OutputStream &amp; Reader, Writer</title>
+      <link>https://sunwc2023.github.io/blog/io/read-write/</link>
+      <pubDate>Fri, 31 Mar 2023 19:12:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/io/read-write/</guid>
+      <description>流的分類 1.操作資料單位：字節流、字符流
+2.資料的流向：輸入流、輸出流
+3.流的角色：節點流、處理流
+流的體系結構 文件輸入字符流(FileReader)：read() @Test public void fileReaderTest() { FileReader fr = null; try { File file = new File(&amp;#34;hello.</description>
+    </item>
+    
     <item>
       <title>Java - File</title>
       <link>https://sunwc2023.github.io/blog/io/file/</link>
