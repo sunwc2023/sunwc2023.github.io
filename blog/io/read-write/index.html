@@ -547,6 +547,9 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
 </span></span></code></pre></div><hr>
 <h3 id="使用-bytearrayoutputstream-實現複製文件">使用 ByteArrayOutputStream 實現複製文件</h3>
+<blockquote>
+<p>使用 ByteArrayOutputStream 的好處：若輸入流讀取後的資料直接寫入 ByteArrayOutputStream 儲存，就不用擔心每個字符到底對應幾個byte，因為在使用byte[] 盛裝資料時，可能會因為本次array空間不足就只儲存一個字符對應的部分bytes、而導致當要將bytes轉回字符時而產生亂碼的問題；ByteArrayOutputStream 底層是使用陣列append所有bytes之後，再一次性地將資料轉換成字串</p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* 使用 ByteArrayOutputStream 實現複製文件
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">* 例外要以try-catch-finally處理較正規

@@ -6,9 +6,29 @@
     <description>Recent content on Sunwc&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 31 Mar 2023 20:12:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Apr 2023 11:30:00 +0800</lastBuildDate><atom:link href="https://sunwc2023.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Java - System.in、 System.out, PrintStream, Data Stream(Byte、Character)</title>
+      <title>Java - Reflection</title>
+      <link>https://sunwc2023.github.io/blog/reflection/reflection/</link>
+      <pubDate>Mon, 03 Apr 2023 11:30:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/reflection/reflection/</guid>
+      <description>為什麼要使用 Reflection？ 有時候我們無法確定，當程式執行起來時，對應不同時機要使用什麼物件來幫我們做事，就會使用 Reflection 機制，在需要的時候才建立對應的物件來處理當前要做的事，所以我們可以說 Reflection 擁有一種 機動性 建物件的功能
+Reflection 與 Encapsulation(封裝) 是衝突的嗎？ 基本上封裝性的核心在於定義物件的成員時，要設定物件成員的存取權限，因此設定權限的本質，就是告訴開發人員，哪些是適合直接去使用的，若某些物件成員，在建立類別時就定義為不想直接被存取，撇開安全性的問題，有時更像是定義的人認定這個物件成員是不需要被開發人員使用到的，因為那些公開可以直接被使用的物件成員，其實就已經完全提供了這個物件應該實現的功能；而映射的出現，雖然說能夠存取私有的物件成員，但是也不代表我們使用映射就是為了去存取那些被定義為私有的物件成員；更多的使用只是為了能夠在需要動態產生對應物件做事時，使用這個映射的方式取得物件罷了。</description>
+    </item>
+    
+    <item>
+      <title>Java - 網路通信</title>
+      <link>https://sunwc2023.github.io/blog/networkprogramming/network/</link>
+      <pubDate>Sun, 02 Apr 2023 07:23:00 +0800</pubDate>
+      
+      <guid>https://sunwc2023.github.io/blog/networkprogramming/network/</guid>
+      <description>通信雙方地址 IP：網路定位的唯一一台主機，Java中表示 IP 地址，為 InetAddress 類；
+分為IPv4(例如 192.168.0.1)、IPv6(例如 3ffe:3201:1401:1280:c8ff:fe4d:db39:1984)；私有IP地址(局部網域)範圍即為192.168.0.0 ~ 192.</description>
+    </item>
+    
+    <item>
+      <title>Java - System.in、 System.out, PrintStream, Data Stream</title>
       <link>https://sunwc2023.github.io/blog/io/other-stream/</link>
       <pubDate>Fri, 31 Mar 2023 20:12:00 +0800</pubDate>
       
