@@ -366,6 +366,7 @@
 <p><a href="https://zhuanlan.zhihu.com/p/428425263">圖片參考</a></p>
 <h2 id="總結">總結</h2>
 <p>關於 log 印不出來，我的想法是 原來在主執行緒的 LogBox ，與 Executors 建立的單一執行緒裡的 LogBox 彼此之間是不互相影響的；但是只有主執行緒的 LogBox 可以印出 log (因為最後有 <code>removeLogBoxAndGetLog()</code> )，所以我就必須將主執行緒產生出來的 LogBox 當作傳參送入 <code>callTransferLimitUpPer30Mins(logBox)</code>，這樣就沒問題啦！</p>
+<hr>
 
         </div>
 

@@ -143,6 +143,7 @@
 <pre><code>* final 修飾類別： 代表本類別就不能被繼承，例如 String, System, StringBuffer 類別
 * final 修飾方法： 代表本方法不能被覆寫 (Override)，例如Object類別的getClass()
 * final 修飾變數： 代表本變數為常量，不能做修改；可以考慮指定值的位置有：顯示初始化、non-static-block 中初始化、constructor 中初始化
+
 ```java
 public class SingletonTest2 {
 
@@ -168,8 +169,10 @@ public class SingletonTest2 {
 
 }
 ```
+</code></pre>
+<hr>
+<pre><code>final面試題一、
 
-final面試題一、
 ```java
 public class Something {
    public int addOne(final int x) {
@@ -178,7 +181,10 @@ public class Something {
    }
 }
 ```
-final面試題二、
+</code></pre>
+<hr>
+<pre><code>final面試題二、
+
 ```java
  public class Something {
     public static void main(String[] args) {
@@ -198,8 +204,10 @@ final面試題二、
 ```
 
 * stactic final修飾屬性：代表本屬性為 全局常數
+
+
+---
 </code></pre>
-<hr>
 <h2 id="try-catch-finally">try-catch-finally：</h2>
 <ul>
 <li>
@@ -278,6 +286,7 @@ final面試題二、
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
 </span></span></code></pre></div><h2 id="總結">總結</h2>
 <p>面試中考題層出現問它們三倆有什麼關係 final, finally, finalize，其實並沒有關係，只是長得像就被放在一起了，透過這篇文章能夠更了解各自的意義，不要下次又搞混了就好了 :)</p>
+<hr>
 
         </div>
 
