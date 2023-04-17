@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
-  <meta name="description" content="If I only had today. Because I have today.">
+  <meta name="description" content="資料庫索引相關介紹">
     
   <meta name="author" content="sunwc">
     
@@ -115,176 +115,83 @@
 </header>
 <!-- /navigation -->
 
-
 <section class="section-sm">
-  <div class="container">
+  <div class="container pl-4 pr-4">
     <div class="row">
-      
-      
-      <div class="col-lg-4">
-  <div class="widgets">
-    
-    <div class="widget">
-      
-      <h4 class="widget-title">About Me</h4>
-      
-      
-      <div class="sidebar">
-        <img src="https://sunwc2023.github.io/images/ching.jpg" alt=""
-        class=" img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-      </div>
-      
-      <p>Hi, I am Lucy.
-I am a backend programmer.</p>
-      <a href="https://sunwc2023.github.io/about/" class="btn btn-outline-primary">Know More</a>
-      
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Category</h4>
-      <ul class="list-unstyled">
-        <li><a
-            href="/categories/experience/">Experience</a>
-        </li>
-        <li><a
-            href="/categories/java/">Java</a>
-        </li>
-        <li><a
-            href="/categories/practice/">Practice</a>
-        </li>
-        <li><a
-            href="/categories/sql/">SQL</a>
-        </li>
-      </ul>
-    </div>
-    
-    
-    
-    
-    <div class="widget">
-      <h4 class="widget-title">Social</h4>
-      <ul class="list-inline social-links">
-        
-        <li class="list-inline-item"><a href="https://dotblogs.com.tw/lucy_NoteForCoding"><i class="ti-notepad"></i></a></li>
-        
-        <li class="list-inline-item"><a href="https://github.com/ching89118"><i class="ti-github"></i></a></li>
-        
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Ads</h4>
-      
-      
-    </div>
-  </div>
-</div>
+      <div class="col-lg-9 mx-auto">
+        <h3 class="text-center">資料庫索引 之 性能優化</h3>
+        <div class="mb-3 text-center">
+          <span>By sunwc</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2023-04-17</span>
+          
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <a href="/categories/sql"
+            class="text-primary">SQL</a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
 
-      
-      
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="row">
-          
-          
-          
-          <div class="col-md-12 mb-4">
-    <article class="card">
         
-        <div class="card-body">
-        
-        
-        <a href="https://sunwc2023.github.io/categories/sql/" class="d-block my-3"><h3>SQL</h3></a>
-        <div class="mb-3 post-meta">
-            <span>By sunwc</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>0001-01-01</span>
-            
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://sunwc2023.github.io/categories/sql/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          
-          <div class="col-md-12 mb-4">
-    <article class="card">
-        
-        <div class="card-body">
-        
-        
-        <a href="https://sunwc2023.github.io/categories/java/" class="d-block my-3"><h3>Java</h3></a>
-        <div class="mb-3 post-meta">
-            <span>By sunwc</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>0001-01-01</span>
-            
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://sunwc2023.github.io/categories/java/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          
-          <div class="col-md-12 mb-4">
-    <article class="card">
-        
-        <div class="card-body">
-        
-        
-        <a href="https://sunwc2023.github.io/categories/practice/" class="d-block my-3"><h3>Practice</h3></a>
-        <div class="mb-3 post-meta">
-            <span>By sunwc</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>0001-01-01</span>
-            
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://sunwc2023.github.io/categories/practice/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          
-          <div class="col-md-12 mb-4">
-    <article class="card">
-        
-        <div class="card-body">
-        
-        
-        <a href="https://sunwc2023.github.io/categories/experience/" class="d-block my-3"><h3>Experience</h3></a>
-        <div class="mb-3 post-meta">
-            <span>By sunwc</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>0001-01-01</span>
-            
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://sunwc2023.github.io/categories/experience/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-        </div>
-      </div>
+        <div class="content mb-4">
+          <h3 id="最左前綴最左匹配-原則">最左前綴(最左匹配) 原則：</h3>
+<p>按照查詢條件順序來建立索引(規律的索引順序)，從左到右建立順序。
+例如 當查詢條件有<code>col2 = ?</code> 以及 <code>col1 = ? 和 col2 = ?</code>，這種情況下建立 複合索引 時，要將col2欄位宣告在索引欄位前面會比較合適，像<code>index_name(col2, col1)</code>；若查詢條件有<code>col1 = ?</code> 以及 <code>col2 = ?</code> 以及 <code>col1 = ? 和 col2 = ?</code>，那就可以選擇建立兩個索引，col1和col2建立 複合索引，col2再 單獨 建立一個索引，遵循 複合索引 規則條件下，將一些索引進行合併，減少索引的數量。</p>
+<p><img src="../../../../images/post/sql-server-index/index-prefix-mapping.png" alt=""></p>
+<p><a href="https://www.bilibili.com/video/BV18g411Q7vy/?share_source=copy_web&amp;vd_source=4c374c41e88ffce730c3c03a9fa68442">參考來源</a></p>
+<hr>
+<h3 id="索引失效的場景進行了全表掃描">索引失效的場景(進行了全表掃描)</h3>
+<p>1.對索引欄位進行計算，或使用了函數。
+若查詢條件在where子句進行計算的公式盡量在 = 的右邊。</p>
+<p>2.查詢中的資料型態與欄位型態不一致時，隱式類型轉換也會導致索引失效。</p>
+<p>3.違反索引的最左前綴(最左匹配)原則</p>
+<p>4.全表掃描更快。優化器評估找到目標索引後，還要評估要遍歷的索引數與全表總筆數的比例，若比例較高，優化器就可能考慮全表掃描</p>
+<p><a href="https://www.bilibili.com/video/BV1YY411N79W/?share_source=copy_web&amp;vd_source=4c374c41e88ffce730c3c03a9fa68442">參考來源</a></p>
+<hr>
+<h3 id="字串型態欄位如何建立索引">字串型態欄位如何建立索引</h3>
+<p>對於較長的字串，例如email地址，可以只針對字串的前面一部分字符建立索引，就已經接近整個字串資料的不同值的比例，也就是說用前綴字串資料就差不多能替代整個字串了，替代的比例高達95%以上。</p>
+<p>前綴索引可以達到節省儲存空間，也不會對查詢性能產生明顯的影響。
+不過，前綴索引無法利用覆蓋索引優化技術，無法實現唯一性。</p>
+<p><a href="https://www.bilibili.com/video/BV1US4y1n7dg/?share_source=copy_web&amp;vd_source=4c374c41e88ffce730c3c03a9fa68442">參考來源</a></p>
+<hr>
+<h3 id="資料庫性能優化目的與方式">資料庫性能優化目的與方式</h3>
+<ul>
+<li>目的：主要目標就是減少掃描(訪問)硬碟的機率。</li>
+<li>方式：
+<ul>
+<li>使用記憶體緩存，將會頻繁地存取的資料放在記憶體</li>
+<li>索引SQL優化</li>
+</ul>
+</li>
+</ul>
+<p>MSSQL、MySQL底層使用的資料結構(B+ Tree)</p>
+<ul>
+<li>叢集索引
+<img src="../../../../images/post/sql-server-index/clustered-index.png" alt=""></li>
+<li>非叢集索引
+<img src="../../../../images/post/sql-server-index/non-clustered-index.png" alt=""></li>
+</ul>
+<p><a href="https://www.bilibili.com/video/BV1F541197Dr/?share_source=copy_web&amp;vd_source=4c374c41e88ffce730c3c03a9fa68442">參考來源</a></p>
+<p><a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html">資料結構參考網站</a></p>
 
-      
-      <div class="col-12 mt-5">
+        </div>
         
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <script src="https://utteranc.es/client.js"
+        repo="sunwc2023/comment-utterances"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+        </script> 
       </div>
     </div>
   </div>
 </section>
-
 
 
 
